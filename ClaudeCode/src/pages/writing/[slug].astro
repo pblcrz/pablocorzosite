@@ -2,6 +2,7 @@
 import { sanityClient } from 'sanity:client';
 import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
+import { PortableText } from 'astro-portabletext';
 
 export const getStaticPaths = (async () => {
   const pieces = await sanityClient.fetch(`*[_type == "post" && defined(slug.current)]`);
@@ -83,8 +84,8 @@ const linkLabel =
 
    <div class="shell">
       <div class="prose-article mx-auto max-w-(--container-prose) pt-12">
-        {/* If your post uses plain text / portable text or custom layout */}
-        {piece.body ? <p>{piece.body}</p> : <p>Content coming soon...</p>}
+        {/* Render Sanity Portable Text blocks safely */}
+        {piece.body ? <PortableText value={piece.body} /> : <p>Content coming soon...</p>}
       </div>
 
       <div class="mx-auto mt-14 max-w-(--container-prose) border-t-2 border-foreground pt-6">
