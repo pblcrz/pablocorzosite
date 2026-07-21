@@ -1,13 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
+import { sanityClient } from 'sanity:client';
 import Base from '../layouts/Base.astro';
 
-const pieces = (await getCollection('writing', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.published.getTime() - a.data.published.getTime(),
-);
+// Fetch articles from Sanity
+const pieces = await sanityClient.fetch(`
+  *[_type == "post"] | order(publishedAt desc, _createdAt desc)
+`);
 
-const year = (date: Date) => date.getUTCFullYear();
-const pad = (n: number) => String(n).padStart(2, '0');
+// Safely extract year even if publishedAt is missing
+const getYear = (piece: any) => {
+  const dateStr = piece.publishedAt || piece._createdAt;
+  return dateStr ? new Date(dateStr).getUTCFullYear() : new Date().getUTCFullYear();
+};
+
+const pad = (n: number | string) => String(n ?? '').padStart(2, '0');
 ---
 
 <Base title="Pablo Corzo — Writing" theme="dark">
@@ -28,36 +34,42 @@ const pad = (n: number) => String(n).padStart(2, '0');
   <section class="shell">
     <h2 class="t-label border-b border-rule pb-3">Index</h2>
 
-    <ul>
-      {
-        pieces.map((piece) => (
-          <li class="group border-b border-rule">
-            <a
-              href={`/writing/${piece.id}`}
-              class="grid grid-cols-[auto_1fr] items-baseline gap-x-5 gap-y-2 py-6 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:grid-cols-[3rem_1fr_auto] md:px-4"
-            >
-              <span class="t-meta group-hover:text-accent-ink">{pad(piece.data.number)}</span>
+   <ul>
+  {
+    pieces.map((piece: any) => (
+      <li class="group border-b border-rule">
+        <a
+          href={`/writing/${piece.slug?.current || piece._id}`}
+          class="grid grid-cols-[auto_1fr] items-baseline gap-x-5 gap-y-2 py-6 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:grid-cols-[3rem_1fr_auto] md:px-4"
+        >
+          {/* Number (falls back to blank if not set) */}
+          <span class="t-meta group-hover:text-accent-ink">{pad(piece.number || '')}</span>
 
-              <span class="min-w-0">
-                <span class="t-row-title block group-hover:text-accent-ink">
-                  {piece.data.title}
-                </span>
-                <span class="t-label mt-2 block group-hover:text-accent-ink">
-                  {piece.data.kind} / {piece.data.pillar}
-                </span>
-                <span class="t-standfirst mt-3 block max-w-[62ch] group-hover:text-accent-ink">
-                  {piece.data.deck}
-                </span>
-              </span>
+          <span class="min-w-0">
+            <span class="t-row-title block group-hover:text-accent-ink">
+              {piece.title}
+            </span>
+            
+            {/* Kind & Pillar */}
+            <span class="t-label mt-2 block group-hover:text-accent-ink">
+              {piece.kind || 'Essay'} {piece.pillar ? `/ ${piece.pillar}` : ''}
+            </span>
+            
+            {/* Deck / Excerpt */}
+            <span class="t-standfirst mt-3 block max-w-[62ch] group-hover:text-accent-ink">
+              {piece.deck || piece.excerpt || ''}
+            </span>
+          </span>
 
-              <span class="t-meta col-start-2 group-hover:text-accent-ink md:col-start-3">
-                {year(piece.data.published)}
-              </span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+          {/* Date / Year */}
+          <span class="t-meta col-start-2 group-hover:text-accent-ink md:col-start-3">
+            {getYear(piece)}
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>
 
     {
       pieces.length === 0 && (
