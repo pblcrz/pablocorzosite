@@ -1,19 +1,28 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { sanityClient } from 'sanity:client';
 import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
 
 export const getStaticPaths = (async () => {
-  const pieces = await getCollection('writing', ({ data }) => !data.draft);
-  return pieces.map((piece) => ({
-    params: { slug: piece.id },
+  const pieces = await sanityClient.fetch(`*[_type == "post" && defined(slug.current)]`);
+  return pieces.map((piece: any) => ({
+    params: { slug: piece.slug.current },
     props: { piece },
   }));
 }) satisfies GetStaticPaths;
 
 const { piece } = Astro.props;
-const { Content } = await render(piece);
-const { title, kind, pillar, published, readTime, number, externalLink, deck } = piece.data;
+
+// Safe field lookups matching your Sanity data schema
+const title = piece.title;
+const kind = piece.kind || 'Essay';
+const pillar = piece.pillar;
+const publishedDate = piece.publishedAt || piece._createdAt;
+const published = publishedDate ? new Date(publishedDate) : new Date();
+const readTime = piece.readTime;
+const number = piece.number;
+const externalLink = piece.externalLink;
+const deck = piece.deck;
 
 const monthYear = published.toLocaleDateString('en-GB', {
   month: 'long',
@@ -72,13 +81,14 @@ const linkLabel =
       }
     </header>
 
-    <div class="shell">
+   <div class="shell">
       <div class="prose-article mx-auto max-w-(--container-prose) pt-12">
-        <Content />
+        {/* If your post uses plain text / portable text or custom layout */}
+        {piece.body ? <p>{piece.body}</p> : <p>Content coming soon...</p>}
       </div>
 
       <div class="mx-auto mt-14 max-w-(--container-prose) border-t-2 border-foreground pt-6">
-        <p class="t-label text-dim">End · No. {number} · {month}</p>
+        <p class="t-label text-dim">End {number ? `· No. ${number}` : ''} · {month}</p>
       </div>
     </div>
   </article>
