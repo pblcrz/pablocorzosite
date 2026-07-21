@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls /Users/pablocorzo/.claude/skills/ 2>/dev/null; echo \"---project---\"; ls /Users/pablocorzo/Documents/pablocorzo/.claude/skills/ 2>/dev/null)",
+      "Bash(npx skills *)",
+      "Bash(npm install *)",
+      "Bash(npm view *)",
+      "Bash(grep -E '^\\(react|sanity|styled-components\\)$')",
+      "Bash(npx sanity *)",
+      "Bash(npm run *)",
+      "Bash(curl -s \"https://lzvdnbe4.api.sanity.io/v2026-07-21/data/query/production?query=*%5B_type%20%3D%3D%20%22post%22%5D%7B_id%2Ctitle%7D\")",
+      "Bash(npx astro *)",
+      "Bash(echo \"\\(exit: $?\\)\")",
+      "Bash(pkill -f \"astro dev --port 4399\")",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('./node_modules/astro-portabletext/package.json'\\).exports||{}\\)\\)\")"
+    ]
+  }
+}

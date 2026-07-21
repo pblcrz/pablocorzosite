@@ -1,0 +1,58 @@
+---
+// Fixed bottom-right on every page. The page sets its own default theme
+// (index dark, articles light); once the visitor picks a side, that choice
+// holds for the rest of the browsing session and auto-switching stops.
+---
+
+<div
+  class="fixed right-5 bottom-5 z-50 flex items-center gap-1 rounded-full bg-surface p-1 shadow-lg"
+>
+  <button
+    type="button"
+    data-set-theme="light"
+    class="t-label cursor-pointer rounded-full px-3 py-1.5 transition-colors"
+    aria-label="Use the light theme"
+  >
+    Light
+  </button>
+  <button
+    type="button"
+    data-set-theme="dark"
+    class="t-label cursor-pointer rounded-full px-3 py-1.5 transition-colors"
+    aria-label="Use the dark theme"
+  >
+    Dark
+  </button>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-set-theme]');
+
+  const paint = () => {
+    const active = root.dataset.theme;
+    for (const button of buttons) {
+      const isActive = button.dataset.setTheme === active;
+      button.classList.toggle('bg-accent-fill', isActive);
+      button.classList.toggle('text-accent-ink', isActive);
+      button.classList.toggle('text-dim', !isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    }
+  };
+
+  for (const button of buttons) {
+    button.addEventListener('click', () => {
+      const next = button.dataset.setTheme;
+      if (next !== 'light' && next !== 'dark') return;
+      root.dataset.theme = next;
+      try {
+        sessionStorage.setItem('theme', next);
+      } catch {
+        /* choice just won't survive navigation */
+      }
+      paint();
+    });
+  }
+
+  paint();
+</script>

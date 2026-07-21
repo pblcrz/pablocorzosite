@@ -1,0 +1,85 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+
+export const getStaticPaths = (async () => {
+  const pieces = await getCollection('writing', ({ data }) => !data.draft);
+  return pieces.map((piece) => ({
+    params: { slug: piece.id },
+    props: { piece },
+  }));
+}) satisfies GetStaticPaths;
+
+const { piece } = Astro.props;
+const { Content } = await render(piece);
+const { title, kind, pillar, published, readTime, number, externalLink, deck } = piece.data;
+
+const monthYear = published.toLocaleDateString('en-GB', {
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+const month = published.toLocaleDateString('en-GB', { month: 'long', timeZone: 'UTC' });
+
+const linkLabel =
+  kind === 'Prototype' ? 'Open' : kind === 'White Paper' ? 'Download PDF' : 'Open';
+---
+
+<Base title={`${title} — Pablo Corzo`} description={deck} theme="light">
+  <article>
+    <header class="shell pt-[46px]">
+      <a
+        href="/"
+        class="t-label inline-block text-dim no-underline transition-colors hover:text-foreground"
+      >
+        ← Index
+      </a>
+
+      <p class="t-label mt-[34px] text-accent-text">{kind} / {pillar}</p>
+
+      <h1 class="t-title mt-[18px] max-w-[20ch]">{title}</h1>
+
+      <div
+        class="mt-8 flex flex-wrap gap-x-9 gap-y-2 border-t border-rule border-b-2 border-b-foreground py-[18px]"
+      >
+        <p class="t-label text-dim">
+          <span class="text-muted">{monthYear}</span>
+        </p>
+        {
+          readTime ? (
+            <p class="t-label text-dim">
+              <span class="text-muted">{readTime}</span> min read
+            </p>
+          ) : null
+        }
+        <p class="t-label text-dim">
+          No. <span class="text-muted">{number}</span>
+        </p>
+      </div>
+
+      {
+        externalLink && (
+          <a
+            href={externalLink}
+            rel="noopener noreferrer"
+            target="_blank"
+            class="t-label mt-6 inline-block rounded-full bg-accent-fill px-5 py-2.5 text-accent-ink no-underline"
+          >
+            {linkLabel}
+          </a>
+        )
+      }
+    </header>
+
+    <div class="shell">
+      <div class="prose-article mx-auto max-w-(--container-prose) pt-12">
+        <Content />
+      </div>
+
+      <div class="mx-auto mt-14 max-w-(--container-prose) border-t-2 border-foreground pt-6">
+        <p class="t-label text-dim">End · No. {number} · {month}</p>
+      </div>
+    </div>
+  </article>
+</Base>

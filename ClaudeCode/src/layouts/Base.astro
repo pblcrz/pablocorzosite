@@ -1,0 +1,79 @@
+---
+import '../styles/global.css';
+import ThemeToggle from '../components/ThemeToggle.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Page's default colour scheme. Index opens dark, articles open light. */
+  theme?: 'dark' | 'light';
+}
+
+const {
+  title,
+  description = 'Writing on product management, operations, measurement, experimentation and AI.',
+  theme = 'dark',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" data-theme={theme} data-default-theme={theme}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://api.fontshare.com/v2/css?f[]=zodiak@700&f[]=sentient@400,500&f[]=satoshi@400,700&display=swap"
+    />
+
+    {/* Applies the stored choice before first paint so there is no flash. */}
+    <script is:inline>
+      (() => {
+        try {
+          const stored = sessionStorage.getItem('theme');
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.dataset.theme = stored;
+          }
+        } catch {
+          /* sessionStorage unavailable — fall back to the page default */
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <header class="shell flex items-baseline justify-between pt-7 pb-[18px]">
+      <a href="/" class="font-display text-[19px] font-bold text-foreground no-underline">
+        Pablo Corzo<span class="text-accent-text">.</span>
+      </a>
+      <nav class="flex gap-6">
+        <a class="t-label no-underline hover:text-foreground" href="/">Index</a>
+        <a class="t-label no-underline hover:text-foreground" href="/about">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="shell mt-[100px] border-t-2 border-foreground pt-6 pb-16">
+      <p class="t-label">© {new Date().getFullYear()} Pablo Corzo</p>
+    </footer>
+
+    <ThemeToggle />
+  </body>
+</html>

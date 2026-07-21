@@ -1,0 +1,14 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "compilerOptions": {
+    // "node" is needed for `process` in astro.config.mjs (Vite's loadEnv shim).
+    "types": ["@sanity/astro/module", "node"]
+  },
+  "exclude": [
+    "dist",
+    // Framer source material, not part of the Astro app. ThemeToggle.tsx
+    // imports from `framer` and will never typecheck here.
+    "ThemeToggle.tsx"
+  ]
+}
