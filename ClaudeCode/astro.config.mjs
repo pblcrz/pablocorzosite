@@ -26,8 +26,8 @@ export default defineConfig({
   // build for prerendered pages, which is where this site's images live.
   adapter: cloudflare({ imageService: 'compile' }),
   integrations: [sanity({
-    projectId: PUBLIC_SANITY_PROJECT_ID,
-    dataset: PUBLIC_SANITY_DATASET,
+    projectId: 'lzvdnbe4',
+    dataset: 'production',
     apiVersion: '2026-07-21',
     useCdn: false,
     // Studio is standalone in ../studio-pablocorzosite — deliberately not embedded,
