@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title,
-  description = 'Writing on product management, operations, measurement, experimentation and AI.',
+  description = 'Writing on product strategy, management, operations, measurement, experimentation and AI.',
   theme = 'dark',
 } = Astro.props;
 
@@ -57,8 +57,21 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
   <body>
     <header class="shell flex items-baseline justify-between pt-7 pb-[18px]">
-      <a href="/" class="font-display text-[19px] font-bold text-foreground no-underline">
-        Pablo Corzo<span class="text-accent-text">.</span>
+      <a
+        href="/"
+        aria-label="Pablo Corzo"
+        class="font-ui text-[19px] font-bold text-foreground no-underline"
+      >
+        {/* The o's become dots: red, marigold, red — the Spanish flag. */}
+        <span aria-hidden="true"
+          >PABL<span
+            class="inline-block h-[0.72em] w-[0.72em] rounded-full bg-[#aa151b]"
+          ></span> C<span
+            class="inline-block h-[0.72em] w-[0.72em] rounded-full bg-accent-fill"
+          ></span>RZ<span
+            class="inline-block h-[0.72em] w-[0.72em] rounded-full bg-[#aa151b]"
+          ></span></span
+        >
       </a>
       <nav class="flex gap-6">
         <a class="t-label no-underline hover:text-foreground" href="/">Index</a>

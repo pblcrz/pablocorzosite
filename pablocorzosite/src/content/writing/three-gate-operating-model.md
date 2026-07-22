@@ -5,6 +5,7 @@ kind: "Framework"
 pillar: "Product Operations"
 deck: "Definition Ready, Build Ready, Delivery Ready. What each gate actually checks, and what it costs when a team waves something through."
 published: 2026-04-14
+draft: true
 readTime: 11
 ---
 

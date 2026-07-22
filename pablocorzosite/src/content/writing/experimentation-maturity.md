@@ -5,6 +5,7 @@ kind: "White Paper"
 pillar: "Experimentation"
 deck: "A five-stage model for organizations that can already run tests but cannot yet trust what the tests tell them."
 published: 2026-06-02
+draft: true
 ---
 
 Every experimentation maturity model I have seen measures the wrong axis. They count tests. Test count tells you a team has a tool and permission to use it. It tells you almost nothing about whether the organization can act on a result.

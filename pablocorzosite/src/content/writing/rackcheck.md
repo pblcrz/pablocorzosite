@@ -5,6 +5,7 @@ kind: "Prototype"
 pillar: "AI"
 deck: "Point a camera at a gym rack, get the equipment identified and matched to the lift you are about to do."
 published: 2026-02-10
+draft: true
 externalLink: "https://example.com/rackcheck"
 featured: true
 ---

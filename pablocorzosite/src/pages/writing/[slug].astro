@@ -4,7 +4,8 @@ import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
 
 export const getStaticPaths = (async () => {
-  const pieces = await getCollection('writing', ({ data }) => !data.draft);
+  // Drafts render in the local dev server only — never in production builds.
+  const pieces = await getCollection('writing', ({ data }) => import.meta.env.DEV || !data.draft);
   return pieces.map((piece) => ({
     params: { slug: piece.id },
     props: { piece },
@@ -36,7 +37,14 @@ const linkLabel =
         ← Index
       </a>
 
-      <p class="t-label mt-[34px] text-accent-text">{kind} / {pillar}</p>
+      <p class="t-label mt-[34px] text-accent-text">
+        {kind} / {pillar}
+        {
+          piece.data.draft && (
+            <span class="ml-2 rounded-full bg-accent-fill px-2 py-0.5 text-accent-ink">Draft</span>
+          )
+        }
+      </p>
 
       <h1 class="t-title mt-[18px] max-w-[20ch]">{title}</h1>
 
@@ -73,11 +81,11 @@ const linkLabel =
     </header>
 
     <div class="shell">
-      <div class="prose-article mx-auto max-w-(--container-prose) pt-12">
+      <div class="prose-article mx-[15px] pt-12">
         <Content />
       </div>
 
-      <div class="mx-auto mt-14 max-w-(--container-prose) border-t-2 border-foreground pt-6">
+      <div class="mx-[15px] mt-14 border-t-2 border-foreground pt-6">
         <p class="t-label text-dim">End · No. {number} · {month}</p>
       </div>
     </div>

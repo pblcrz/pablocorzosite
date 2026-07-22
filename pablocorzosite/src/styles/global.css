@@ -32,7 +32,7 @@
   --rule: #dedede;
   --accent-fill: #ffb020;
   --accent-ink: #100e0b;
-  --accent-text: #64091a;
+  --accent-text: #aa151b; /* flag red — matches the wordmark dots */
   color-scheme: light;
 }
 
@@ -275,8 +275,20 @@
     background-color: var(--accent-text);
   }
 
+  /* Numbered lists get their numerals back (Tailwind's reset removes them),
+     with the marker in the accent colour to match the dash bullets. */
   .prose-article ol {
+    list-style: decimal;
     padding-left: 30px;
+  }
+
+  .prose-article ol > li {
+    padding-left: 4px;
+  }
+
+  .prose-article ol > li::marker {
+    color: var(--accent-text);
+    font-weight: 700;
   }
 
   .prose-article strong {
@@ -386,8 +398,41 @@
     overflow-x: auto;
   }
 
-  /* Drop cap on the opening paragraph. */
-  .prose-article > p:first-of-type::first-letter {
+  /* ---------------------------------------------------------------
+     Abstract / Summary — white-paper front matter. Triggered when the
+     article body opens with "## Abstract" or "## Summary".
+     --------------------------------------------------------------- */
+
+  /* The heading becomes a small label instead of a ruled section head. */
+  .prose-article > :is(#abstract, #summary) {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 0.65625rem;
+    line-height: 1.4;
+    letter-spacing: 0.19em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: -14px;
+  }
+
+  /* Abstract paragraphs: set off from the body — smaller, italic, muted,
+     against an accent rule. (Paragraphs after the next heading are body.) */
+  .prose-article > :is(#abstract, #summary) ~ p:not(:is(#abstract, #summary) ~ h2 ~ p) {
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--muted);
+    border-left: 2px solid var(--accent-fill);
+    padding-left: 20px;
+  }
+
+  /* Drop cap on the opening paragraph — or, when an abstract is present,
+     on the first paragraph of the body proper (after the first real h2). */
+  .prose-article:not(:has(> :is(#abstract, #summary))) > p:first-of-type::first-letter,
+  .prose-article:has(> :is(#abstract, #summary)) > h2:nth-of-type(2) + p::first-letter {
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 4.4em;
@@ -400,7 +445,8 @@
 
   /* The drop cap is the first thing to break on narrow screens. */
   @media (max-width: 420px) {
-    .prose-article > p:first-of-type::first-letter {
+    .prose-article:not(:has(> :is(#abstract, #summary))) > p:first-of-type::first-letter,
+    .prose-article:has(> :is(#abstract, #summary)) > h2:nth-of-type(2) + p::first-letter {
       font-size: 3.2em;
       margin-right: 10px;
     }

@@ -33,7 +33,14 @@
       "Bash(sort -t' ' -k2 -n)",
       "Bash(perl -i -pe 's/\\\\*\\\\*\\( +\\)\\([^*]+?\\)\\\\*\\\\*/$1**$2**/g; s/\\\\*\\\\*\\([^*]+?\\)\\( +\\)\\\\*\\\\*/**$1**$2/g' the-secret-force*.md product-management*.md from-first*.md)",
       "Bash(perl -i -pe 's/^\\\\*\\\\*\\([^*]+?\\)\\\\s*\\\\*\\\\*\\\\s*$/## $1\\\\n/' the-secret-force*.md product-management*.md from-first*.md)",
-      "Bash(curl -s http://localhost:4321/writing/from-first-hypothesis-to-institutional-knowledge)"
+      "Bash(curl -s http://localhost:4321/writing/from-first-hypothesis-to-institutional-knowledge)",
+      "Bash(curl -s http://localhost:4321/writing/from-first-hypothesis-to-institutional-knowledge-v2 -o /dev/null -w \"%{http_code}\\\\n\")",
+      "Bash(curl -s http://localhost:4321/writing/from-first-hypothesis-to-institutional-knowledge-v2)",
+      "Bash(curl -s -L https://pablocorzo.com/about/ -o /private/tmp/claude-501/-Users-pablocorzo-Documents-pablocorzo-pablocorzosite/1a0751c9-8f5a-444e-9514-658d8b104ee8/scratchpad/live-about.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/writing/brick-scout)",
+      "Bash(curl -s -o /dev/null -w \"draft article page: %{http_code}\\\\n\" http://localhost:4321/writing/brick-scout)",
+      "Bash(curl -s -L https://pablocorzo.com/)",
+      "Bash(grep -oE 'class=\"t-standfirst mt-6[^\"]*\"[^>]*>.{10,600}?</p>')"
     ]
   }
 }

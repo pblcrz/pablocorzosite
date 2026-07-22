@@ -2,12 +2,11 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 
-const pieces = (await getCollection('writing', ({ data }) => !data.draft)).sort(
+// Drafts stay visible in the local dev server (labelled below) so they can be
+// previewed, but are excluded from production builds.
+const pieces = (await getCollection('writing', ({ data }) => import.meta.env.DEV || !data.draft)).sort(
   (a, b) => b.data.published.getTime() - a.data.published.getTime(),
 );
-
-const year = (date: Date) => date.getUTCFullYear();
-const pad = (n: number) => String(n).padStart(2, '0');
 ---
 
 <Base title="Pablo Corzo — Writing" theme="dark">
@@ -15,11 +14,14 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <div class="grid gap-12 md:grid-cols-[1.35fr_1fr] md:gap-16">
       <div>
         <h1 class="t-display max-w-[14ch]">
-          Product work, written down<span class="text-accent-text">.</span>
+          Product observations, written down<span class="text-accent-text">.</span>
         </h1>
         <p class="t-standfirst mt-6 max-w-[52ch]">
-          Essays, white papers and prototypes on how product organisations actually
-          decide things — and what it costs when they don't.
+          This is where I share my perspective on product leadership, strategy, operations,
+          measurement, and experimentation, drawn from building products and the operating
+          systems behind them. I explore the principles, tradeoffs, and organizational
+          mechanisms that help teams move more efficient while making better informed
+          decisions.
         </p>
       </div>
     </div>
@@ -34,24 +36,23 @@ const pad = (n: number) => String(n).padStart(2, '0');
           <li class="group border-b border-rule">
             <a
               href={`/writing/${piece.id}`}
-              class="grid grid-cols-[auto_1fr] items-baseline gap-x-5 gap-y-2 py-6 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:grid-cols-[3rem_1fr_auto] md:px-4"
+              class="block py-6 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:px-4"
             >
-              <span class="t-meta group-hover:text-accent-ink">{pad(piece.data.number)}</span>
-
-              <span class="min-w-0">
-                <span class="t-row-title block group-hover:text-accent-ink">
-                  {piece.data.title}
-                </span>
-                <span class="t-label mt-2 block group-hover:text-accent-ink">
-                  {piece.data.kind} / {piece.data.pillar}
-                </span>
-                <span class="t-standfirst mt-3 block max-w-[62ch] group-hover:text-accent-ink">
-                  {piece.data.deck}
-                </span>
+              <span class="t-row-title block group-hover:text-accent-ink">
+                {piece.data.title}
               </span>
-
-              <span class="t-meta col-start-2 group-hover:text-accent-ink md:col-start-3">
-                {year(piece.data.published)}
+              <span class="t-label mt-2 block group-hover:text-accent-ink">
+                {piece.data.kind} / {piece.data.pillar}
+                {
+                  piece.data.draft && (
+                    <span class="ml-2 rounded-full bg-accent-fill px-2 py-0.5 text-accent-ink">
+                      Draft
+                    </span>
+                  )
+                }
+              </span>
+              <span class="t-standfirst mt-3 block max-w-[62ch] group-hover:text-accent-ink">
+                {piece.data.deck}
               </span>
             </a>
           </li>
