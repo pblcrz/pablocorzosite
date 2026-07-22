@@ -40,7 +40,9 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/writing/brick-scout)",
       "Bash(curl -s -o /dev/null -w \"draft article page: %{http_code}\\\\n\" http://localhost:4321/writing/brick-scout)",
       "Bash(curl -s -L https://pablocorzo.com/)",
-      "Bash(grep -oE 'class=\"t-standfirst mt-6[^\"]*\"[^>]*>.{10,600}?</p>')"
+      "Bash(grep -oE 'class=\"t-standfirst mt-6[^\"]*\"[^>]*>.{10,600}?</p>')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); r=d.get\\('result'\\) or {}; print\\(json.dumps\\({'build_config': r.get\\('build_config'\\), 'source': r.get\\('source'\\), 'production_branch': r.get\\('production_branch'\\)}, indent=2\\)\\)\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('success:', d.get\\('success'\\), '| root_dir:', \\(d.get\\('result'\\) or {}\\).get\\('build_config',{}\\).get\\('root_dir'\\), '| errors:', d.get\\('errors'\\)\\)\")"
     ]
   }
 }
