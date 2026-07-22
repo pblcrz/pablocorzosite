@@ -1,6 +1,6 @@
 ---
 title: "RackCheck"
-number: 3
+number: 7
 kind: "Prototype"
 pillar: "AI"
 deck: "Point a camera at a gym rack, get the equipment identified and matched to the lift you are about to do."

@@ -1,6 +1,6 @@
 ---
 title: "Experimentation maturity is an operating problem before it is a statistics problem"
-number: 2
+number: 6
 kind: "White Paper"
 pillar: "Experimentation"
 deck: "A five-stage model for organizations that can already run tests but cannot yet trust what the tests tell them."

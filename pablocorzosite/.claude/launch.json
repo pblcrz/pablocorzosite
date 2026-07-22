@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 4321
+    },
+    {
+      "name": "sanity-studio",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "../studio-pablocorzosite", "run", "dev"],
+      "port": 3333
     }
   ]
 }

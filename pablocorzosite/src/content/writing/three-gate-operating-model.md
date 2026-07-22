@@ -1,6 +1,6 @@
 ---
 title: "The three-gate operating model"
-number: 1
+number: 5
 kind: "Framework"
 pillar: "Product Operations"
 deck: "Definition Ready, Build Ready, Delivery Ready. What each gate actually checks, and what it costs when a team waves something through."

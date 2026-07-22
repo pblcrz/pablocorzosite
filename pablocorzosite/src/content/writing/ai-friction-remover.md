@@ -1,6 +1,6 @@
 ---
 title: "AI as friction-remover, not decision-maker"
-number: 4
+number: 8
 kind: "Article"
 pillar: "AI"
 deck: "AI did not create these organizational problems. It removed the friction that used to hide them."

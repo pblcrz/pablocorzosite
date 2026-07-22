@@ -1,6 +1,6 @@
 ---
 title: "Measuring incrementality on connected TV without a clean control"
-number: 5
+number: 9
 kind: "White Paper"
 pillar: "Measurement"
 deck: "Geo lift design, holdout construction, and where the confidence intervals stop being useful."

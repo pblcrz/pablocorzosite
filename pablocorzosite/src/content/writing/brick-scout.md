@@ -1,6 +1,6 @@
 ---
 title: "Brick Scout"
-number: 7
+number: 11
 kind: "Prototype"
 pillar: "AI"
 deck: "Recognition and inventory for a loose brick collection, built to test how far on-device vision gets without a catalog."

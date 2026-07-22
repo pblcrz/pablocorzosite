@@ -1,0 +1,29 @@
+---
+/**
+ * Renders the `link` annotation from a Sanity post body. External links (and
+ * any link the editor flags "open in new tab") get target=_blank + rel.
+ */
+type LinkMark = {
+  markType: 'link';
+  markDef: { href?: string; openInNewTab?: boolean };
+};
+
+interface Props {
+  node: LinkMark;
+  index: number;
+  isInline: boolean;
+}
+
+const { node } = Astro.props;
+const href = node.markDef?.href ?? '#';
+const isExternal = /^https?:\/\//.test(href);
+const openInNewTab = node.markDef?.openInNewTab ?? isExternal;
+---
+
+<a
+  href={href}
+  target={openInNewTab ? '_blank' : undefined}
+  rel={openInNewTab ? 'noopener noreferrer' : undefined}
+>
+  <slot />
+</a>

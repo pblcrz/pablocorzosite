@@ -1,0 +1,53 @@
+---
+/**
+ * Renders a `table` block from a Sanity post body.
+ * Shape mirrors the `table` object in the studio (same as @sanity/table):
+ * rows of { cells: string[] }, plus an optional caption. The first row is
+ * always the header row.
+ */
+type TableRow = { _key: string; cells: string[] };
+type TableNode = {
+  _type: 'table';
+  caption?: string;
+  rows?: TableRow[];
+};
+
+interface Props {
+  node: TableNode;
+  index: number;
+  isInline: boolean;
+}
+
+const { node } = Astro.props;
+const [head, ...body] = node.rows ?? [];
+---
+
+{
+  head && (
+    <figure class="table-block">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              {head.cells.map((cell) => (
+                <th scope="col">{cell}</th>
+              ))}
+            </tr>
+          </thead>
+          {body.length > 0 && (
+            <tbody>
+              {body.map((row) => (
+                <tr>
+                  {row.cells.map((cell) => (
+                    <td>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          )}
+        </table>
+      </div>
+      {node.caption && <figcaption class="t-label">{node.caption}</figcaption>}
+    </figure>
+  )
+}

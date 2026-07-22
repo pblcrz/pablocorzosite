@@ -1,6 +1,6 @@
 ---
 title: "The value of the unmeasured"
-number: 6
+number: 10
 kind: "Article"
 pillar: "Measurement"
 deck: "Every measurement system creates a shadow of work it cannot see."

@@ -4,7 +4,25 @@ export const prerender = false;
 
 import { PortableText } from 'astro-portabletext';
 import Base from '../../layouts/Base.astro';
+import CodeBlock from '../../components/portable-text/CodeBlock.astro';
+import Divider from '../../components/portable-text/Divider.astro';
+import Image from '../../components/portable-text/Image.astro';
+import Link from '../../components/portable-text/Link.astro';
+import Table from '../../components/portable-text/Table.astro';
 import { getPost } from '../../utils/sanity';
+
+// Custom renderers for the post body. Everything else (headings, lists,
+// blockquotes, decorators) uses astro-portabletext defaults, styled by
+// .prose-article in global.css.
+const components = {
+  type: {
+    table: Table,
+    image: Image,
+    codeBlock: CodeBlock,
+    divider: Divider,
+  },
+  mark: { link: Link },
+};
 
 const { slug } = Astro.params;
 const post = slug ? await getPost(slug) : null;
@@ -72,7 +90,7 @@ const linkLabel = post.kind === 'White Paper' ? 'Download PDF' : 'Open';
 
     <div class="shell">
       <div class="prose-article mx-auto max-w-(--container-prose) pt-12">
-        {post.body && <PortableText value={post.body} />}
+        {post.body && <PortableText value={post.body} components={components} />}
       </div>
 
       <div class="mx-auto mt-14 max-w-(--container-prose) border-t-2 border-foreground pt-6">

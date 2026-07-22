@@ -1,0 +1,23 @@
+---
+/** Renders a `codeBlock` from a Sanity post body. */
+type CodeBlockNode = {
+  _type: 'codeBlock';
+  code?: string;
+  language?: string;
+};
+
+interface Props {
+  node: CodeBlockNode;
+  index: number;
+  isInline: boolean;
+}
+
+const { node } = Astro.props;
+const language = node.language && node.language !== 'plain' ? node.language : undefined;
+---
+
+{
+  node.code && (
+    <pre data-language={language}><code>{node.code}</code></pre>
+  )
+}

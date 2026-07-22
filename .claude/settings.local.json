@@ -12,7 +12,28 @@
       "Bash(npx astro *)",
       "Bash(echo \"\\(exit: $?\\)\")",
       "Bash(pkill -f \"astro dev --port 4399\")",
-      "Bash(node -e \"console.log\\(Object.keys\\(require\\('./node_modules/astro-portabletext/package.json'\\).exports||{}\\)\\)\")"
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('./node_modules/astro-portabletext/package.json'\\).exports||{}\\)\\)\")",
+      "Bash(find /Users/pablocorzo/Documents/pablocorzo/studio-pablocorzosite -type f -not -path \"*/node_modules/*\" -not -path \"*/.git/*\" -not -name \".DS_Store\" 2>/dev/null | head -30)",
+      "Bash(ls /Users/pablocorzo/Documents/pablocorzo/ && find /Users/pablocorzo/Documents -maxdepth 3 -name \"sanity.config.*\" -not -path \"*/node_modules/*\" 2>/dev/null)",
+      "Bash(curl -s http://localhost:4321/sanity)",
+      "Bash(curl -s http://localhost:4321/sanity/product-management-in-the-age-of-fast-the-expectation-problem)",
+      "Bash(curl -s http://localhost:4321/table-test)",
+      "Bash(gh repo *)",
+      "Bash(mdfind -name \"studio-pablocorzosite\")",
+      "Bash(curl -s \"https://lzvdnbe4.api.sanity.io/v2026-07-21/data/query/production?query=*%5B_type%3D%3D%22post%22%5D%7Btitle%2C%20%22slug%22%3A%20slug.current%2C%20%22tableBlocks%22%3A%20body%5B_type%3D%3D%22table%22%5D%7D\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s http://localhost:4321/)",
+      "Bash(curl -s -m 10 -o /dev/null -w \"%{http_code} %{url_effective}\\\\n\" -L https://pablocorzo.com/)",
+      "Bash(curl -s -m 10 -L https://pablocorzo.com/)",
+      "Bash(sed -i '' 's/^number: 1$/number: 5/' three-gate-operating-model.md)",
+      "Bash(sed -i '' 's/^number: 2$/number: 6/' experimentation-maturity.md)",
+      "Bash(sed -i '' 's/^number: 3$/number: 7/' rackcheck.md)",
+      "Bash(sed -i '' 's/^number: 4$/number: 8/' ai-friction-remover.md)",
+      "Bash(sed -i '' 's/^number: 5$/number: 9/' ctv-incrementality.md)",
+      "Bash(sort -t' ' -k2 -n)",
+      "Bash(perl -i -pe 's/\\\\*\\\\*\\( +\\)\\([^*]+?\\)\\\\*\\\\*/$1**$2**/g; s/\\\\*\\\\*\\([^*]+?\\)\\( +\\)\\\\*\\\\*/**$1**$2/g' the-secret-force*.md product-management*.md from-first*.md)",
+      "Bash(perl -i -pe 's/^\\\\*\\\\*\\([^*]+?\\)\\\\s*\\\\*\\\\*\\\\s*$/## $1\\\\n/' the-secret-force*.md product-management*.md from-first*.md)",
+      "Bash(curl -s http://localhost:4321/writing/from-first-hypothesis-to-institutional-knowledge)"
     ]
   }
 }

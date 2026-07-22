@@ -1,0 +1,35 @@
+---
+/**
+ * Renders an `image` block from a Sanity post body. Sized for the prose
+ * column (660px), served at 2x via Sanity's image CDN.
+ */
+import { urlFor } from '../../utils/sanity';
+
+type ImageNode = {
+  _type: 'image';
+  asset?: { _ref: string };
+  alt?: string;
+  caption?: string;
+};
+
+interface Props {
+  node: ImageNode;
+  index: number;
+  isInline: boolean;
+}
+
+const { node } = Astro.props;
+
+const src = node.asset
+  ? urlFor(node).width(1320).fit('max').auto('format').url()
+  : null;
+---
+
+{
+  src && (
+    <figure class="image-block">
+      <img src={src} alt={node.alt ?? ''} loading="lazy" decoding="async" />
+      {node.caption && <figcaption class="t-label">{node.caption}</figcaption>}
+    </figure>
+  )
+}

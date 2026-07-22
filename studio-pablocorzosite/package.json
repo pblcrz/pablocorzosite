@@ -1,0 +1,22 @@
+{
+  "name": "studio-pablocorzosite",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sanity Studio for pablocorzo.com",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "sanity": "^6.5.0",
+    "styled-components": "^6.4.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "typescript": "^5.8.3"
+  }
+}
