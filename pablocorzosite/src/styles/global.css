@@ -1,5 +1,15 @@
 @import 'tailwindcss';
 
+/* Edo by Vic Fieger — caps-only brush display face, self-hosted
+   (public/fonts/edo.ttf, freeware licence alongside it). */
+@font-face {
+  font-family: 'Edo';
+  src: url('/fonts/edo.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ---------------------------------------------------------------
    Colour styles — values from tokens.json.
    Dark is the default; [data-theme="light"] overrides.
@@ -19,6 +29,8 @@
   --accent-fill: #ffb020;
   --accent-ink: #100e0b;
   --accent-text: #ffb020;
+  /* Inverse accent — flag red in dark, marigold in light. */
+  --accent-alt: #aa151b;
   color-scheme: dark;
 }
 
@@ -32,7 +44,8 @@
   --rule: #dedede;
   --accent-fill: #ffb020;
   --accent-ink: #100e0b;
-  --accent-text: #aa151b; /* flag red — matches the wordmark dots */
+  --accent-text: #aa151b; /* flag red — matches the wordmark */
+  --accent-alt: #ffb020;
   color-scheme: light;
 }
 
@@ -51,6 +64,7 @@
   --font-display: 'Zodiak', Georgia, serif;
   --font-reading: 'Sentient', Georgia, serif;
   --font-ui: 'Satoshi', system-ui, sans-serif;
+  --font-edo: 'Edo', 'Zodiak', Georgia, serif;
 
   /* layout block from tokens.json */
   --container-shell: 1180px;
@@ -187,9 +201,10 @@
     margin-top: 30px;
   }
 
+  /* Body copy is sans-serif; headings, quotes, and tables keep their faces. */
   .prose-article p {
-    font-family: var(--font-reading);
-    font-size: 1.1875rem;
+    font-family: var(--font-ui);
+    font-size: 1.125rem;
     line-height: 1.76;
     color: var(--body);
   }
@@ -255,8 +270,8 @@
 
   .prose-article li {
     position: relative;
-    font-family: var(--font-reading);
-    font-size: 1.1875rem;
+    font-family: var(--font-ui);
+    font-size: 1.125rem;
     line-height: 1.76;
     color: var(--body);
   }
@@ -357,7 +372,7 @@
 
   .prose-article td {
     font-family: var(--font-reading);
-    font-size: 1.0625rem;
+    font-size: 0.9375rem;
     line-height: 1.55;
     color: var(--body);
     text-align: left;
@@ -433,7 +448,7 @@
      on the first paragraph of the body proper (after the first real h2). */
   .prose-article:not(:has(> :is(#abstract, #summary))) > p:first-of-type::first-letter,
   .prose-article:has(> :is(#abstract, #summary)) > h2:nth-of-type(2) + p::first-letter {
-    font-family: var(--font-display);
+    font-family: var(--font-edo);
     font-weight: 700;
     font-size: 4.4em;
     line-height: 0.8;

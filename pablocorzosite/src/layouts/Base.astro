@@ -57,21 +57,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
   <body>
     <header class="shell flex items-baseline justify-between pt-7 pb-[18px]">
+      {/* Rectangle + dot swap the flag pair per theme: red frame / marigold dot
+          in light, marigold frame / red dot in dark. */}
       <a
         href="/"
-        aria-label="Pablo Corzo"
-        class="font-ui text-[19px] font-bold text-foreground no-underline"
+        class="inline-block border-2 border-accent-text px-2.5 py-1 font-edo text-[20px] text-foreground no-underline"
       >
-        {/* The o's become dots: red, marigold, red — the Spanish flag. */}
-        <span aria-hidden="true"
-          >PABL<span
-            class="inline-block h-[0.72em] w-[0.72em] rounded-full bg-[#aa151b]"
-          ></span> C<span
-            class="inline-block h-[0.72em] w-[0.72em] rounded-full bg-accent-fill"
-          ></span>RZ<span
-            class="inline-block h-[0.72em] w-[0.72em] rounded-full bg-[#aa151b]"
-          ></span></span
-        >
+        Pablo Corzo<span class="text-[var(--accent-alt)]">.</span>
       </a>
       <nav class="flex gap-6">
         <a class="t-label no-underline hover:text-foreground" href="/">Index</a>
