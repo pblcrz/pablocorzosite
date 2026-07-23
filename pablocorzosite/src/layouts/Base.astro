@@ -7,12 +7,15 @@ interface Props {
   description?: string;
   /** Page's default colour scheme. Index opens dark, articles open light. */
   theme?: 'dark' | 'light';
+  /** Keep thin or placeholder pages out of search indexes. */
+  noindex?: boolean;
 }
 
 const {
   title,
   description = 'Writing on product strategy, management, operations, measurement, experimentation and AI.',
   theme = 'dark',
+  noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -26,6 +29,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
     <meta property="og:type" content="website" />
@@ -67,6 +71,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       </a>
       <nav class="flex gap-6">
         <a class="t-label no-underline hover:text-foreground" href="/">Index</a>
+        <a class="t-label no-underline hover:text-foreground" href="/ideas">Ideas</a>
         <a class="t-label no-underline hover:text-foreground" href="/about">About</a>
       </nav>
     </header>

@@ -8,6 +8,13 @@ published: 2026-07-09
 readTime: 5
 externalLink: "https://www.pablocorzo.com"
 featured: true
+primaryIdea: "age-of-fast"
+relationships:
+  - target: "product-management-in-the-age-of-fast-what-speed-actually-changed"
+    type: "builds-on"
+    note: >
+      Develops the expectation problem created by the speed shift described
+      in the earlier piece: organizations generalize the easy cases.
 ---
 
 [Last time](https://www.linkedin.com/pulse/product-management-age-fast-what-speed-actually-changed-pablo-corzo-h1n6e/)I argued that speed made product management more necessary, not less, and that the work now lives in three gates: what to build, building it well, and whether it landed.

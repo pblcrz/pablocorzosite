@@ -1,0 +1,203 @@
+{
+  "ideas": [
+    {
+      "slug": "age-of-fast",
+      "title": "Product Management in the Age of Fast",
+      "statement": "AI made building dramatically faster and cheaper — but it did not make governing what gets built any easier, and the gap between the two is where organizations now fail.",
+      "status": "developing",
+      "draft": false,
+      "introducedAt": "2026-06-17",
+      "startHere": "product-management-in-the-age-of-fast-what-speed-actually-changed",
+      "themes": [
+        "ai",
+        "product-operations"
+      ],
+      "connections": [
+        {
+          "target": "cost-of-ai",
+          "type": "builds-on",
+          "note": "The speed-era governance argument builds on the observation that AI changed the economics of building software — cheaper, faster execution is exactly what resets organizational expectations.\n"
+        }
+      ],
+      "incomingConnections": [
+        {
+          "source": "experimentation-compounds",
+          "type": "builds-on",
+          "note": "Cheaper, AI-assisted testing widens the gap between running experiments and learning from them — the compounding argument starts where the speed argument ends.\n"
+        }
+      ],
+      "primaryArtifacts": [
+        "product-management-in-the-age-of-fast-what-speed-actually-changed",
+        "product-management-in-the-age-of-fast-the-expectation-problem"
+      ],
+      "supportingArtifacts": [
+        "from-first-hypothesis-to-institutional-knowledge-v2"
+      ],
+      "allArtifacts": [
+        "product-management-in-the-age-of-fast-what-speed-actually-changed",
+        "product-management-in-the-age-of-fast-the-expectation-problem",
+        "from-first-hypothesis-to-institutional-knowledge-v2"
+      ],
+      "artifactCount": 3,
+      "firstArtifactAt": "2026-06-17",
+      "lastArtifactAt": "2026-07-22",
+      "latestArtifact": "from-first-hypothesis-to-institutional-knowledge-v2"
+    },
+    {
+      "slug": "cost-of-ai",
+      "title": "The Cost of AI",
+      "statement": "The force reshaping organizations is not only what AI can do — it is what AI costs: a distributed, largely ungoverned expense that stays invisible until finance connects the dots.",
+      "status": "emerging",
+      "draft": false,
+      "introducedAt": "2026-06-15",
+      "startHere": "the-secret-force-behind-ai-driven-workforce-decisions",
+      "themes": [
+        "ai"
+      ],
+      "connections": [],
+      "incomingConnections": [
+        {
+          "source": "age-of-fast",
+          "type": "builds-on",
+          "note": "The speed-era governance argument builds on the observation that AI changed the economics of building software — cheaper, faster execution is exactly what resets organizational expectations.\n"
+        }
+      ],
+      "primaryArtifacts": [
+        "the-secret-force-behind-ai-driven-workforce-decisions"
+      ],
+      "supportingArtifacts": [],
+      "allArtifacts": [
+        "the-secret-force-behind-ai-driven-workforce-decisions"
+      ],
+      "artifactCount": 1,
+      "firstArtifactAt": "2026-06-15",
+      "lastArtifactAt": "2026-06-15",
+      "latestArtifact": "the-secret-force-behind-ai-driven-workforce-decisions"
+    },
+    {
+      "slug": "experimentation-compounds",
+      "title": "Experimentation That Compounds",
+      "statement": "Experimentation only becomes an advantage when platform, program, and culture work together to turn individual test results into institutional knowledge — organizations that merely run tests do not compound.",
+      "status": "developing",
+      "draft": false,
+      "introducedAt": "2026-07-06",
+      "startHere": "from-first-hypothesis-to-institutional-knowledge-v2",
+      "themes": [
+        "experimentation",
+        "measurement"
+      ],
+      "connections": [
+        {
+          "target": "age-of-fast",
+          "type": "builds-on",
+          "note": "Cheaper, AI-assisted testing widens the gap between running experiments and learning from them — the compounding argument starts where the speed argument ends.\n"
+        }
+      ],
+      "incomingConnections": [],
+      "primaryArtifacts": [
+        "from-first-hypothesis-to-institutional-knowledge-v2"
+      ],
+      "supportingArtifacts": [],
+      "allArtifacts": [
+        "from-first-hypothesis-to-institutional-knowledge-v2"
+      ],
+      "artifactCount": 1,
+      "firstArtifactAt": "2026-07-22",
+      "lastArtifactAt": "2026-07-22",
+      "latestArtifact": "from-first-hypothesis-to-institutional-knowledge-v2"
+    }
+  ],
+  "artifacts": [
+    {
+      "slug": "the-secret-force-behind-ai-driven-workforce-decisions",
+      "title": "The Secret Force Behind AI-Driven Workforce Decisions.",
+      "kind": "Article",
+      "pillar": "AI",
+      "deck": "What if the secret force pushing organizations to adapt its workforce isn't AI's ability to replace people but the cost of AI itself?",
+      "published": "2026-06-15",
+      "featured": false,
+      "draft": false,
+      "primaryIdea": "cost-of-ai",
+      "supportingIdeas": [],
+      "relationships": [],
+      "incomingRelationships": [],
+      "sameIdeaArtifacts": [],
+      "connectedIdeas": [
+        "cost-of-ai"
+      ]
+    },
+    {
+      "slug": "product-management-in-the-age-of-fast-what-speed-actually-changed",
+      "title": "Product Management in the Age of Fast. What Speed Actually Changed.",
+      "kind": "Article",
+      "pillar": "AI",
+      "deck": "If AI can move faster than our processes, are product management rituals and governance gates still necessary?",
+      "published": "2026-06-17",
+      "featured": false,
+      "draft": false,
+      "primaryIdea": "age-of-fast",
+      "supportingIdeas": [],
+      "relationships": [],
+      "incomingRelationships": [
+        {
+          "source": "product-management-in-the-age-of-fast-the-expectation-problem",
+          "type": "builds-on",
+          "note": "Develops the expectation problem created by the speed shift described in the earlier piece: organizations generalize the easy cases.\n"
+        }
+      ],
+      "sameIdeaArtifacts": [
+        "product-management-in-the-age-of-fast-the-expectation-problem"
+      ],
+      "connectedIdeas": [
+        "age-of-fast"
+      ]
+    },
+    {
+      "slug": "product-management-in-the-age-of-fast-the-expectation-problem",
+      "title": "Product Management in the Age of Fast. The Expectation Problem.",
+      "kind": "Article",
+      "pillar": "AI",
+      "deck": "Organizations are taking the cases where building got easier and generalizing the feeling across all deliveries.",
+      "published": "2026-07-09",
+      "featured": true,
+      "draft": false,
+      "primaryIdea": "age-of-fast",
+      "supportingIdeas": [],
+      "relationships": [
+        {
+          "target": "product-management-in-the-age-of-fast-what-speed-actually-changed",
+          "type": "builds-on",
+          "note": "Develops the expectation problem created by the speed shift described in the earlier piece: organizations generalize the easy cases.\n"
+        }
+      ],
+      "incomingRelationships": [],
+      "sameIdeaArtifacts": [
+        "product-management-in-the-age-of-fast-what-speed-actually-changed"
+      ],
+      "connectedIdeas": [
+        "age-of-fast"
+      ]
+    },
+    {
+      "slug": "from-first-hypothesis-to-institutional-knowledge-v2",
+      "title": "From First Hypothesis to Institutional Knowledge",
+      "kind": "White Paper",
+      "pillar": "Measurement & Experimentation",
+      "deck": "What best-in-class experimentation actually looks like. And why platform, program, and culture must work together.",
+      "published": "2026-07-22",
+      "featured": false,
+      "draft": false,
+      "primaryIdea": "experimentation-compounds",
+      "supportingIdeas": [
+        "age-of-fast"
+      ],
+      "relationships": [],
+      "incomingRelationships": [],
+      "sameIdeaArtifacts": [],
+      "connectedIdeas": [
+        "experimentation-compounds",
+        "age-of-fast"
+      ]
+    }
+  ]
+}

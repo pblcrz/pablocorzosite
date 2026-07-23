@@ -5,6 +5,7 @@ kind: "Article"
 pillar: "AI"
 deck: "What if the secret force pushing organizations to adapt its workforce isn't AI's ability to replace people but the cost of AI itself?"
 published: 2026-06-15
+primaryIdea: "cost-of-ai"
 ---
 
 Everyone talks about AI replacing jobs. But I wonder if we're missing something bigger.

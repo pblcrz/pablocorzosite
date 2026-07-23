@@ -7,6 +7,7 @@ deck: "What best-in-class experimentation actually looks like. And why platform,
 published: 2026-07-06
 draft: true
 externalLink: "https://docsend.com/view/ch9titxidpj754ia"
+primaryIdea: "experimentation-compounds"
 ---
 
 ## Abstract

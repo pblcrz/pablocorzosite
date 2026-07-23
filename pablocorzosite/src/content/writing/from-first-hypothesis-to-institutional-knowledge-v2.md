@@ -5,6 +5,9 @@ kind: "White Paper"
 pillar: "Measurement & Experimentation"
 deck: "What best-in-class experimentation actually looks like. And why platform, program, and culture must work together."
 published: 2026-07-22
+primaryIdea: "experimentation-compounds"
+supportingIdeas:
+  - "age-of-fast"
 ---
 
 

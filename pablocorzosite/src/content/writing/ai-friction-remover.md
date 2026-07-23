@@ -7,6 +7,7 @@ deck: "AI did not create these organizational problems. It removed the friction 
 published: 2026-01-20
 readTime: 8
 draft: true  # body is still a placeholder
+primaryIdea: "age-of-fast"
 ---
 
 Placeholder. Replace with the real piece before publishing.

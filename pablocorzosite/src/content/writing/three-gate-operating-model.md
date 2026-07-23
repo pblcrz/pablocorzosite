@@ -7,6 +7,7 @@ deck: "Definition Ready, Build Ready, Delivery Ready. What each gate actually ch
 published: 2026-04-14
 draft: true
 readTime: 11
+primaryIdea: "age-of-fast"
 ---
 
 Most product organizations do not have a prioritization problem. They have an intake problem that presents as a prioritization problem six weeks later, when the thing everyone agreed to build turns out to have never been defined.

@@ -5,6 +5,7 @@ kind: "Article"
 pillar: "AI"
 deck: "If AI can move faster than our processes, are product management rituals and governance gates still necessary?"
 published: 2026-06-17
+primaryIdea: "age-of-fast"
 ---
 
 Everyone is facing the same challenge right now: ship faster. Stop overthinking and start delivering. And with AI, it is definitely possible. A working prototype that used to take a couple of sprints can now be produced in a couple of days, sometimes even a couple of hours.

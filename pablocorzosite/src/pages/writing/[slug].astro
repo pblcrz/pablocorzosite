@@ -2,6 +2,8 @@
 import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
+import ConnectedContent from '../../components/ConnectedContent.astro';
+import IdeaContext from '../../components/IdeaContext.astro';
 
 export const getStaticPaths = (async () => {
   // Drafts render in the local dev server only — never in production builds.
@@ -77,12 +79,16 @@ const linkLabel =
           </a>
         )
       }
+
+      <IdeaContext artifactSlug={piece.id} />
     </header>
 
     <div class="shell">
       <div class="prose-article mx-[15px] pt-12">
         <Content />
       </div>
+
+      <ConnectedContent artifactSlug={piece.id} />
     </div>
   </article>
 </Base>

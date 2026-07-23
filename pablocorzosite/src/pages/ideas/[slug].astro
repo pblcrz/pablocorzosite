@@ -1,0 +1,189 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import ArtifactRow from '../../components/ArtifactRow.astro';
+import {
+  inverseRelationshipLabels,
+  relationshipLabels,
+  type ArtifactNode,
+} from '../../utils/content-graph';
+import { getSiteGraph, monthYear, statusLabels } from '../../utils/site-graph';
+
+export const getStaticPaths = (async () => {
+  // Draft ideas render in the local dev server only — never in production.
+  const entries = await getCollection('ideas', ({ data }) => import.meta.env.DEV || !data.draft);
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const hasBody = entry.body?.trim();
+
+const { ideasBySlug, artifactsBySlug } = await getSiteGraph();
+const idea = ideasBySlug.get(entry.id)!;
+
+const resolveArtifacts = (slugs: string[]): ArtifactNode[] =>
+  slugs
+    .map((slug) => artifactsBySlug.get(slug))
+    .filter((node): node is ArtifactNode => Boolean(node));
+
+const startHere = idea.startHere ? artifactsBySlug.get(idea.startHere) : undefined;
+// Newest first for reading lists; the graph stores oldest first.
+const primaryArtifacts = resolveArtifacts(idea.primaryArtifacts).reverse();
+const supportingArtifacts = resolveArtifacts(idea.supportingArtifacts).reverse();
+
+const connectedIdeas = [
+  ...idea.connections.flatMap((connection) => {
+    const target = ideasBySlug.get(connection.target);
+    return target
+      ? [{ label: relationshipLabels[connection.type], idea: target, note: connection.note }]
+      : [];
+  }),
+  ...idea.incomingConnections.flatMap((incoming) => {
+    const source = ideasBySlug.get(incoming.source);
+    return source
+      ? [{ label: inverseRelationshipLabels[incoming.type], idea: source, note: incoming.note }]
+      : [];
+  }),
+];
+---
+
+<Base
+  title={`${idea.title} — Pablo Corzo`}
+  description={idea.statement}
+  theme="dark"
+  noindex={idea.artifactCount === 0}
+>
+  <article>
+    <header class="shell pt-[46px]">
+      <a
+        href="/ideas"
+        class="t-label inline-block text-dim no-underline transition-colors hover:text-foreground"
+      >
+        ← Ideas
+      </a>
+
+      <p class="t-label mt-[34px] text-accent-text">
+        Idea · {statusLabels[idea.status]}
+        {
+          idea.draft && (
+            <span class="ml-2 rounded-full bg-accent-fill px-2 py-0.5 text-accent-ink">Draft</span>
+          )
+        }
+      </p>
+
+      <h1 class="t-title font-edo mt-[18px] max-w-[32ch]">{idea.title}</h1>
+
+      <p class="t-standfirst font-ui mt-6 max-w-[64ch]">{idea.statement}</p>
+
+      <div
+        class="mt-8 flex flex-wrap gap-x-9 gap-y-2 border-t border-rule border-b-2 border-b-foreground py-[18px]"
+      >
+        <p class="t-label text-dim">
+          First introduced <span class="text-muted">{monthYear(idea.introducedAt)}</span>
+        </p>
+        {
+          idea.lastArtifactAt && (
+            <p class="t-label text-dim">
+              Last developed <span class="text-muted">{monthYear(idea.lastArtifactAt)}</span>
+            </p>
+          )
+        }
+        <p class="t-label text-dim">
+          <span class="text-muted">{idea.artifactCount}</span> connected {
+            idea.artifactCount === 1 ? 'piece' : 'pieces'
+          }
+        </p>
+        {
+          idea.themes.length > 0 && (
+            <p class="t-label text-dim">
+              <span class="text-muted">{idea.themes.join(' / ')}</span>
+            </p>
+          )
+        }
+      </div>
+
+      {
+        startHere && (
+          <a
+            href={`/writing/${startHere.slug}`}
+            class="t-label mt-6 inline-block rounded-full bg-accent-fill px-5 py-2.5 text-accent-ink no-underline"
+          >
+            Start here: {startHere.title}
+          </a>
+        )
+      }
+    </header>
+
+    <div class="shell">
+      {
+        hasBody && (
+          <div class="prose-article no-dropcap mx-[15px] pt-12">
+            <Content />
+          </div>
+        )
+      }
+
+      {
+        primaryArtifacts.length > 0 && (
+          <section class="mt-16" aria-labelledby="primary-artifacts">
+            <h2 id="primary-artifacts" class="t-label border-b-2 border-foreground pb-3">
+              Artifacts advancing this idea
+            </h2>
+            <ul>
+              {primaryArtifacts.map((artifact) => (
+                <ArtifactRow artifact={artifact} />
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        supportingArtifacts.length > 0 && (
+          <section class="mt-14" aria-labelledby="supporting-artifacts">
+            <h2 id="supporting-artifacts" class="t-label border-b-2 border-foreground pb-3">
+              Also appears in
+            </h2>
+            <ul>
+              {supportingArtifacts.map((artifact) => (
+                <ArtifactRow artifact={artifact} />
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        connectedIdeas.length > 0 && (
+          <section class="mt-14" aria-labelledby="connected-ideas">
+            <h2 id="connected-ideas" class="t-label border-b-2 border-foreground pb-3">
+              Connected ideas
+            </h2>
+            <ul>
+              {connectedIdeas.map((item) => (
+                <li class="group border-b border-rule">
+                  <a
+                    href={`/ideas/${item.idea.slug}`}
+                    class="block py-5 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:px-4"
+                  >
+                    <span class="t-label block text-accent-text group-hover:text-accent-ink">
+                      {item.label}
+                    </span>
+                    <span class="t-row-title mt-1.5 block group-hover:text-accent-ink">
+                      {item.idea.title}
+                    </span>
+                    <span class="t-standfirst mt-2 block max-w-[62ch] group-hover:text-accent-ink">
+                      {item.note}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+    </div>
+  </article>
+</Base>

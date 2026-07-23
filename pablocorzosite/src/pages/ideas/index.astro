@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getSiteGraph, monthYear, statusLabels } from '../../utils/site-graph';
+
+const { graph, artifactsBySlug } = await getSiteGraph();
+
+// Newest development first; ideas with no artifacts sink to the end.
+const ideas = graph.ideas
+  .slice()
+  .sort((a, b) => (b.lastArtifactAt ?? '').localeCompare(a.lastArtifactAt ?? ''));
+---
+
+<Base
+  title="Ideas — Pablo Corzo"
+  description="The recurring ideas behind the writing — how they develop, connect, and change across articles, frameworks, white papers, and prototypes."
+  theme="dark"
+>
+  <section class="shell pt-[52px] pb-[52px]">
+    <p class="t-label text-accent-text">Ideas</p>
+    <h1 class="t-display font-edo mt-[18px] max-w-[22ch]">
+      The thinking behind the writing<span class="text-accent-text">.</span>
+    </h1>
+    <p class="t-standfirst font-ui mt-6 max-w-[64ch]">
+      Articles are expressions of ideas. These are the ideas — the claims and observations
+      that recur, develop, and challenge one another across everything published here.
+    </p>
+  </section>
+
+  <section class="shell">
+    <h2 class="t-label border-b border-rule pb-3">Active ideas</h2>
+
+    <ul>
+      {
+        ideas.map((idea) => {
+          const latest = idea.latestArtifact
+            ? artifactsBySlug.get(idea.latestArtifact)
+            : undefined;
+          return (
+            <li class="group border-b border-rule">
+              <a
+                href={`/ideas/${idea.slug}`}
+                class="block py-6 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:px-4"
+              >
+                <span class="t-row-title block group-hover:text-accent-ink">{idea.title}</span>
+                <span class="t-label mt-2 block group-hover:text-accent-ink">
+                  {statusLabels[idea.status]}
+                  {' · '}
+                  {idea.artifactCount} connected {idea.artifactCount === 1 ? 'piece' : 'pieces'}
+                  {idea.themes.length > 0 && ` · ${idea.themes.join(' / ')}`}
+                  {idea.draft && (
+                    <span class="ml-2 rounded-full bg-accent-fill px-2 py-0.5 text-accent-ink">
+                      Draft
+                    </span>
+                  )}
+                </span>
+                <span class="t-standfirst mt-3 block max-w-[62ch] group-hover:text-accent-ink">
+                  {idea.statement}
+                </span>
+                {latest && (
+                  <span class="t-label mt-3 block text-dim group-hover:text-accent-ink">
+                    Latest development: {latest.title} · {monthYear(latest.published)}
+                  </span>
+                )}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    {ideas.length === 0 && <p class="t-standfirst py-10">No ideas published yet.</p>}
+  </section>
+</Base>

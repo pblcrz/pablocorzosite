@@ -1,0 +1,125 @@
+---
+/**
+ * Modules B and C for artifact pages.
+ *
+ * B — "This idea also appears in": other artifacts sharing the primary idea.
+ * C — "Continue the idea": explicit artifact relationships (both directions)
+ *     and the primary idea's connected ideas, each with a relationship label.
+ */
+import ArtifactRow from './ArtifactRow.astro';
+import {
+  inverseRelationshipLabels,
+  relationshipLabels,
+  type ArtifactNode,
+  type IdeaNode,
+} from '../utils/content-graph';
+import { getSiteGraph } from '../utils/site-graph';
+
+interface Props {
+  artifactSlug: string;
+}
+
+const { artifactSlug } = Astro.props;
+const { artifactsBySlug, ideasBySlug } = await getSiteGraph();
+const artifact = artifactsBySlug.get(artifactSlug);
+
+const idea = artifact?.primaryIdea ? ideasBySlug.get(artifact.primaryIdea) : undefined;
+
+// --- Module B --------------------------------------------------------------
+const sameIdea: ArtifactNode[] = (artifact?.sameIdeaArtifacts ?? [])
+  .map((slug) => artifactsBySlug.get(slug))
+  .filter((node): node is ArtifactNode => Boolean(node));
+
+// --- Module C --------------------------------------------------------------
+interface ContinueArtifact {
+  label: string;
+  artifact: ArtifactNode;
+  note: string;
+}
+interface ContinueIdea {
+  label: string;
+  idea: IdeaNode;
+  note: string;
+}
+
+const continueArtifacts: ContinueArtifact[] = [
+  ...(artifact?.relationships ?? []).flatMap((relationship) => {
+    const target = artifactsBySlug.get(relationship.target);
+    return target
+      ? [{ label: relationshipLabels[relationship.type], artifact: target, note: relationship.note }]
+      : [];
+  }),
+  ...(artifact?.incomingRelationships ?? []).flatMap((incoming) => {
+    const source = artifactsBySlug.get(incoming.source);
+    return source
+      ? [{ label: inverseRelationshipLabels[incoming.type], artifact: source, note: incoming.note }]
+      : [];
+  }),
+];
+
+const continueIdeas: ContinueIdea[] = [
+  ...(idea?.connections ?? []).flatMap((connection) => {
+    const target = ideasBySlug.get(connection.target);
+    return target
+      ? [{ label: relationshipLabels[connection.type], idea: target, note: connection.note }]
+      : [];
+  }),
+  ...(idea?.incomingConnections ?? []).flatMap((incoming) => {
+    const source = ideasBySlug.get(incoming.source);
+    return source
+      ? [{ label: inverseRelationshipLabels[incoming.type], idea: source, note: incoming.note }]
+      : [];
+  }),
+];
+
+const hasAppearances = sameIdea.length > 0;
+const hasContinuations = continueArtifacts.length > 0 || continueIdeas.length > 0;
+---
+
+{
+  hasAppearances && (
+    <section class="mx-auto mt-16 max-w-(--container-prose)" aria-labelledby="also-appears">
+      <h2 id="also-appears" class="t-label border-b-2 border-foreground pb-3 text-muted">
+        This idea also appears in
+      </h2>
+      <ul>
+        {sameIdea.map((node) => (
+          <ArtifactRow artifact={node} />
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+{
+  hasContinuations && (
+    <section class="mx-auto mt-16 max-w-(--container-prose)" aria-labelledby="continue-idea">
+      <h2 id="continue-idea" class="t-label border-b-2 border-foreground pb-3 text-muted">
+        Continue the idea
+      </h2>
+      <ul>
+        {continueArtifacts.map((item) => (
+          <ArtifactRow artifact={item.artifact} label={item.label} note={item.note} />
+        ))}
+        {continueIdeas.map((item) => (
+          <li class="group border-b border-rule">
+            <a
+              href={`/ideas/${item.idea.slug}`}
+              class="block py-5 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:px-4"
+            >
+              <span class="t-label block text-accent-text group-hover:text-accent-ink">
+                {item.label}
+              </span>
+              <span class="t-row-title mt-1.5 block group-hover:text-accent-ink">
+                {item.idea.title}
+              </span>
+              <span class="t-standfirst mt-2 block max-w-[62ch] group-hover:text-accent-ink">
+                {item.note}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

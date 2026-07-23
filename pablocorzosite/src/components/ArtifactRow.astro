@@ -1,0 +1,49 @@
+---
+/**
+ * A single artifact row — the same visual grammar as the homepage index rows,
+ * reused by the connected-content modules and idea pages.
+ */
+import type { ArtifactNode } from '../utils/content-graph';
+import { monthYear } from '../utils/site-graph';
+
+interface Props {
+  artifact: ArtifactNode;
+  /** Optional relationship label shown above the title, e.g. "Expands into". */
+  label?: string;
+  /** Optional relationship note shown under the deck. */
+  note?: string;
+}
+
+const { artifact, label, note } = Astro.props;
+---
+
+<li class="group border-b border-rule">
+  <a
+    href={`/writing/${artifact.slug}`}
+    class="block py-5 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:px-4"
+  >
+    {
+      label && (
+        <span class="t-label block text-accent-text group-hover:text-accent-ink">{label}</span>
+      )
+    }
+    <span class:list={['t-row-title block group-hover:text-accent-ink', label && 'mt-1.5']}>
+      {artifact.title}
+    </span>
+    <span class="t-label mt-2 block group-hover:text-accent-ink">
+      {artifact.kind} / {monthYear(artifact.published)}
+      {
+        artifact.draft && (
+          <span class="ml-2 rounded-full bg-accent-fill px-2 py-0.5 text-accent-ink">Draft</span>
+        )
+      }
+    </span>
+    {
+      (note ?? artifact.deck) && (
+        <span class="t-standfirst mt-2 block max-w-[62ch] group-hover:text-accent-ink">
+          {note ?? artifact.deck}
+        </span>
+      )
+    }
+  </a>
+</li>
