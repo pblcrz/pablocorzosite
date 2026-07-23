@@ -248,7 +248,8 @@
   .prose-article blockquote {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(1.75rem, 5vw, 2.6875rem);
+    font-style: italic;
+    font-size: clamp(1.125rem, 3.25vw, 1.75rem);
     line-height: 1.12;
     letter-spacing: -0.03em;
     color: var(--accent-text);
