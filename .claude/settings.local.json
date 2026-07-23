@@ -72,7 +72,13 @@
       "Bash(mkdir -p /Users/pablocorzo/Documents/pablocorzo/.github/workflows)",
       "Bash(mv /Users/pablocorzo/Documents/pablocorzo/pablocorzosite/.github/workflows/validate.yml /Users/pablocorzo/Documents/pablocorzo/.github/workflows/validate.yml)",
       "Bash(npm test *)",
-      "Bash(python3 -c \"import json; g=json.load\\(open\\('public/data/content-graph.json'\\)\\); print\\('graph artifacts:', [a['slug'] for a in g['artifacts']]\\)\")"
+      "Bash(python3 -c \"import json; g=json.load\\(open\\('public/data/content-graph.json'\\)\\); print\\('graph artifacts:', [a['slug'] for a in g['artifacts']]\\)\")",
+      "Bash(~/.local/bin/gh auth *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"https://pablocorzo.com/ideas?v=$\\(date +%s\\)\")",
+      "Bash(curl -s -L \"https://pablocorzo.com/?v=$\\(date +%s\\)\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"https://pablocorzo.com/ideas/age-of-fast?v=$\\(date +%s\\)\")",
+      "Bash(curl -s -L \"https://pablocorzo.com/writing/product-management-in-the-age-of-fast-the-expectation-problem?v=$\\(date +%s\\)\")",
+      "Bash(~/.local/bin/gh run *)"
     ]
   }
 }
