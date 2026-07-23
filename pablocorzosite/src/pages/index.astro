@@ -1,7 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { getSiteGraph, monthYear, statusLabels } from '../utils/site-graph';
+import IdeaCard from '../components/IdeaCard.astro';
+import { getSiteGraph } from '../utils/site-graph';
 
 // Drafts stay visible in the local dev server (labelled below) so they can be
 // previewed, but are excluded from production builds.
@@ -10,7 +11,7 @@ const pieces = (await getCollection('writing', ({ data }) => import.meta.env.DEV
 );
 
 // A small set of active ideas — newest development first.
-const { graph, artifactsBySlug } = await getSiteGraph();
+const { graph } = await getSiteGraph();
 const featuredIdeas = graph.ideas
   .filter((idea) => idea.artifactCount > 0)
   .sort((a, b) => (b.lastArtifactAt ?? '').localeCompare(a.lastArtifactAt ?? ''))
@@ -40,43 +41,13 @@ const featuredIdeas = graph.ideas
   {
     featuredIdeas.length > 0 && (
       <section class="shell pb-16" aria-labelledby="explore-thinking">
-        <h2 id="explore-thinking" class="t-label border-b border-rule pb-3">
+        <h2 id="explore-thinking" class="t-section border-b-2 border-accent-fill pb-4">
           Explore the thinking
         </h2>
-        <ul>
-          {featuredIdeas.map((idea) => {
-            const latest = idea.latestArtifact
-              ? artifactsBySlug.get(idea.latestArtifact)
-              : undefined;
-            return (
-              <li class="group border-b border-rule">
-                <a
-                  href={`/ideas/${idea.slug}`}
-                  class="block py-6 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:px-4"
-                >
-                  <span class="t-row-title block group-hover:text-accent-ink">{idea.title}</span>
-                  <span class="t-label mt-2 block group-hover:text-accent-ink">
-                    {statusLabels[idea.status]}
-                    {' · '}
-                    {idea.artifactCount} connected {idea.artifactCount === 1 ? 'piece' : 'pieces'}
-                  </span>
-                  <span class="t-standfirst mt-3 block max-w-[62ch] group-hover:text-accent-ink">
-                    {idea.statement}
-                  </span>
-                  {latest && (
-                    <span class="t-label mt-3 block text-dim group-hover:text-accent-ink">
-                      Latest development: {latest.title} · {monthYear(latest.published)}
-                    </span>
-                  )}
-                  <span class="t-label mt-3 block text-accent-text group-hover:text-accent-ink">
-                    Start here →
-                  </span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-        <p class="pt-4">
+        <div class="mt-6 grid gap-5 md:grid-cols-3">
+          {featuredIdeas.map((idea) => <IdeaCard idea={idea} />)}
+        </div>
+        <p class="pt-5">
           <a
             href="/ideas"
             class="t-label text-dim no-underline transition-colors hover:text-foreground"
@@ -89,7 +60,7 @@ const featuredIdeas = graph.ideas
   }
 
   <section class="shell">
-    <h2 class="t-label border-b border-rule pb-3">Index</h2>
+    <h2 class="t-section border-b-2 border-accent-fill pb-4">Index</h2>
 
     <ul>
       {
@@ -112,7 +83,7 @@ const featuredIdeas = graph.ideas
                   )
                 }
               </span>
-              <span class="t-standfirst mt-3 block max-w-[62ch] group-hover:text-accent-ink">
+              <span class="t-standfirst mt-3 block group-hover:text-accent-ink">
                 {piece.data.deck}
               </span>
             </a>

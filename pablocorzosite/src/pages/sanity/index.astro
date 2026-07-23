@@ -28,7 +28,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
 
     {
       posts.length === 0 ? (
-        <p class="t-standfirst py-10 max-w-[62ch]">
+        <p class="t-standfirst py-10">
           No documents yet. Publish a Writing entry in the Studio and reload —
           no rebuild required.
         </p>
@@ -47,7 +47,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
                   <span class="t-label mt-2 block group-hover:text-accent-ink">
                     {post.kind} / {post.pillar}
                   </span>
-                  <span class="t-standfirst mt-3 block max-w-[62ch] group-hover:text-accent-ink">
+                  <span class="t-standfirst mt-3 block group-hover:text-accent-ink">
                     {post.deck}
                   </span>
                 </span>

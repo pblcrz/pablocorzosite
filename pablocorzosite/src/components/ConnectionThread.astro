@@ -1,0 +1,59 @@
+---
+/**
+ * Relationships rendered as a thread: a vertical rule with node dots, each
+ * connection hanging off the line with its relationship label as a stamp.
+ * The line is the signature of "relation" — distinct from artifact rows
+ * (open lists) and idea plaques (frames).
+ */
+export interface ThreadItem {
+  /** Relationship display label, e.g. "Expands into". */
+  label: string;
+  href: string;
+  title: string;
+  note: string;
+  /** Small qualifier after the title, e.g. "Idea" or "White Paper". */
+  meta?: string;
+  draft?: boolean;
+}
+
+interface Props {
+  items: ThreadItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="ml-1 border-l-2 border-accent-fill">
+  {
+    items.map((item) => (
+      <li class="relative py-5 pl-7">
+        <span
+          class="absolute top-[26px] -left-[7px] h-3 w-3 rounded-full border-2 border-accent-fill bg-background"
+          aria-hidden="true"
+        />
+        <span class="t-label inline-block border border-accent-text px-2 py-1 text-accent-text">
+          {item.label}
+        </span>
+        <a
+          href={item.href}
+          class="t-row-title mt-2.5 block no-underline transition-colors hover:text-accent-text"
+        >
+          {item.title}
+        </a>
+        {
+          (item.meta || item.draft) && (
+            <span class="t-label mt-1.5 block text-dim">
+              {item.meta}
+              {item.draft && (
+                <span class="ml-2 rounded-full bg-accent-fill px-2 py-0.5 text-accent-ink">
+                  Draft
+                </span>
+              )}
+            </span>
+          )
+        }
+        <p class="t-standfirst font-ui mt-2 max-w-[70ch]">{item.note}</p>
+      </li>
+    ))
+  }
+</ul>

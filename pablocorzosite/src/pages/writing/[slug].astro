@@ -16,13 +16,7 @@ export const getStaticPaths = (async () => {
 
 const { piece } = Astro.props;
 const { Content } = await render(piece);
-const { title, kind, pillar, published, readTime, number, externalLink, deck } = piece.data;
-
-const monthYear = published.toLocaleDateString('en-GB', {
-  month: 'long',
-  year: 'numeric',
-  timeZone: 'UTC',
-});
+const { title, kind, pillar, readTime, number, externalLink, deck } = piece.data;
 
 const linkLabel =
   kind === 'Prototype' ? 'Open' : kind === 'White Paper' ? 'Download PDF' : 'Open';
@@ -52,9 +46,6 @@ const linkLabel =
       <div
         class="mt-8 flex flex-wrap gap-x-9 gap-y-2 border-t border-rule border-b-2 border-b-foreground py-[18px]"
       >
-        <p class="t-label text-dim">
-          <span class="text-muted">{monthYear}</span>
-        </p>
         {
           readTime ? (
             <p class="t-label text-dim">

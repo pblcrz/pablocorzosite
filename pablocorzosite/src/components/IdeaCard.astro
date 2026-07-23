@@ -1,0 +1,44 @@
+---
+/**
+ * An idea as a framed plaque — enclosure is the signature of "concept",
+ * echoing the wordmark rectangle. Edo titles mark thinking; Zodiak rows
+ * stay reserved for artifacts.
+ */
+import type { IdeaNode } from '../utils/content-graph';
+import { statusLabels } from '../utils/site-graph';
+
+interface Props {
+  idea: IdeaNode;
+}
+
+const { idea } = Astro.props;
+---
+
+<a
+  href={`/ideas/${idea.slug}`}
+  class="group flex h-full flex-col border-2 border-foreground p-6 no-underline transition-colors duration-150 hover:bg-accent-fill"
+>
+  <span class="t-label text-accent-text group-hover:text-accent-ink">
+    {statusLabels[idea.status]} · {idea.artifactCount}
+    {idea.artifactCount === 1 ? 'piece' : 'pieces'}
+    {
+      idea.draft && (
+        <span class="ml-2 rounded-full bg-accent-fill px-2 py-0.5 text-accent-ink group-hover:bg-background group-hover:text-foreground">
+          Draft
+        </span>
+      )
+    }
+  </span>
+
+  <span class="font-edo mt-4 block text-[1.5rem] leading-[1.12] text-foreground group-hover:text-accent-ink">
+    {idea.title}
+  </span>
+
+  <span class="t-standfirst font-ui mt-4 block grow group-hover:text-accent-ink">
+    {idea.statement}
+  </span>
+
+  <span class="t-label mt-6 block text-accent-text group-hover:text-accent-ink">
+    Start here →
+  </span>
+</a>

@@ -3,12 +3,14 @@ import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
 import ArtifactRow from '../../components/ArtifactRow.astro';
+import ConnectionThread from '../../components/ConnectionThread.astro';
+import type { ThreadItem } from '../../components/ConnectionThread.astro';
 import {
   inverseRelationshipLabels,
   relationshipLabels,
   type ArtifactNode,
 } from '../../utils/content-graph';
-import { getSiteGraph, monthYear, statusLabels } from '../../utils/site-graph';
+import { getSiteGraph, statusLabels } from '../../utils/site-graph';
 
 export const getStaticPaths = (async () => {
   // Draft ideas render in the local dev server only — never in production.
@@ -33,17 +35,31 @@ const startHere = idea.startHere ? artifactsBySlug.get(idea.startHere) : undefin
 const primaryArtifacts = resolveArtifacts(idea.primaryArtifacts).reverse();
 const supportingArtifacts = resolveArtifacts(idea.supportingArtifacts).reverse();
 
-const connectedIdeas = [
+const connectedIdeas: ThreadItem[] = [
   ...idea.connections.flatMap((connection) => {
     const target = ideasBySlug.get(connection.target);
     return target
-      ? [{ label: relationshipLabels[connection.type], idea: target, note: connection.note }]
+      ? [{
+          label: relationshipLabels[connection.type],
+          href: `/ideas/${target.slug}`,
+          title: target.title,
+          note: connection.note,
+          meta: 'Idea',
+          draft: target.draft,
+        }]
       : [];
   }),
   ...idea.incomingConnections.flatMap((incoming) => {
     const source = ideasBySlug.get(incoming.source);
     return source
-      ? [{ label: inverseRelationshipLabels[incoming.type], idea: source, note: incoming.note }]
+      ? [{
+          label: inverseRelationshipLabels[incoming.type],
+          href: `/ideas/${source.slug}`,
+          title: source.title,
+          note: incoming.note,
+          meta: 'Idea',
+          draft: source.draft,
+        }]
       : [];
   }),
 ];
@@ -80,16 +96,6 @@ const connectedIdeas = [
       <div
         class="mt-8 flex flex-wrap gap-x-9 gap-y-2 border-t border-rule border-b-2 border-b-foreground py-[18px]"
       >
-        <p class="t-label text-dim">
-          First introduced <span class="text-muted">{monthYear(idea.introducedAt)}</span>
-        </p>
-        {
-          idea.lastArtifactAt && (
-            <p class="t-label text-dim">
-              Last developed <span class="text-muted">{monthYear(idea.lastArtifactAt)}</span>
-            </p>
-          )
-        }
         <p class="t-label text-dim">
           <span class="text-muted">{idea.artifactCount}</span> connected {
             idea.artifactCount === 1 ? 'piece' : 'pieces'
@@ -128,7 +134,7 @@ const connectedIdeas = [
       {
         primaryArtifacts.length > 0 && (
           <section class="mt-16" aria-labelledby="primary-artifacts">
-            <h2 id="primary-artifacts" class="t-label border-b-2 border-foreground pb-3">
+            <h2 id="primary-artifacts" class="t-section border-b-2 border-accent-fill pb-4">
               Artifacts advancing this idea
             </h2>
             <ul>
@@ -143,7 +149,7 @@ const connectedIdeas = [
       {
         supportingArtifacts.length > 0 && (
           <section class="mt-14" aria-labelledby="supporting-artifacts">
-            <h2 id="supporting-artifacts" class="t-label border-b-2 border-foreground pb-3">
+            <h2 id="supporting-artifacts" class="t-section border-b-2 border-accent-fill pb-4">
               Also appears in
             </h2>
             <ul>
@@ -158,29 +164,12 @@ const connectedIdeas = [
       {
         connectedIdeas.length > 0 && (
           <section class="mt-14" aria-labelledby="connected-ideas">
-            <h2 id="connected-ideas" class="t-label border-b-2 border-foreground pb-3">
+            <h2 id="connected-ideas" class="t-section border-b-2 border-accent-fill pb-4">
               Connected ideas
             </h2>
-            <ul>
-              {connectedIdeas.map((item) => (
-                <li class="group border-b border-rule">
-                  <a
-                    href={`/ideas/${item.idea.slug}`}
-                    class="block py-5 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:px-4"
-                  >
-                    <span class="t-label block text-accent-text group-hover:text-accent-ink">
-                      {item.label}
-                    </span>
-                    <span class="t-row-title mt-1.5 block group-hover:text-accent-ink">
-                      {item.idea.title}
-                    </span>
-                    <span class="t-standfirst mt-2 block max-w-[62ch] group-hover:text-accent-ink">
-                      {item.note}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div class="mt-6">
+              <ConnectionThread items={connectedIdeas} />
+            </div>
           </section>
         )
       }
