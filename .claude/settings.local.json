@@ -62,7 +62,9 @@
       "WebSearch",
       "Bash(curl -sL -o edo.zip \"https://www.fontsquirrel.com/fonts/download/edo\")",
       "Bash(unzip -o edo.zip -d edo-font)",
-      "Bash(curl -s -o /dev/null -w \"edo.ttf on live site: %{http_code}\\\\n\" https://pablocorzo.com/fonts/edo.ttf)"
+      "Bash(curl -s -o /dev/null -w \"edo.ttf on live site: %{http_code}\\\\n\" https://pablocorzo.com/fonts/edo.ttf)",
+      "Bash(curl -s -L \"https://pablocorzo.com/about?v=$\\(date +%s\\)\")",
+      "Bash(curl -s http://localhost:4321/writing/the-secret-force-behind-ai-driven-workforce-decisions)"
     ]
   }
 }

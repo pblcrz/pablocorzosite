@@ -21,7 +21,6 @@ const monthYear = published.toLocaleDateString('en-GB', {
   year: 'numeric',
   timeZone: 'UTC',
 });
-const month = published.toLocaleDateString('en-GB', { month: 'long', timeZone: 'UTC' });
 
 const linkLabel =
   kind === 'Prototype' ? 'Open' : kind === 'White Paper' ? 'Download PDF' : 'Open';
@@ -83,10 +82,6 @@ const linkLabel =
     <div class="shell">
       <div class="prose-article mx-[15px] pt-12">
         <Content />
-      </div>
-
-      <div class="mx-[15px] mt-14 border-t-2 border-foreground pt-6">
-        <p class="t-label text-dim">End · No. {number} · {month}</p>
       </div>
     </div>
   </article>
