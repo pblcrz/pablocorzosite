@@ -445,9 +445,10 @@
   }
 
   /* Drop cap on the opening paragraph — or, when an abstract is present,
-     on the first paragraph of the body proper (after the first real h2). */
-  .prose-article:not(:has(> :is(#abstract, #summary))) > p:first-of-type::first-letter,
-  .prose-article:has(> :is(#abstract, #summary)) > h2:nth-of-type(2) + p::first-letter {
+     on the first paragraph of the body proper (after the first real h2).
+     Pages can opt out with the `no-dropcap` class. */
+  .prose-article:not(.no-dropcap):not(:has(> :is(#abstract, #summary))) > p:first-of-type::first-letter,
+  .prose-article:not(.no-dropcap):has(> :is(#abstract, #summary)) > h2:nth-of-type(2) + p::first-letter {
     font-family: var(--font-edo);
     font-weight: 700;
     font-size: 4.4em;
@@ -460,8 +461,8 @@
 
   /* The drop cap is the first thing to break on narrow screens. */
   @media (max-width: 420px) {
-    .prose-article:not(:has(> :is(#abstract, #summary))) > p:first-of-type::first-letter,
-    .prose-article:has(> :is(#abstract, #summary)) > h2:nth-of-type(2) + p::first-letter {
+    .prose-article:not(.no-dropcap):not(:has(> :is(#abstract, #summary))) > p:first-of-type::first-letter,
+    .prose-article:not(.no-dropcap):has(> :is(#abstract, #summary)) > h2:nth-of-type(2) + p::first-letter {
       font-size: 3.2em;
       margin-right: 10px;
     }
