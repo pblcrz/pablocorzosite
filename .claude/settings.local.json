@@ -105,7 +105,11 @@
       "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha /tmp/faviconpng/favicon.svg.png)",
       "Bash(python3 -c \"import PIL; print\\('pillow', PIL.__version__\\)\")",
       "Bash(python3 -m pip install --user --quiet Pillow)",
-      "Bash(mkdir -p public/logo && cp ~/Downloads/pablo-roundel-*.png public/logo/ && ls public/logo/)"
+      "Bash(mkdir -p public/logo && cp ~/Downloads/pablo-roundel-*.png public/logo/ && ls public/logo/)",
+      "Bash(python3 -c \"from PIL import Image; im=Image.open\\('/Users/pablocorzo/Downloads/ChatGPT Image Jul 24, 2026, 06_37_45 PM.png'\\); print\\(im.size, im.mode\\)\")",
+      "Bash(sips -s format jpeg -s formatOptions 90 spaghetti.png --out spaghetti.jpg)",
+      "Bash(rm spaghetti.png)",
+      "Bash(python3 -c \"from PIL import Image; im=Image.open\\('/Users/pablocorzo/Downloads/ChatGPT Image Jul 24, 2026, 06_48_04 PM.png'\\); print\\(im.size, im.mode\\)\")"
     ]
   }
 }

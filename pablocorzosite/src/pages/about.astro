@@ -1,107 +1,417 @@
 ---
 import Base from '../layouts/Base.astro';
+import Modal from '../components/Modal.astro';
+import SpaghettiIllustration from '../components/SpaghettiIllustration.astro';
+
+// The About page: a translation of the résumé into capabilities — deliberately
+// not a bullet-list CV. The personal story lives behind the spaghetti modal.
+
+const capabilities = [
+  {
+    title: 'Turn ideas into products',
+    body: 'From discovery through delivery, I help teams turn promising ideas into products customers adopt and businesses can grow.',
+  },
+  {
+    title: 'Build with clarity',
+    body: 'When ownership is unclear, priorities compete, or delivery slows down, I help product organizations create the structure, alignment, and rhythm that allow great work to happen.',
+  },
+  {
+    title: 'Understand what actually works',
+    body: 'Build measurement, experimentation, and decision frameworks that replace assumptions with evidence and accelerate learning.',
+  },
+  {
+    title: 'Put emerging technology to work',
+    body: "Whether it's AI, data, or a new platform capability, I enjoy figuring out how emerging technology can be enabled and adopted successfully.",
+  },
+  {
+    title: 'Turn prototypes into products, fast',
+    body: 'Bridge the gap between a successful proof of concept and a product that can scale, operate reliably, and generate lasting value.',
+  },
+  {
+    title: 'Connect the organization',
+    body: 'I enjoy creating the conditions that make collaborations successful. Bring together design, engineering, data, commercial teams, and leadership around shared outcomes instead of competing priorities.',
+  },
+];
+
+const notes = [
+  {
+    lead: "I'm not afraid to ask.",
+    body: "I've learned the fastest way to build the wrong thing is to assume. Curiosity uncovers opportunities that assumptions often miss.",
+  },
+  {
+    lead: 'I naturally zoom out before I zoom in.',
+    body: "Whether it's a feature, a roadmap, or an organization, I like understanding the whole system before changing one part of it. So -as covered- I may ask questions",
+  },
+  {
+    lead: 'I absorb ambiguity.',
+    body: 'One of the most valuable things a product leader can do is create enough clarity that everyone else can focus on building instead of interpreting.',
+  },
+  {
+    lead: 'I look for the bottleneck.',
+    body: 'My engineering background taught me that every system has a constraint or a few. I instinctively look for it before optimizing everything else.',
+  },
+  {
+    lead: 'I prefer evidence over certainty.',
+    body: "I don't expect every decision to be perfect. I care more about creating fast feedback loops that help us learn what works.",
+  },
+  {
+    lead: 'I connect disciplines.',
+    body: "I enjoy working at the intersection of design, engineering, data, and business because that's where the best product decisions tend to happen and many questions get answered.",
+  },
+  {
+    lead: 'I simplify complexity.',
+    body: "Whether it's a product strategy or an operating model, I enjoy taking something that feels complicated and making it easier to understand, discuss, and execute.",
+  },
+  {
+    lead: 'I keep an eye on what comes next.',
+    body: "I've learnt that a solution can create more problems and while shipping is important, so is thinking about what the next team, feature, or decision will inherit.",
+  },
+  {
+    lead: 'I care about how products get built and used.',
+    body: 'The product matters, but so do the environment that produces it and the people expected to adopt it. Products are a reflection of the organizations that build them.',
+  },
+  {
+    lead: "I'm drawn to messy problems.",
+    body: 'The kinds of problems without obvious owners, clear answers, or well-defined paths are usually the ones I find most rewarding.',
+  },
+];
+
+const skillGroups = [
+  {
+    name: 'Build Products',
+    items: [
+      'Product strategy & vision',
+      'Discovery & user research',
+      'Roadmaps & prioritization',
+      'Requirements',
+      'Delivery and go-to-market',
+      'Monetization & commercial model',
+      'AI product strategy & development',
+      'LLM-assisted prototyping',
+      'Design-to-engineering fluency',
+      'Front-end development',
+      'Product design',
+    ],
+  },
+  {
+    name: 'Build Product Operating Systems',
+    items: [
+      'Product operations',
+      'Operating model design',
+      'Portfolio & delivery governance',
+      'Planning cadences (QBRs, offsites)',
+      'Capacity management',
+      'Process design & change management',
+      'Cross-regional orchestration',
+      'Vendor & partner management',
+      'AI adoption & enablement',
+    ],
+  },
+  {
+    name: 'Measure Impact',
+    items: [
+      'Experimentation platforms',
+      'Experiment design & statistical rigor',
+      'A/B testing & Geo Lift',
+      'Measurement strategy & governance',
+      'Test-and-learn programs',
+      'Personalization & optimization',
+    ],
+  },
+  {
+    name: 'Turn Data Into Decisions',
+    items: [
+      'Data strategy & governance',
+      'Analytics & reporting',
+      'Dashboards & visualization',
+      'Decision frameworks',
+    ],
+  },
+  {
+    name: 'Leadership & Management',
+    items: [
+      'Cross-functional leadership',
+      'Stakeholder management',
+      'Executive communication & storytelling',
+      'Talent development & mentorship',
+    ],
+  },
+];
+
+const experience = [
+  {
+    role: 'Sr. Director, Product — Data, Media & Experimentation',
+    org: 'Monks',
+    note: 'Strategy, governance, and commercialization for the media product portfolio; led the ground-up build of its flagship experimentation & measurement platform.',
+  },
+  {
+    role: 'Lead Product Manager — Experimentation',
+    org: 'Best Buy',
+    note: 'Built the in-house experimentation platform that replaced third-party tooling across a high-traffic e-commerce ecosystem, and embedded an always-on test-and-learn program.',
+  },
+  {
+    role: 'Product Manager — Audience Insights & Analytics',
+    org: 'McKinsey & Co',
+    note: 'Led a 10+ person team building self-serve analytics and reporting products for stakeholders across business units globally.',
+  },
+  {
+    role: 'Product Manager — Data Acquisition & Ops',
+    org: '22Squared',
+    note: 'Established the data-acquisition practice and operating model from scratch, and moved the data & analytics org to Agile.',
+  },
+];
 ---
 
-<Base title="About — Pablo Corzo" theme="dark">
+<Base
+  title="About — Pablo Corzo"
+  description="What I do: a decade of product work across experimentation, measurement, and product operations, translated into where I can help teams."
+  theme="dark"
+>
   <section class="shell pt-[46px]">
-    <p class="t-label text-accent-text">About</p>
-    <h1 class="t-title font-edo mt-[18px] max-w-[32ch]">
-      My <span class="text-accent-text">Spaghetti-Shaped</span> Journey<span class="text-[var(--accent-alt)]">.</span>
-    </h1>
+    <div class="grid gap-12 md:grid-cols-[1fr_300px] md:items-end md:gap-16">
+      <div>
+        <p class="t-label text-accent-text">About</p>
+        <h1 class="t-title font-edo mt-[18px] max-w-[24ch]">What I do<span class="text-accent-text">.</span></h1>
+        <p class="t-standfirst font-ui mt-6 max-w-[72ch]">
+          I build and lead products from discovery through scale, creating solutions that
+          deliver lasting customer and business value. My work spans product strategy,
+          delivery, measurement, and growth, combining hands-on product leadership with the
+          operating models that help teams execute consistently, make better decisions, and
+          scale effectively.
+        </p>
+        <p class="t-standfirst font-ui mt-5 max-w-[72ch]">
+          Throughout my career, I have specialized in measurement and experimentation, building
+          products that help organizations better understand customer value, validate
+          opportunities, and identify paths for growth. Just as importantly, I have designed the
+          operating models that enable teams to adopt those capabilities, embedding measurement,
+          experimentation, and continuous learning into the way products are built and evolved.
+        </p>
+      </div>
 
-    <a
-      href="/about/profile"
-      class="t-label mt-8 inline-block rounded-full bg-accent-fill px-5 py-2.5 text-accent-ink no-underline"
-    >
-      What I do →
-    </a>
+      {/* A discoverable editorial detail — the personal story, hiding behind a bowl of pasta. */}
+      <div class="md:justify-self-end">
+        <button
+          type="button"
+          data-modal-target="story-modal"
+          aria-haspopup="dialog"
+          aria-controls="story-modal"
+          class="spaghetti-trigger group mx-auto block w-full max-w-[290px] cursor-pointer border-0 bg-transparent p-0"
+        >
+          <span class="spaghetti-illo mx-auto block max-w-[218px]"><SpaghettiIllustration /></span>
+          <span class="mt-5 block text-center">
+            <span
+              class="story-title block font-ui text-[0.7rem] font-bold tracking-[0.28em] text-accent-text uppercase"
+            >
+              The story behind the sauce
+            </span>
+            <span class="mt-3 flex items-center justify-center gap-2.5" aria-hidden="true">
+              <span class="h-px w-9 bg-accent-text/45"></span>
+              <span class="h-[5px] w-[5px] rotate-45 bg-accent-text"></span>
+              <span class="h-px w-9 bg-accent-text/45"></span>
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
   </section>
 
   <div class="shell">
-    <div class="prose-article no-dropcap mx-[15px] pt-12">
-       <p>
-        I came up as both an engineer and a designer. The engineering side runs through
-        industrial, process, and mechanical engineering, and through front-end development.
-        The design side comes inherently and from a BFA in web design and interactive media.
+    <!-- The four lenses — the actual differentiator -->
+    <section class="mt-16" aria-labelledby="sauce">
+      <h2 id="sauce" class="t-section border-b-2 border-accent-fill pb-4">The sauce</h2>
+      <p class="t-standfirst font-ui mt-6">
+        I approach product through four interconnected lenses: design, engineering, data, and
+        business. Working across these disciplines allows me to build products that deliver
+        measurable outcomes while improving the product organizations that build them.
       </p>
-<blockquote>
-      <p>
-        My résumé looks like I lost a bet. Constantly deciding I'd like to be bad at
-        something new for a while. This has worked out better than it sounds!
+      <dl class="mt-8 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          [
+            { name: 'Design', role: 'Customer needs' },
+            { name: 'Engineering', role: 'Technical execution' },
+            { name: 'Data', role: 'Evidence and learning' },
+            { name: 'Business', role: 'Commercial outcomes' },
+          ].map((lens) => (
+            <div class="border-t-2 border-muted pt-3">
+              <dt class="t-label text-accent-text">{lens.name}</dt>
+              <dd class="t-meta mt-1.5 text-foreground!">{lens.role}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <!-- What I can help with — framed capability cards -->
+    <section class="mt-16" aria-labelledby="help">
+      <h2 id="help" class="t-section border-b-2 border-accent-fill pb-4">What I can help with</h2>
+      <div class="mt-6 grid gap-5 md:grid-cols-3">
+        {
+          capabilities.map((cap) => (
+            <div class="flex h-full flex-col border-2 border-muted p-6">
+              <span class="font-edo block min-h-[2.24em] text-[1.4rem] leading-[1.12] text-foreground">
+                {cap.title}
+              </span>
+              <span class="t-standfirst font-ui mt-4 block">{cap.body}</span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- How I work -->
+    <section class="mt-16" aria-labelledby="how">
+      <h2 id="how" class="t-section border-b-2 border-accent-fill pb-4">How I work</h2>
+      <div class="mt-6 grid gap-x-12 gap-y-8 md:grid-cols-2">
+        {
+          notes.map((note) => (
+            <div class="border-l-2 border-accent-fill pl-5">
+              <p class="t-meta text-foreground!">{note.lead}</p>
+              <p class="t-standfirst font-ui mt-2">{note.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Capabilities — connected flow -->
+    <section class="mt-16" aria-labelledby="capabilities">
+      <h2 id="capabilities" class="t-section border-b-2 border-accent-fill pb-4">Capabilities</h2>
+      <ul class="mt-8 ml-1 border-l-2 border-accent-fill">
+        {
+          skillGroups.map((group) => (
+            <li class="relative py-6 pl-8">
+              <span
+                class="absolute top-[30px] -left-[7px] h-3 w-3 rounded-full border-2 border-accent-fill bg-background"
+                aria-hidden="true"
+              />
+              <h3 class="t-row-title">{group.name}</h3>
+              <p class="t-standfirst font-ui mt-2 text-muted">{group.items.join(' · ')}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-6 pl-8 font-ui text-[0.85rem] text-dim italic">
+        * A representative sample, not an exhaustive list.
       </p>
-</blockquote>
-      <p>
-        Design and engineering are usually treated as opposites. Left vs right brain. One is supposed to care how
-        a thing feels. The other how it works. I never treated them as a choice between two
-        careers (well not true, I did earlier on until I realized they could co-exist). Both have run through my work ever since and influence my connective
-        thinking every day. Design, to me, has almost nothing to do with taste. It's the
-        discipline of deciding what a thing is before you decide what it looks like. Most
-        bad design isn't ugly. It's undecided, doubtful. Somebody skipped the part where you
-        say out loud what this is for, who it's for, and what it refuses to do, and then
-        they picked a style to cover the silence. The part I love is the deciding. 
-Engineering gave me four different ways to see the same thing. 
-<ul><li>Industrial engineering taught me that the bottleneck is never where people say it is. </li>
-<li>Process engineering taught me that every output has a set of conditions that produced it, so
-        if you don't like the output, arguing with it is a waste of a perfectly good
-        afternoon. </li>
-<li>Mechanical engineering taught me tolerance: nothing is exact, everything
-        has slop in it, and the good designs stay standing anyway.</li>
-<li>Front-end development taught me the fastest lesson of the four, which is that you are wrong and the
-        browser will tell you in roughly four seconds, without softening it, in front of
-        everyone.</li></ul>
+    </section>
+
+    <!-- Selected experience — restrained, not a full CV -->
+    <section class="mt-16" aria-labelledby="experience">
+      <h2 id="experience" class="t-section border-b-2 border-accent-fill pb-4">
+        Selected experience
+      </h2>
+      <ul class="mt-6">
+        {
+          experience.map((job) => (
+            <li class="border-b border-rule py-5">
+              <p class="t-row-title">{job.role}</p>
+              <p class="t-label mt-1.5 text-accent-text">{job.org}</p>
+              <p class="t-standfirst font-ui mt-2">{job.note}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="t-standfirst font-ui mt-6 text-muted">
+        Earlier: measurement and activation at AutoNation, product-marketing design at Assurant,
+        and a first career in engineering and design. Full history on
+        <a
+          href="https://linkedin.com/in/pablocorzo"
+          rel="noopener noreferrer"
+          target="_blank"
+          class="text-accent-text">LinkedIn →</a
+        >
       </p>
-
-      <p>
-        My path moved from there into data, and later into leading. Data didn't feel like a
-        departure. It felt like finally getting the instrument I'd been missing. I'd spent
-        years building things with no real way to know whether any of it worked, which meant
-        opinions filled the gap, and the loudest opinion won. I have never enjoyed losing an
-        argument to volume. Measurement is just the engineering habit pointed at a product
-        instead of a machine: define the thing, define what "working" means, then go find
-        out. Same discipline. Better tools. Fewer meetings that end in a shrug. Leading
-        turned out to be the strangest of the four, because almost none of it is doing. It's
-        saying the unglamorous sentence in the room where everyone would rather move on. The
-        rest of the job is absorbing ambiguity so the people around you get to do focused
-        work instead of guessing, and nobody claps for that part either.
+      <p class="t-label mt-4 mb-8 text-dim">
+        BS Industrial & Mechanical Engineering · MS Petroleum Engineering · BFA Web Design &
+        Interactive Media
       </p>
-
-      <p>
-        From the outside, my path looked like spaghetti, and was incredibly misunderstood as
-        'being lost or undecided' rather than curiosity. Design, engineering, data, product, all "running" in different
-        directions with no clean line through them. But the strands were not random. They
-        were bending toward the same point. The point is definition. All four disciplines
-        are the same practice wearing different clothes: refusing to move until you know
-        what the thing actually is. Design defines what it's for. Engineering defines what
-        it can survive. Data defines what counts as working. Leadership defines who gets to
-        say. </p>
-
-<blockquote>
-      <p>So I no longer explain the zigzag. It was never four
-        careers with a person stuck between them. It was one practice that took four
-        disciplines to learn. Which means the next thing probably won't look like a straight
-        line either, and at this point I'd be suspicious if it did.</p>
-</blockquote>
-
-      <p class="t-standfirst font-ui mt-2 text-muted">
-        For the working version of all this — what I do, and where I can help —
-        <a href="/about/profile" class="text-accent-text">see the profile →</a>
-      </p>
-
-    </div>
+    </section>
   </div>
+
+  <Modal id="story-modal" title="The Story Behind the Sauce">
+    <p>If my career had a shape, it would probably look like a bowl of spaghetti.</p>
+    <p>
+      I've spent years trying to explain it. Engineering. Design. Product. Strategy and
+      Operations. Experimentation and Measurement. AI. Marketing and Advertising. Analytics. On
+      paper, it can look like I couldn't make up my mind. But the funny thing is, it never felt
+      that way, at least not to me. I knew the journey was leading me somewhere worthy of its
+      sauce.
+    </p>
+    <p>
+      I've always been drawn to interesting problems. Not because I wanted to become an expert
+      in every discipline, but because every new challenge seemed to teach me something new,
+      answer one question while raising three more. So I'd follow those too.
+    </p>
+    <p>
+      Looking back, I wasn't changing directions. I was following my curiosity and collecting
+      perspectives. What looked like separate paths eventually revealed themselves to be deeply
+      connected.
+    </p>
+    <p>
+      One role developed my systems thinking. Another taught me how products are built. The next
+      showed me how to measure them, and another how organizations make decisions. Along the way
+      came lessons in experimentation, operations, strategy, leadership, and the often messy
+      reality that exists between having a good idea and successfully delivering it.
+    </p>
+    <p>
+      Eventually, those experiences stopped feeling disconnected. They became a mental model for
+      how I think about products, organizations, and the systems behind them.
+    </p>
+    <p>
+      Today, when I look at a product problem, I rarely see just the product. I see the decisions
+      that led to it. The incentives around it. The process supporting it. The data informing it.
+      The assumptions hiding underneath it. The people trying to make it all work.
+    </p>
+    <p>
+      That's also why I write. Writing has become my way of thinking out loud and testing ideas
+      before I become too attached to them. Sometimes an observation turns into an article.
+      Sometimes an article turns into a framework. Sometimes I revisit something I wrote months
+      ago because I no longer agree with it. I like that. It means I'm still learning.
+    </p>
+    <p>
+      This site isn't meant to be a collection of polished answers. It's a record of the way I
+      approach problems and the ideas that shape my work.
+    </p>
+    <p>
+      If you're here because we work together, because you're curious about product leadership,
+      or because you simply enjoy pulling apart how things work, I hope you find something that
+      makes you stop and think for a minute.
+    </p>
+    <p>And if not, at least you'll know why my career looks like a bowl of spaghetti.</p>
+  </Modal>
 </Base>
 
 <style>
-  /* Match the essay body colour to the profile / homepage / ideas pages
-     (muted grey) instead of the brighter article "reading" colour. */
-  .prose-article p,
-  .prose-article li {
-    color: var(--body-soft);
+  /* Light mode uses the brighter --body here; dark mode inherits the global
+     #d3ccbf standfirst colour. */
+  .t-standfirst {
+    color: var(--body);
   }
 
-  /* Pull quotes keep the accent (marigold in dark, flag red in light). */
-  .prose-article blockquote,
-  .prose-article blockquote p {
-    color: var(--accent-text);
+  /* The spaghetti easter-egg: subtle hover on the illustration and its title. */
+  .spaghetti-illo {
+    transform-origin: center;
+    transition: transform 200ms ease;
+  }
+  .story-title {
+    transition: color 200ms ease;
+  }
+  .spaghetti-trigger:hover .spaghetti-illo,
+  .spaghetti-trigger:focus-visible .spaghetti-illo {
+    transform: scale(1.03);
+  }
+  .spaghetti-trigger:hover .story-title,
+  .spaghetti-trigger:focus-visible .story-title {
+    color: var(--fg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spaghetti-illo {
+      transition: none;
+    }
+    .spaghetti-trigger:hover .spaghetti-illo,
+    .spaghetti-trigger:focus-visible .spaghetti-illo {
+      transform: none;
+    }
   }
 </style>

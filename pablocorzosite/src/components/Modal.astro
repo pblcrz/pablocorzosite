@@ -1,0 +1,167 @@
+---
+/**
+ * Reusable modal built on the native <dialog> element, which gives us focus
+ * trapping, ESC-to-close, and focus restoration for free. We add: open via a
+ * trigger carrying data-modal-target="<id>", close on backdrop click and on
+ * any [data-modal-close], body scroll-lock, and a fade/scale animation that
+ * respects prefers-reduced-motion.
+ *
+ * Usage:
+ *   <button data-modal-target="my-modal" aria-haspopup="dialog" aria-controls="my-modal">Open</button>
+ *   <Modal id="my-modal" title="My title"> …content… </Modal>
+ */
+interface Props {
+  id: string;
+  title: string;
+}
+
+const { id, title } = Astro.props;
+const titleId = `${id}-title`;
+---
+
+<dialog id={id} class="site-modal" aria-labelledby={titleId}>
+  <div class="site-modal__panel">
+    <h2 id={titleId} class="font-display text-[1.6rem] leading-tight font-bold tracking-[-0.02em] text-foreground">
+      {title}
+    </h2>
+
+    <div class="prose-article no-dropcap mt-5">
+      <slot />
+    </div>
+
+    <button
+      type="button"
+      data-modal-close
+      class="t-label mt-8 inline-block rounded-full border border-muted px-5 py-2.5 no-underline transition-colors hover:border-accent-fill hover:bg-accent-fill hover:text-accent-ink"
+    >
+      Close
+    </button>
+  </div>
+</dialog>
+
+<script>
+  const lock = () => {
+    document.body.style.overflow = 'hidden';
+  };
+  const unlock = () => {
+    document.body.style.overflow = '';
+  };
+
+  // Explicit open/close so scroll-lock is always paired with the dialog state
+  // — we don't rely on the native 'close' event, which some engines fire
+  // inconsistently. showModal()/close() still handle focus trap + restore.
+  const openModal = (dialog: HTMLDialogElement) => {
+    dialog.showModal();
+    lock();
+  };
+  const closeModal = (dialog: HTMLDialogElement) => {
+    dialog.close();
+    unlock();
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-modal-target]').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const target = trigger.getAttribute('data-modal-target');
+      const dialog = target ? document.getElementById(target) : null;
+      if (dialog instanceof HTMLDialogElement) openModal(dialog);
+    });
+  });
+
+  document.querySelectorAll<HTMLDialogElement>('dialog.site-modal').forEach((dialog) => {
+    // Click on the backdrop (the dialog element itself, outside the panel).
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) closeModal(dialog);
+    });
+    dialog
+      .querySelectorAll<HTMLElement>('[data-modal-close]')
+      .forEach((btn) => btn.addEventListener('click', () => closeModal(dialog)));
+    // Intercept ESC ourselves so the unlock always runs; preventDefault stops
+    // the native close so we don't double-handle it.
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeModal(dialog);
+      }
+    });
+    // Backup: if the dialog is ever dismissed by other means, unlock scroll.
+    dialog.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      closeModal(dialog);
+    });
+    dialog.addEventListener('close', unlock);
+  });
+</script>
+
+<style>
+  .site-modal {
+    max-width: min(720px, 92vw);
+    width: 100%;
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--body);
+  }
+
+  /* Slightly smaller body copy inside the modal. :global reaches slotted content. */
+  .site-modal__panel :global(.prose-article p) {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .site-modal::backdrop {
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(2px);
+  }
+
+  .site-modal__panel {
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  /* Fade + scale enter/exit via native dialog transitions. */
+  .site-modal,
+  .site-modal::backdrop {
+    opacity: 0;
+    transition:
+      opacity 200ms ease,
+      transform 200ms ease,
+      overlay 200ms allow-discrete,
+      display 200ms allow-discrete;
+  }
+
+  .site-modal {
+    transform: scale(0.96);
+  }
+
+  .site-modal[open] {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .site-modal[open]::backdrop {
+    opacity: 1;
+  }
+
+  @starting-style {
+    .site-modal[open] {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    .site-modal[open]::backdrop {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-modal,
+    .site-modal::backdrop {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>
