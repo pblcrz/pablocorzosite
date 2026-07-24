@@ -78,7 +78,17 @@
       "Bash(curl -s -L \"https://pablocorzo.com/?v=$\\(date +%s\\)\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"https://pablocorzo.com/ideas/age-of-fast?v=$\\(date +%s\\)\")",
       "Bash(curl -s -L \"https://pablocorzo.com/writing/product-management-in-the-age-of-fast-the-expectation-problem?v=$\\(date +%s\\)\")",
-      "Bash(~/.local/bin/gh run *)"
+      "Bash(~/.local/bin/gh run *)",
+      "Bash(git -C /Users/pablocorzo/Documents/pablocorzo remote -v)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://api.github.com/repos/pblcrz/pablocorzosite)",
+      "Bash(node scripts/research-validate.ts /private/tmp/claude-501/-Users-pablocorzo-Documents-pablocorzo/6cbae57a-128d-4ebd-ad60-656ec1229843/scratchpad/example-check)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(echo \"grep exit: $? \\(1 = nothing found\\)\")",
+      "Read(//Users/pablocorzo/Documents/research-os/**)",
+      "Bash(sed -i '' 's|the machine-readable indexes under research/index/|the machine-readable indexes under index/|' scripts/research-index.ts)",
+      "Bash(sed -i '' 's|Validates the integrity of the research graph in ../../research.|Validates the integrity of this repository'\"'\"'s research graph.|' scripts/research-validate.ts)",
+      "Bash(curl -s http://localhost:4321/about/profile)",
+      "Bash(curl -s \"http://localhost:4321/about/profile\")"
     ]
   }
 }

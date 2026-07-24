@@ -1,0 +1,306 @@
+---
+import Base from '../../layouts/Base.astro';
+
+// A recruiter/freelance-facing translation of the résumé into capabilities —
+// deliberately not a bullet-list CV. Content lives inline; this is a single
+// hand-authored page, like about.astro.
+
+const capabilities = [
+  {
+    title: 'Turn ideas into products',
+    body: 'From discovery through delivery, I help teams turn promising ideas into products customers adopt and businesses can grow.',
+  },
+  {
+    title: 'Build with clarity',
+    body: 'When ownership is unclear, priorities compete, or delivery slows down, I help product organizations create the structure, alignment, and rhythm that allow great work to happen.',
+  },
+  {
+    title: 'Understand what actually works',
+    body: 'Build measurement, experimentation, and decision frameworks that replace assumptions with evidence and accelerate learning.',
+  },
+  {
+    title: 'Put emerging technology to work',
+    body: "Whether it's AI, data, or a new platform capability, I enjoy figuring out how emerging technology can be enabled and adopted successfully.",
+  },
+  {
+    title: 'Turn prototypes into products, fast',
+    body: 'Bridge the gap between a successful proof of concept and a product that can scale, operate reliably, and generate lasting value.',
+  },
+  {
+    title: 'Connect the organization',
+    body: 'I enjoy creating the conditions that make collaborations successful. Bring together design, engineering, data, commercial teams, and leadership around shared outcomes instead of competing priorities.',
+  },
+];
+
+const notes = [
+  {
+    lead: "I'm not afraid to ask.",
+    body: "I've learned the fastest way to build the wrong thing is to assume. Curiosity uncovers opportunities that assumptions often miss.",
+  },
+  {
+    lead: 'I naturally zoom out before I zoom in.',
+    body: "Whether it's a feature, a roadmap, or an organization, I like understanding the whole system before changing one part of it. So -as covered- I may ask questions",
+  },
+  {
+    lead: 'I absorb ambiguity.',
+    body: 'One of the most valuable things a product leader can do is create enough clarity that everyone else can focus on building instead of interpreting.',
+  },
+  {
+    lead: 'I look for the bottleneck.',
+    body: 'My engineering background taught me that every system has a constraint or a few. I instinctively look for it before optimizing everything else.',
+  },
+  {
+    lead: 'I prefer evidence over certainty.',
+    body: "I don't expect every decision to be perfect. I care more about creating fast feedback loops that help us learn what works.",
+  },
+  {
+    lead: 'I connect disciplines.',
+    body: "I enjoy working at the intersection of design, engineering, data, and business because that's where the best product decisions tend to happen and many questions get answered.",
+  },
+  {
+    lead: 'I simplify complexity.',
+    body: "Whether it's a product strategy or an operating model, I enjoy taking something that feels complicated and making it easier to understand, discuss, and execute.",
+  },
+  {
+    lead: 'I keep an eye on what comes next.',
+    body: "I've learnt that a solution can create more problems and while shipping is important, so is thinking about what the next team, feature, or decision will inherit.",
+  },
+  {
+    lead: 'I care about how products get built and used.',
+    body: 'The product matters, but so do the environment that produces it and the people expected to adopt it. Products are a reflection of the organizations that build them.',
+  },
+  {
+    lead: "I'm drawn to messy problems.",
+    body: 'The kinds of problems without obvious owners, clear answers, or well-defined paths are usually the ones I find most rewarding.',
+  },
+];
+
+const skillGroups = [
+  {
+    name: 'Build Products',
+    items: [
+      'Product strategy & vision',
+      'Discovery & user research',
+      'Roadmaps & prioritization',
+      'Requirements',
+      'Delivery and go-to-market',
+      'Monetization & commercial model',
+      'AI product strategy & development',
+      'LLM-assisted prototyping',
+      'Design-to-engineering fluency',
+      'Front-end development',
+      'Product design',
+    ],
+  },
+  {
+    name: 'Build Product Operating Systems',
+    items: [
+      'Product operations',
+      'Operating model design',
+      'Portfolio & delivery governance',
+      'Planning cadences (QBRs, offsites)',
+      'Capacity management',
+      'Process design & change management',
+      'Cross-regional orchestration',
+      'Vendor & partner management',
+      'AI adoption & enablement',
+    ],
+  },
+  {
+    name: 'Measure Impact',
+    items: [
+      'Experimentation platforms',
+      'Experiment design & statistical rigor',
+      'A/B testing & Geo Lift',
+      'Measurement strategy & governance',
+      'Test-and-learn programs',
+      'Personalization & optimization',
+    ],
+  },
+  {
+    name: 'Turn Data Into Decisions',
+    items: [
+      'Data strategy & governance',
+      'Analytics & reporting',
+      'Dashboards & visualization',
+      'Decision frameworks',
+    ],
+  },
+  {
+    name: 'Leadership & Management',
+    items: [
+      'Cross-functional leadership',
+      'Stakeholder management',
+      'Executive communication & storytelling',
+      'Talent development & mentorship',
+    ],
+  },
+];
+
+const experience = [
+  {
+    role: 'Sr. Director, Product — Data, Media & Experimentation',
+    org: 'Monks',
+    note: 'Strategy, governance, and commercialization for the media product portfolio; led the ground-up build of its flagship experimentation & measurement platform.',
+  },
+  {
+    role: 'Lead Product Manager — Experimentation',
+    org: 'Best Buy',
+    note: 'Built the in-house experimentation platform that replaced third-party tooling across a high-traffic e-commerce ecosystem, and embedded an always-on test-and-learn program.',
+  },
+  {
+    role: 'Product Manager — Audience Insights & Analytics',
+    org: 'McKinsey & Co',
+    note: 'Led a 10+ person team building self-serve analytics and reporting products for stakeholders across business units globally.',
+  },
+  {
+    role: 'Product Manager — Data Acquisition & Ops',
+    org: '22Squared',
+    note: 'Established the data-acquisition practice and operating model from scratch, and moved the data & analytics org to Agile.',
+  },
+];
+---
+
+<Base
+  title="Profile — Pablo Corzo"
+  description="What I do: a decade of product work across experimentation, measurement, and product operations, translated into where I can help teams."
+  theme="dark"
+>
+  <section class="shell pt-[46px]">
+    <a
+      href="/about"
+      class="t-label inline-block text-dim no-underline transition-colors hover:text-foreground"
+    >
+      ← About
+    </a>
+
+    <p class="t-label mt-[34px] text-accent-text">Profile</p>
+    <h1 class="t-title font-edo mt-[18px] max-w-[24ch]">What I do<span class="text-accent-text">.</span></h1>
+    <p class="t-standfirst font-ui mt-6 max-w-[85ch]">
+      I build and lead products from discovery through scale, creating solutions that deliver
+      lasting customer and business value. My work spans product strategy, delivery,
+      measurement, and growth, combining hands-on product leadership with the operating models
+      that help teams execute consistently, make better decisions, and scale effectively.
+    </p>
+    <p class="t-standfirst font-ui mt-5 max-w-[85ch]">
+      Throughout my career, I have specialized in measurement and experimentation, building
+      products that help organizations better understand customer value, validate
+      opportunities, and identify paths for growth. Just as importantly, I have designed the
+      operating models that enable teams to adopt those capabilities, embedding measurement,
+      experimentation, and continuous learning into the way products are built and evolved.
+    </p>
+  </section>
+
+  <div class="shell">
+    <!-- The unusual mix of backgrounds — the actual differentiator -->
+    <section class="mt-16" aria-labelledby="combination">
+      <h2 id="combination" class="t-section border-b-2 border-accent-fill pb-4">The combination</h2>
+      <p class="t-standfirst font-ui mt-6">
+        I approach product through four interconnected lenses: design, engineering, data, and
+        business. Working across these disciplines allows me to build products that deliver
+        measurable outcomes while improving the product organizations that build them.
+      </p>
+      <dl class="mt-8 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          [
+            { name: 'Design', role: 'Customer needs' },
+            { name: 'Engineering', role: 'Technical execution' },
+            { name: 'Data', role: 'Evidence and learning' },
+            { name: 'Business', role: 'Commercial outcomes' },
+          ].map((lens) => (
+            <div class="border-t-2 border-muted pt-3">
+              <dt class="t-label text-accent-text">{lens.name}</dt>
+              <dd class="t-meta mt-1.5 text-foreground!">{lens.role}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <!-- What I can help with — framed capability cards -->
+    <section class="mt-16" aria-labelledby="help">
+      <h2 id="help" class="t-section border-b-2 border-accent-fill pb-4">What I can help with</h2>
+      <div class="mt-6 grid gap-5 md:grid-cols-3">
+        {
+          capabilities.map((cap) => (
+            <div class="flex h-full flex-col border-2 border-muted p-6">
+              <span class="font-edo block min-h-[2.24em] text-[1.4rem] leading-[1.12] text-foreground">
+                {cap.title}
+              </span>
+              <span class="t-standfirst font-ui mt-4 block">{cap.body}</span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- How I work -->
+    <section class="mt-16" aria-labelledby="how">
+      <h2 id="how" class="t-section border-b-2 border-accent-fill pb-4">How I work</h2>
+      <div class="mt-6 grid gap-x-12 gap-y-8 md:grid-cols-2">
+        {
+          notes.map((note) => (
+            <div class="border-l-2 border-accent-fill pl-5">
+              <p class="t-meta text-foreground!">{note.lead}</p>
+              <p class="t-standfirst font-ui mt-2">{note.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Capabilities — connected flow -->
+    <section class="mt-16" aria-labelledby="capabilities">
+      <h2 id="capabilities" class="t-section border-b-2 border-accent-fill pb-4">Capabilities</h2>
+      <ul class="mt-8 ml-1 border-l-2 border-accent-fill">
+        {
+          skillGroups.map((group) => (
+            <li class="relative py-6 pl-8">
+              <span
+                class="absolute top-[30px] -left-[7px] h-3 w-3 rounded-full border-2 border-accent-fill bg-background"
+                aria-hidden="true"
+              />
+              <h3 class="t-row-title">{group.name}</h3>
+              <p class="t-standfirst font-ui mt-2 text-muted">{group.items.join(' · ')}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-6 pl-8 font-ui text-[0.85rem] text-dim italic">
+        * A representative sample, not an exhaustive list.
+      </p>
+    </section>
+
+    <!-- Selected experience — restrained, not a full CV -->
+    <section class="mt-16" aria-labelledby="experience">
+      <h2 id="experience" class="t-section border-b-2 border-accent-fill pb-4">
+        Selected experience
+      </h2>
+      <ul class="mt-6">
+        {
+          experience.map((job) => (
+            <li class="border-b border-rule py-5">
+              <p class="t-row-title">{job.role}</p>
+              <p class="t-label mt-1.5 text-accent-text">{job.org}</p>
+              <p class="t-standfirst font-ui mt-2">{job.note}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="t-standfirst font-ui mt-6 text-muted">
+        Earlier: measurement and activation at AutoNation, product-marketing design at Assurant,
+        and a first career in engineering and design. Full history on
+        <a
+          href="https://linkedin.com/in/pablocorzo"
+          rel="noopener noreferrer"
+          target="_blank"
+          class="text-accent-text">LinkedIn →</a
+        >
+      </p>
+      <p class="t-label mt-4 mb-8 text-dim">
+        BS Industrial & Mechanical Engineering · MS Petroleum Engineering · BFA Web Design &
+        Interactive Media
+      </p>
+    </section>
+  </div>
+</Base>
