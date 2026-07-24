@@ -162,6 +162,11 @@
     color: var(--muted);
   }
 
+  /* Standfirst copy brightens in dark mode; light keeps the muted tone. */
+  :root[data-theme='dark'] .t-standfirst {
+    color: #d3ccbf;
+  }
+
   .t-label {
     font-family: var(--font-ui);
     font-weight: 700;

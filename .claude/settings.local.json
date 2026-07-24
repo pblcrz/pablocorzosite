@@ -89,7 +89,12 @@
       "Bash(sed -i '' 's|Validates the integrity of the research graph in ../../research.|Validates the integrity of this repository'\"'\"'s research graph.|' scripts/research-validate.ts)",
       "Bash(curl -s http://localhost:4321/about/profile)",
       "Bash(curl -s \"http://localhost:4321/about/profile\")",
-      "Bash(curl -s \"http://localhost:4321/about\")"
+      "Bash(curl -s \"http://localhost:4321/about\")",
+      "Bash(cp ~/Downloads/me-blog.png public/pablo-desk.png)",
+      "Bash(sips -Z 760 public/pablo-desk.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight public/pablo-desk.png)",
+      "Bash(sips -s format jpeg -s formatOptions 82 pablo-desk.png --out pablo-desk.jpg)",
+      "Bash(rm pablo-desk.png)"
     ]
   }
 }

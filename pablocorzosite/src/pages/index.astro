@@ -20,9 +20,9 @@ const featuredIdeas = graph.ideas
 
 <Base title="Pablo Corzo — Writing" theme="dark">
   <section class="shell pt-[52px] pb-[72px]">
-    <div>
+    <div class="grid items-center gap-10 md:grid-cols-[1.4fr_1fr] md:gap-14">
       <div>
-        <h1 class="t-display font-edo max-w-[22ch]">
+        <h1 class="t-display font-edo max-w-[22ch]" style="font-size: clamp(2.75rem, 7vw, 3.375rem)">
           Product observations<span class="text-[var(--accent-alt)]">,</span> written down<span
             class="text-accent-text">.</span
           >
@@ -34,6 +34,17 @@ const featuredIdeas = graph.ideas
           mechanisms that help teams move more efficient while making better informed
           decisions.
         </p>
+      </div>
+
+      <div class="order-first md:order-none">
+        <img
+          src="/pablo-desk.jpg"
+          alt="Pablo Corzo writing at his desk about his perspective on product"
+          width="760"
+          height="760"
+          loading="eager"
+          class="mx-auto block w-full max-w-[340px] rounded-lg border border-rule md:mr-0"
+        />
       </div>
     </div>
   </section>
