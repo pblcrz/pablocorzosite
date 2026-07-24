@@ -95,7 +95,17 @@
       "Bash(sips -g pixelWidth -g pixelHeight public/pablo-desk.png)",
       "Bash(sips -s format jpeg -s formatOptions 82 pablo-desk.png --out pablo-desk.jpg)",
       "Bash(rm pablo-desk.png)",
-      "Bash(curl -s \"http://localhost:4321/\")"
+      "Bash(curl -s \"http://localhost:4321/\")",
+      "Bash(curl -s \"https://5143077.pablocorzosite.pages.dev/\")",
+      "Bash(curl -s -H \"Cache-Control: no-cache\" \"https://pablocorzo.com/?cb=$\\(date +%s%N\\)\")",
+      "Bash(curl -s \"https://pablocorzo.com/?cb=$\\(date +%s%N\\)\")",
+      "Bash(python3 -c \"import cairosvg; print\\('cairosvg-ok'\\)\")",
+      "Bash(qlmanage -t -s 1024 -o /tmp/faviconpng favicon.svg)",
+      "Read(//tmp/**)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha /tmp/faviconpng/favicon.svg.png)",
+      "Bash(python3 -c \"import PIL; print\\('pillow', PIL.__version__\\)\")",
+      "Bash(python3 -m pip install --user --quiet Pillow)",
+      "Bash(mkdir -p public/logo && cp ~/Downloads/pablo-roundel-*.png public/logo/ && ls public/logo/)"
     ]
   }
 }
