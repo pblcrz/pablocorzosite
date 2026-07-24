@@ -69,10 +69,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       >
         Pablo Corzo<span class="text-[var(--accent-alt)]">.</span>
       </a>
-      <nav class="flex gap-6">
+      <nav class="flex items-center gap-5">
         <a class="t-label no-underline hover:text-foreground" href="/">Index</a>
         <a class="t-label no-underline hover:text-foreground" href="/ideas">Ideas</a>
         <a class="t-label no-underline hover:text-foreground" href="/about">About</a>
+        <a
+          class="t-label rounded-full border border-muted px-4 py-2 no-underline transition-colors hover:border-accent-fill hover:bg-accent-fill hover:text-accent-ink"
+          href="mailto:contact@pablocorzo.com"
+        >
+          Get in touch
+        </a>
       </nav>
     </header>
 
@@ -81,7 +87,25 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </main>
 
     <footer class="shell mt-[100px] border-t-2 border-foreground pt-6 pb-16">
-      <p class="t-label">© {new Date().getFullYear()} Pablo Corzo</p>
+      <div class="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3">
+        <p class="t-label">© {new Date().getFullYear()} Pablo Corzo</p>
+        <nav class="flex gap-6">
+          <a
+            class="t-label no-underline transition-colors hover:text-foreground"
+            href="mailto:contact@pablocorzo.com"
+          >
+            Email
+          </a>
+          <a
+            class="t-label no-underline transition-colors hover:text-foreground"
+            href="https://linkedin.com/in/pablocorzo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </nav>
+      </div>
     </footer>
 
     <ThemeToggle />

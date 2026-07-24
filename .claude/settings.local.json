@@ -94,7 +94,8 @@
       "Bash(sips -Z 760 public/pablo-desk.png)",
       "Bash(sips -g pixelWidth -g pixelHeight public/pablo-desk.png)",
       "Bash(sips -s format jpeg -s formatOptions 82 pablo-desk.png --out pablo-desk.jpg)",
-      "Bash(rm pablo-desk.png)"
+      "Bash(rm pablo-desk.png)",
+      "Bash(curl -s \"http://localhost:4321/\")"
     ]
   }
 }
