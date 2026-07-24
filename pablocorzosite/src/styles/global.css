@@ -23,6 +23,7 @@
   --surface: #191510;
   --fg: #f4f0e8;
   --body: #e4dfd5;
+  --body-soft: #c4beb2; /* between --body and --muted, for softer reading copy */
   --muted: #8b8378;
   --dim: #5e574e;
   --rule: #2c2721;
@@ -39,6 +40,7 @@
   --surface: #eaeaea;
   --fg: #151515;
   --body: #2b2b2b;
+  --body-soft: #4a4a4a; /* between --body and --muted, for softer reading copy */
   --muted: #6b6b6b;
   --dim: #9b9b9b;
   --rule: #dedede;

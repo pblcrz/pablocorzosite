@@ -8,6 +8,13 @@ import Base from '../layouts/Base.astro';
     <h1 class="t-title font-edo mt-[18px] max-w-[32ch]">
       My <span class="text-accent-text">Spaghetti-Shaped</span> Journey<span class="text-[var(--accent-alt)]">.</span>
     </h1>
+
+    <a
+      href="/about/profile"
+      class="t-label mt-8 inline-block rounded-full bg-accent-fill px-5 py-2.5 text-accent-ink no-underline"
+    >
+      What I do →
+    </a>
   </section>
 
   <div class="shell">
@@ -83,3 +90,18 @@ Engineering gave me four different ways to see the same thing.
     </div>
   </div>
 </Base>
+
+<style>
+  /* Match the essay body colour to the profile / homepage / ideas pages
+     (muted grey) instead of the brighter article "reading" colour. */
+  .prose-article p,
+  .prose-article li {
+    color: var(--body-soft);
+  }
+
+  /* Pull quotes keep the accent (marigold in dark, flag red in light). */
+  .prose-article blockquote,
+  .prose-article blockquote p {
+    color: var(--accent-text);
+  }
+</style>
