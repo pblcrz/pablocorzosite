@@ -477,6 +477,52 @@
     padding-left: 20px;
   }
 
+  /* Notes / references — a small, dense endnotes block, like citations in a
+     paper. Triggered when the body ends with a "Notes" or "References" heading
+     (Astro slugs them to #notes / #references); everything after it shrinks. */
+  .prose-article #notes,
+  .prose-article #references {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    margin-top: 56px;
+    padding-top: 24px;
+    margin-bottom: 0;
+  }
+
+  .prose-article #notes ~ *,
+  .prose-article #references ~ * {
+    margin-top: 14px;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem; /* ~13px */
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .prose-article #notes ~ ol > li,
+  .prose-article #references ~ ol > li {
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .prose-article #notes ~ ol > li + li,
+  .prose-article #references ~ ol > li + li {
+    margin-top: 8px;
+  }
+
+  .prose-article #notes ~ ol > li::marker,
+  .prose-article #references ~ ol > li::marker {
+    color: var(--muted);
+    font-weight: 400;
+  }
+
   /* Drop cap on the opening paragraph — or, when an abstract is present,
      on the first paragraph of the body proper (after the first real h2).
      Pages can opt out with the `no-dropcap` class. */

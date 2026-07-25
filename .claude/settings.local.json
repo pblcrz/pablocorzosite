@@ -110,7 +110,8 @@
       "Bash(sips -s format jpeg -s formatOptions 90 spaghetti.png --out spaghetti.jpg)",
       "Bash(rm spaghetti.png)",
       "Bash(python3 -c \"from PIL import Image; im=Image.open\\('/Users/pablocorzo/Downloads/ChatGPT Image Jul 24, 2026, 06_48_04 PM.png'\\); print\\(im.size, im.mode\\)\")",
-      "Bash(curl -s -L \"https://pablocorzo.com/writing/experimentation-platforms-are-becoming-organizational-memory/?v=$\\(date +%s\\)\")"
+      "Bash(curl -s -L \"https://pablocorzo.com/writing/experimentation-platforms-are-becoming-organizational-memory/?v=$\\(date +%s\\)\")",
+      "Bash(curl -s \"http://localhost:4321/writing/experimentation-platforms-are-becoming-organizational-memory\")"
     ]
   }
 }
