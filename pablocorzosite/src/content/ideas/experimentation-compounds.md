@@ -6,7 +6,7 @@ statement: >
   knowledge — organizations that merely run tests do not compound.
 status: "developing"
 introducedAt: 2026-07-06
-startHere: "from-first-hypothesis-to-institutional-knowledge-v2"
+startHere: "from-first-hypothesis-to-institutional-knowledge"
 themes:
   - "experimentation"
   - "measurement"

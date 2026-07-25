@@ -13,9 +13,12 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://pablocorzo.com',
   output: 'static',
-  // The old /about/profile page is now the /about page.
   redirects: {
+    // The old /about/profile page is now the /about page.
     '/about/profile': '/about',
+    // The whitepaper dropped its -v2 slug after the v1 draft was removed.
+    '/writing/from-first-hypothesis-to-institutional-knowledge-v2':
+      '/writing/from-first-hypothesis-to-institutional-knowledge',
   },
   // Cloudflare has no sharp at runtime. 'compile' optimizes images during the
   // build for prerendered pages, which is where this site's images live.

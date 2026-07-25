@@ -31,17 +31,17 @@
         "product-management-in-the-age-of-fast-the-expectation-problem"
       ],
       "supportingArtifacts": [
-        "from-first-hypothesis-to-institutional-knowledge-v2"
+        "from-first-hypothesis-to-institutional-knowledge"
       ],
       "allArtifacts": [
         "product-management-in-the-age-of-fast-what-speed-actually-changed",
         "product-management-in-the-age-of-fast-the-expectation-problem",
-        "from-first-hypothesis-to-institutional-knowledge-v2"
+        "from-first-hypothesis-to-institutional-knowledge"
       ],
       "artifactCount": 3,
       "firstArtifactAt": "2026-06-17",
       "lastArtifactAt": "2026-07-22",
-      "latestArtifact": "from-first-hypothesis-to-institutional-knowledge-v2"
+      "latestArtifact": "from-first-hypothesis-to-institutional-knowledge"
     },
     {
       "slug": "cost-of-ai",
@@ -81,7 +81,7 @@
       "status": "developing",
       "draft": false,
       "introducedAt": "2026-07-06",
-      "startHere": "from-first-hypothesis-to-institutional-knowledge-v2",
+      "startHere": "from-first-hypothesis-to-institutional-knowledge",
       "themes": [
         "experimentation",
         "measurement"
@@ -95,16 +95,18 @@
       ],
       "incomingConnections": [],
       "primaryArtifacts": [
-        "from-first-hypothesis-to-institutional-knowledge-v2"
+        "experimentation-platforms-are-becoming-organizational-memory",
+        "from-first-hypothesis-to-institutional-knowledge"
       ],
       "supportingArtifacts": [],
       "allArtifacts": [
-        "from-first-hypothesis-to-institutional-knowledge-v2"
+        "experimentation-platforms-are-becoming-organizational-memory",
+        "from-first-hypothesis-to-institutional-knowledge"
       ],
-      "artifactCount": 1,
-      "firstArtifactAt": "2026-07-22",
+      "artifactCount": 2,
+      "firstArtifactAt": "2026-07-20",
       "lastArtifactAt": "2026-07-22",
-      "latestArtifact": "from-first-hypothesis-to-institutional-knowledge-v2"
+      "latestArtifact": "from-first-hypothesis-to-institutional-knowledge"
     }
   ],
   "artifacts": [
@@ -179,7 +181,33 @@
       ]
     },
     {
-      "slug": "from-first-hypothesis-to-institutional-knowledge-v2",
+      "slug": "experimentation-platforms-are-becoming-organizational-memory",
+      "title": "Experimentation Platforms Are Becoming Organizational Memory",
+      "kind": "Article",
+      "pillar": "Experimentation & Measurement",
+      "deck": "Documentation keeps conclusions and loses the reasoning behind them. Experimentation platforms keep the reasoning, which quietly makes them the place an organization stores what it knows.",
+      "published": "2026-07-20",
+      "featured": true,
+      "draft": false,
+      "primaryIdea": "experimentation-compounds",
+      "supportingIdeas": [],
+      "relationships": [
+        {
+          "target": "from-first-hypothesis-to-institutional-knowledge",
+          "type": "builds-on",
+          "note": "Picks up where that piece ended — the difference between running experiments and building knowledge — and argues the experimentation platform is where the compounding record actually lives.\n"
+        }
+      ],
+      "incomingRelationships": [],
+      "sameIdeaArtifacts": [
+        "from-first-hypothesis-to-institutional-knowledge"
+      ],
+      "connectedIdeas": [
+        "experimentation-compounds"
+      ]
+    },
+    {
+      "slug": "from-first-hypothesis-to-institutional-knowledge",
       "title": "From First Hypothesis to Institutional Knowledge",
       "kind": "White Paper",
       "pillar": "Measurement & Experimentation",
@@ -192,8 +220,16 @@
         "age-of-fast"
       ],
       "relationships": [],
-      "incomingRelationships": [],
-      "sameIdeaArtifacts": [],
+      "incomingRelationships": [
+        {
+          "source": "experimentation-platforms-are-becoming-organizational-memory",
+          "type": "builds-on",
+          "note": "Picks up where that piece ended — the difference between running experiments and building knowledge — and argues the experimentation platform is where the compounding record actually lives.\n"
+        }
+      ],
+      "sameIdeaArtifacts": [
+        "experimentation-platforms-are-becoming-organizational-memory"
+      ],
       "connectedIdeas": [
         "experimentation-compounds",
         "age-of-fast"
