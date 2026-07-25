@@ -16,7 +16,7 @@ export const getStaticPaths = (async () => {
 
 const { piece } = Astro.props;
 const { Content } = await render(piece);
-const { title, kind, pillar, readTime, number, externalLink, deck } = piece.data;
+const { title, kind, pillar, readTime, externalLink, deck } = piece.data;
 
 const linkLabel =
   kind === 'Prototype' ? 'Open' : kind === 'White Paper' ? 'Download PDF' : 'Open';
@@ -46,6 +46,9 @@ const linkLabel =
       <div
         class="mt-8 flex flex-wrap gap-x-9 gap-y-2 border-t border-rule border-b-2 border-b-foreground py-[18px]"
       >
+        <p class="t-label text-dim">
+          By <span class="text-muted">Pablo Corzo</span>
+        </p>
         {
           readTime ? (
             <p class="t-label text-dim">
@@ -53,9 +56,6 @@ const linkLabel =
             </p>
           ) : null
         }
-        <p class="t-label text-dim">
-          No. <span class="text-muted">{number}</span>
-        </p>
         <IdeaContext artifactSlug={piece.id} />
       </div>
 
@@ -77,8 +77,8 @@ const linkLabel =
       <div class="prose-article mx-[15px] pt-12">
         <Content />
       </div>
-
-      <ConnectedContent artifactSlug={piece.id} />
     </div>
+
+    <ConnectedContent artifactSlug={piece.id} />
   </article>
 </Base>

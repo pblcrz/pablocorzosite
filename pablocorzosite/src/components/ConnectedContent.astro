@@ -1,13 +1,12 @@
 ---
 /**
- * Modules B and C for artifact pages.
+ * The article footer: a quiet, distinct "related reading" zone set apart from
+ * the article body by a surface band, small labels, and compact type.
  *
- * B — "This idea also appears in": other artifacts sharing the primary idea.
- * C — "Continue the idea": explicit artifact relationships (both directions)
- *     and the primary idea's connected ideas, each with a relationship label.
+ * "More on this idea": other artifacts sharing the primary idea.
+ * "Continue the idea": explicit artifact relationships (both directions) and
+ *     the primary idea's connected ideas, each with a relationship label.
  */
-import ArtifactRow from './ArtifactRow.astro';
-import ConnectionThread from './ConnectionThread.astro';
 import type { ThreadItem } from './ConnectionThread.astro';
 import {
   inverseRelationshipLabels,
@@ -94,29 +93,67 @@ const hasContinuations = threadItems.length > 0;
 ---
 
 {
-  hasAppearances && (
-    <section class="mx-auto mt-16 max-w-(--container-prose)" aria-labelledby="also-appears">
-      <h2 id="also-appears" class="t-section border-b-2 border-accent-fill pb-4">
-        This idea also appears in
-      </h2>
-      <ul>
-        {sameIdea.map((node) => (
-          <ArtifactRow artifact={node} />
-        ))}
-      </ul>
-    </section>
-  )
-}
+  (hasAppearances || hasContinuations) && (
+    <aside class="shell mt-20" aria-label="Related reading">
+      <div class="border-t-2 border-foreground bg-surface px-6 py-12 sm:px-10 sm:py-14">
+        <div class="grid gap-x-16 gap-y-12 md:grid-cols-2">
+          {hasAppearances && (
+            <section aria-labelledby="also-appears">
+              <h2 id="also-appears" class="t-label text-muted">
+                More on this idea
+              </h2>
+              <ul class="mt-4">
+                {sameIdea.map((node) => (
+                  <li class="border-t border-rule">
+                    <a
+                      href={`/writing/${node.slug}`}
+                      class="group block py-3.5 no-underline"
+                    >
+                      <span class="block text-[1.0625rem] leading-snug font-medium text-foreground transition-colors group-hover:text-accent-text">
+                        {node.title}
+                      </span>
+                      <span class="t-label mt-1.5 block text-dim">
+                        {node.kind}
+                        {node.draft && ' · Draft'}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
-{
-  hasContinuations && (
-    <section class="mx-auto mt-16 max-w-(--container-prose)" aria-labelledby="continue-idea">
-      <h2 id="continue-idea" class="t-section border-b-2 border-accent-fill pb-4">
-        Continue the idea
-      </h2>
-      <div class="mt-6">
-        <ConnectionThread items={threadItems} />
+          {hasContinuations && (
+            <section aria-labelledby="continue-idea">
+              <h2 id="continue-idea" class="t-label text-muted">
+                Continue the idea
+              </h2>
+              <ul class="mt-4">
+                {threadItems.map((item) => (
+                  <li class="border-t border-rule">
+                    <a href={item.href} class="group block py-3.5 no-underline">
+                      <span class="t-label block text-accent-text">{item.label}</span>
+                      <span class="mt-1.5 block text-[1.0625rem] leading-snug font-medium text-foreground transition-colors group-hover:text-accent-text">
+                        {item.title}
+                        {item.draft && (
+                          <span class="ml-2 align-middle rounded-full bg-accent-fill px-2 py-0.5 text-[0.6rem] text-accent-ink">
+                            Draft
+                          </span>
+                        )}
+                      </span>
+                      {item.note && (
+                        <span class="t-standfirst font-ui mt-1.5 block text-[0.9rem] text-muted">
+                          {item.note}
+                        </span>
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </div>
       </div>
-    </section>
+    </aside>
   )
 }
