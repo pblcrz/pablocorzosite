@@ -2,7 +2,7 @@
 title: "From First Hypothesis to Institutional Knowledge"
 number: 12
 kind: "White Paper"
-pillar: "Measurement & Experimentation"
+pillar: "Experimentation & Measurement"
 deck: "What best-in-class experimentation actually looks like. And why platform, program, and culture must work together."
 published: 2026-07-22
 primaryIdea: "experimentation-compounds"

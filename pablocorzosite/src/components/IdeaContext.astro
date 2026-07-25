@@ -1,7 +1,8 @@
 ---
 /**
- * Module A: "Part of this idea" — understated block near the artifact header
- * naming the central idea the piece advances, linking to the idea page.
+ * Compact "Part of this idea" line — sits inline in the article meta bar,
+ * naming the central idea and linking to it. Kept to one line; the idea's
+ * statement is deliberately omitted here.
  */
 import { getSiteGraph } from '../utils/site-graph';
 
@@ -18,17 +19,14 @@ const idea = artifact?.primaryIdea ? ideasBySlug.get(artifact.primaryIdea) : und
 
 {
   idea && (
-    <aside class="mt-6 border-l-2 border-accent-fill pl-4">
-      <p class="t-label text-dim">Part of this idea</p>
-      <p class="mt-1.5">
-        <a
-          href={`/ideas/${idea.slug}`}
-          class="t-meta text-foreground! no-underline transition-colors hover:text-accent-text!"
-        >
-          {idea.title}
-        </a>
-      </p>
-      <p class="t-standfirst mt-1 max-w-[52ch]">{idea.statement}</p>
-    </aside>
+    <p class="t-label text-dim">
+      Part of this idea:{' '}
+      <a
+        href={`/ideas/${idea.slug}`}
+        class="text-accent-text no-underline transition-colors hover:text-foreground"
+      >
+        {idea.title}
+      </a>
+    </p>
   )
 }
