@@ -1,14 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import IdeaCard from '../components/IdeaCard.astro';
 import { getSiteGraph } from '../utils/site-graph';
 
-// Drafts stay visible in the local dev server (labelled below) so they can be
-// previewed, but are excluded from production builds.
-const pieces = (await getCollection('writing', ({ data }) => import.meta.env.DEV || !data.draft)).sort(
-  (a, b) => b.data.published.getTime() - a.data.published.getTime(),
-);
+// The homepage leads with a curated set — only pieces flagged `featured`.
+// The full list lives on /writing. Drafts stay visible in dev, never in prod.
+const pieces = (await getCollection('writing', ({ data }) => import.meta.env.DEV || !data.draft))
+  .filter((piece) => piece.data.featured)
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
 
 // A small set of active ideas — newest development first.
 const { graph } = await getSiteGraph();
@@ -50,63 +49,78 @@ const featuredIdeas = graph.ideas
   </section>
 
   {
-    featuredIdeas.length > 0 && (
-      <section class="shell pb-16" aria-labelledby="explore-thinking">
-        <h2 id="explore-thinking" class="t-section border-b-2 border-accent-fill pb-4">
-          Explore the thinking
-        </h2>
-        <div class="mt-6 grid gap-5 md:grid-cols-3">
-          {featuredIdeas.map((idea) => <IdeaCard idea={idea} />)}
-        </div>
-        <p class="pt-5">
+    pieces.length > 0 && (
+      <section class="shell pb-16" aria-labelledby="featured-writing">
+        <div class="flex items-baseline justify-between gap-4 border-b-2 border-accent-fill pb-4">
+          <h2 id="featured-writing" class="t-section">Featured</h2>
           <a
-            href="/ideas"
-            class="t-label text-dim no-underline transition-colors hover:text-foreground"
+            href="/writing"
+            class="t-label shrink-0 text-dim no-underline transition-colors hover:text-foreground"
           >
-            All ideas →
+            All writing →
           </a>
-        </p>
+        </div>
+
+        <ul>
+          {pieces.map((piece) => (
+            <li class="group border-b border-rule">
+              <a
+                href={`/writing/${piece.id}`}
+                class="block py-6 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:px-4"
+              >
+                <span class="t-row-title block group-hover:text-accent-ink">
+                  {piece.data.title}
+                </span>
+                <span class="t-label mt-2 block group-hover:text-accent-ink">
+                  {piece.data.kind} / {piece.data.pillar}
+                  {piece.data.draft && (
+                    <span class="ml-2 rounded-full bg-accent-fill px-2 py-0.5 text-accent-ink">
+                      Draft
+                    </span>
+                  )}
+                </span>
+                <span class="t-standfirst mt-3 block group-hover:text-accent-ink">
+                  {piece.data.deck}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
     )
   }
 
-  <section class="shell">
-    <h2 class="t-section border-b-2 border-accent-fill pb-4">Index</h2>
+  {
+    featuredIdeas.length > 0 && (
+      <section class="shell pb-16" aria-labelledby="explore-thinking">
+        <div class="flex items-baseline justify-between gap-4 border-b-2 border-accent-fill pb-4">
+          <h2 id="explore-thinking" class="t-section">Explore the thinking</h2>
+          <a
+            href="/ideas"
+            class="t-label shrink-0 text-dim no-underline transition-colors hover:text-foreground"
+          >
+            All ideas →
+          </a>
+        </div>
 
-    <ul>
-      {
-        pieces.map((piece) => (
-          <li class="group border-b border-rule">
-            <a
-              href={`/writing/${piece.id}`}
-              class="block py-6 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:px-4"
-            >
-              <span class="t-row-title block group-hover:text-accent-ink">
-                {piece.data.title}
-              </span>
-              <span class="t-label mt-2 block group-hover:text-accent-ink">
-                {piece.data.kind} / {piece.data.pillar}
-                {
-                  piece.data.draft && (
-                    <span class="ml-2 rounded-full bg-accent-fill px-2 py-0.5 text-accent-ink">
-                      Draft
-                    </span>
-                  )
-                }
-              </span>
-              <span class="t-standfirst mt-3 block group-hover:text-accent-ink">
-                {piece.data.deck}
-              </span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-
-    {
-      pieces.length === 0 && (
-        <p class="t-standfirst py-10">Nothing published yet.</p>
-      )
-    }
-  </section>
+        <ul class="mt-1">
+          {featuredIdeas.map((idea) => (
+            <li class="border-b border-rule">
+              <a
+                href={`/ideas/${idea.slug}`}
+                class="group flex flex-col gap-1.5 py-5 no-underline sm:flex-row sm:items-baseline sm:gap-8"
+              >
+                <span class="block shrink-0 font-edo text-[1.375rem] leading-tight text-foreground transition-colors group-hover:text-accent-text sm:w-[15rem]">
+                  {idea.title}
+                </span>
+                <span class="t-standfirst font-ui block text-[0.95rem] text-body-soft">
+                  {idea.statement}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
 </Base>

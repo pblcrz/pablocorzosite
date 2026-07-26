@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+// Drafts stay visible in the local dev server (labelled below) so they can be
+// previewed, but are excluded from production builds.
+const pieces = (await getCollection('writing', ({ data }) => import.meta.env.DEV || !data.draft)).sort(
+  (a, b) => b.data.published.getTime() - a.data.published.getTime(),
+);
+---
+
+<Base
+  title="Writing — Pablo Corzo"
+  description="Every article, framework, white paper, and prototype published here — newest first."
+  theme="dark"
+>
+  <section class="shell pt-[52px] pb-[52px]">
+    <p class="t-label text-accent-text">Writing</p>
+    <h1 class="t-display font-edo mt-[18px] max-w-[22ch]">
+      Everything<span class="text-[var(--accent-alt)]">,</span> in order<span class="text-accent-text">.</span>
+    </h1>
+    <p class="t-standfirst font-ui mt-6 max-w-[64ch]">
+      The full index — every article, framework, white paper, and prototype published
+      here, newest first.
+    </p>
+  </section>
+
+  <section class="shell pb-16">
+    <h2 class="t-section border-b-2 border-accent-fill pb-4">Index</h2>
+
+    <ul>
+      {
+        pieces.map((piece) => (
+          <li class="group border-b border-rule">
+            <a
+              href={`/writing/${piece.id}`}
+              class="block py-6 no-underline transition-colors duration-150 group-hover:bg-accent-fill md:px-4"
+            >
+              <span class="t-row-title block group-hover:text-accent-ink">
+                {piece.data.title}
+              </span>
+              <span class="t-label mt-2 block group-hover:text-accent-ink">
+                {piece.data.kind} / {piece.data.pillar}
+                {
+                  piece.data.draft && (
+                    <span class="ml-2 rounded-full bg-accent-fill px-2 py-0.5 text-accent-ink">
+                      Draft
+                    </span>
+                  )
+                }
+              </span>
+              <span class="t-standfirst mt-3 block group-hover:text-accent-ink">
+                {piece.data.deck}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    {
+      pieces.length === 0 && (
+        <p class="t-standfirst py-10">Nothing published yet.</p>
+      )
+    }
+  </section>
+</Base>
