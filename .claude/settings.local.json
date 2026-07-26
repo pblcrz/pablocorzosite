@@ -115,7 +115,10 @@
       "Bash(xargs -I{} sh -c 'echo \"$\\(grep ^title: {}\\) | $\\(grep ^number: {}\\)\"')",
       "Bash(git add *)",
       "Bash(git commit -q -m 'Split homepage and Index: featured writing + ideas teaser on home, full index at /writing *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(curl -s localhost:4321/writing)",
+      "Bash(curl -s localhost:4321/ideas)",
+      "Bash(git commit -q -m 'Tweak index/ideas headlines; link homepage portrait to About *)"
     ]
   }
 }

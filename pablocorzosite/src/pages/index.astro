@@ -36,14 +36,20 @@ const featuredIdeas = graph.ideas
       </div>
 
       <div class="order-first md:order-none">
-        <img
-          src="/pablo-desk.jpg"
-          alt="Pablo Corzo writing at his desk about his perspective on product"
-          width="760"
-          height="760"
-          loading="eager"
-          class="mx-auto block w-full max-w-[340px] rounded-lg border border-rule md:mr-0"
-        />
+        <a
+          href="/about"
+          aria-label="About Pablo Corzo"
+          class="group mx-auto block w-full max-w-[340px] md:mr-0"
+        >
+          <img
+            src="/pablo-desk.jpg"
+            alt="Pablo Corzo writing at his desk about his perspective on product"
+            width="760"
+            height="760"
+            loading="eager"
+            class="block w-full rounded-lg border border-rule transition-opacity duration-150 group-hover:opacity-90"
+          />
+        </a>
       </div>
     </div>
   </section>
