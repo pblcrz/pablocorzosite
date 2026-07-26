@@ -96,17 +96,19 @@
       "incomingConnections": [],
       "primaryArtifacts": [
         "experimentation-platforms-are-becoming-organizational-memory",
-        "from-first-hypothesis-to-institutional-knowledge"
+        "from-first-hypothesis-to-institutional-knowledge",
+        "learning-is-the-product"
       ],
       "supportingArtifacts": [],
       "allArtifacts": [
         "experimentation-platforms-are-becoming-organizational-memory",
-        "from-first-hypothesis-to-institutional-knowledge"
+        "from-first-hypothesis-to-institutional-knowledge",
+        "learning-is-the-product"
       ],
-      "artifactCount": 2,
+      "artifactCount": 3,
       "firstArtifactAt": "2026-07-20",
       "lastArtifactAt": "2026-07-22",
-      "latestArtifact": "from-first-hypothesis-to-institutional-knowledge"
+      "latestArtifact": "learning-is-the-product"
     }
   ],
   "artifacts": [
@@ -198,8 +200,15 @@
           "note": "Picks up where that piece ended — the difference between running experiments and building knowledge — and argues the experimentation platform is where the compounding record actually lives.\n"
         }
       ],
-      "incomingRelationships": [],
+      "incomingRelationships": [
+        {
+          "source": "learning-is-the-product",
+          "type": "builds-on",
+          "note": "Takes that piece's claim — the platform's real output is preserved reasoning — and shows what the lost reasoning costs: it is what caps a program at ten experiments a quarter.\n"
+        }
+      ],
       "sameIdeaArtifacts": [
+        "learning-is-the-product",
         "from-first-hypothesis-to-institutional-knowledge"
       ],
       "connectedIdeas": [
@@ -225,14 +234,52 @@
           "source": "experimentation-platforms-are-becoming-organizational-memory",
           "type": "builds-on",
           "note": "Picks up where that piece ended — the difference between running experiments and building knowledge — and argues the experimentation platform is where the compounding record actually lives.\n"
+        },
+        {
+          "source": "learning-is-the-product",
+          "type": "builds-on",
+          "note": "Extends its argument that cheaper experiments only widen the gap between programs that keep knowledge and those that lose it, by tracing the mechanism to the specific costs memory removes from each test.\n"
         }
       ],
       "sameIdeaArtifacts": [
+        "learning-is-the-product",
         "experimentation-platforms-are-becoming-organizational-memory"
       ],
       "connectedIdeas": [
         "experimentation-compounds",
         "age-of-fast"
+      ]
+    },
+    {
+      "slug": "learning-is-the-product",
+      "title": "Learning Is the Product",
+      "kind": "Article",
+      "pillar": "Experimentation & Measurement",
+      "deck": "Experiment volume looks like a staffing number. Take it apart and most of it is knowledge the program produced and lost.",
+      "published": "2026-07-22",
+      "featured": true,
+      "draft": false,
+      "primaryIdea": "experimentation-compounds",
+      "supportingIdeas": [],
+      "relationships": [
+        {
+          "target": "experimentation-platforms-are-becoming-organizational-memory",
+          "type": "builds-on",
+          "note": "Takes that piece's claim — the platform's real output is preserved reasoning — and shows what the lost reasoning costs: it is what caps a program at ten experiments a quarter.\n"
+        },
+        {
+          "target": "from-first-hypothesis-to-institutional-knowledge",
+          "type": "builds-on",
+          "note": "Extends its argument that cheaper experiments only widen the gap between programs that keep knowledge and those that lose it, by tracing the mechanism to the specific costs memory removes from each test.\n"
+        }
+      ],
+      "incomingRelationships": [],
+      "sameIdeaArtifacts": [
+        "experimentation-platforms-are-becoming-organizational-memory",
+        "from-first-hypothesis-to-institutional-knowledge"
+      ],
+      "connectedIdeas": [
+        "experimentation-compounds"
       ]
     }
   ]
