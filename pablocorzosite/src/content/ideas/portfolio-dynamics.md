@@ -11,14 +11,6 @@ introducedAt: 2026-07-26
 startHere: "the-portfolio-nobody-designed"
 themes:
   - "product-operations"
-connections:
-  - target: "definition"
-    type: "expands-into"
-    note: >
-      Definition-first argues clarity earns a product its existence. Portfolio
-      Dynamics applies that same standard to the exit side and to portfolio
-      scope, where almost nobody applies it — the same discipline pointed at a
-      different moment in a product's life.
 ---
 
 Accumulation spreads the cost of a portfolio across time. Rationalization

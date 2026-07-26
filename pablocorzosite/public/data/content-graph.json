@@ -75,29 +75,6 @@
       "latestArtifact": "the-secret-force-behind-ai-driven-workforce-decisions"
     },
     {
-      "slug": "definition",
-      "title": "Definition-First",
-      "statement": "Clarity earns a product its existence. A product should be able to say precisely what it is for and who it is for; when it cannot, that absence — not a missing feature — is the signal to question whether it should exist at all.",
-      "status": "emerging",
-      "draft": false,
-      "introducedAt": "2026-07-26",
-      "themes": [
-        "product-operations"
-      ],
-      "connections": [],
-      "incomingConnections": [
-        {
-          "source": "portfolio-dynamics",
-          "type": "expands-into",
-          "note": "Definition-first argues clarity earns a product its existence. Portfolio Dynamics applies that same standard to the exit side and to portfolio scope, where almost nobody applies it — the same discipline pointed at a different moment in a product's life.\n"
-        }
-      ],
-      "primaryArtifacts": [],
-      "supportingArtifacts": [],
-      "allArtifacts": [],
-      "artifactCount": 0
-    },
-    {
       "slug": "experimentation-compounds",
       "title": "Experimentation That Compounds",
       "statement": "Experimentation only becomes an advantage when platform, program, and culture work together to turn individual test results into institutional knowledge — organizations that merely run tests do not compound.",
@@ -144,13 +121,7 @@
       "themes": [
         "product-operations"
       ],
-      "connections": [
-        {
-          "target": "definition",
-          "type": "expands-into",
-          "note": "Definition-first argues clarity earns a product its existence. Portfolio Dynamics applies that same standard to the exit side and to portfolio scope, where almost nobody applies it — the same discipline pointed at a different moment in a product's life.\n"
-        }
-      ],
+      "connections": [],
       "incomingConnections": [],
       "primaryArtifacts": [
         "portfolio-rationalization-is-an-operating-system-problem",
