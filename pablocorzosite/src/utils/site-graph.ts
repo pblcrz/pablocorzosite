@@ -43,6 +43,7 @@ async function load(): Promise<SiteGraph> {
   const artifacts: ArtifactInput[] = writingEntries.map((entry) => ({
     slug: entry.id,
     title: entry.data.title,
+    number: entry.data.number,
     kind: entry.data.kind,
     pillar: entry.data.pillar,
     deck: entry.data.deck,

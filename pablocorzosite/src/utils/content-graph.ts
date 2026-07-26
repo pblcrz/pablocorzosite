@@ -79,6 +79,8 @@ export interface IdeaInput {
 export interface ArtifactInput {
   slug: string;
   title: string;
+  /** Permanent id; also the author's within-idea reading sequence. */
+  number: number;
   /** Artifact format, e.g. "Article" | "White Paper" | "Prototype" | "Framework". */
   kind: string;
   /** Broad subject area (theme). */
@@ -131,6 +133,8 @@ export interface IdeaNode {
 export interface ArtifactNode {
   slug: string;
   title: string;
+  /** Permanent id; also the author's within-idea reading sequence. */
+  number: number;
   kind: string;
   pillar: string;
   deck: string;
@@ -467,6 +471,7 @@ export function buildContentGraph(
     return {
       slug: artifact.slug,
       title: artifact.title,
+      number: artifact.number,
       kind: artifact.kind,
       pillar: artifact.pillar,
       deck: artifact.deck,

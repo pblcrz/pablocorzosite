@@ -75,6 +75,29 @@
       "latestArtifact": "the-secret-force-behind-ai-driven-workforce-decisions"
     },
     {
+      "slug": "definition",
+      "title": "Definition-First",
+      "statement": "Clarity earns a product its existence. A product should be able to say precisely what it is for and who it is for; when it cannot, that absence — not a missing feature — is the signal to question whether it should exist at all.",
+      "status": "emerging",
+      "draft": false,
+      "introducedAt": "2026-07-26",
+      "themes": [
+        "product-operations"
+      ],
+      "connections": [],
+      "incomingConnections": [
+        {
+          "source": "portfolio-dynamics",
+          "type": "expands-into",
+          "note": "Definition-first argues clarity earns a product its existence. Portfolio Dynamics applies that same standard to the exit side and to portfolio scope, where almost nobody applies it — the same discipline pointed at a different moment in a product's life.\n"
+        }
+      ],
+      "primaryArtifacts": [],
+      "supportingArtifacts": [],
+      "allArtifacts": [],
+      "artifactCount": 0
+    },
+    {
       "slug": "experimentation-compounds",
       "title": "Experimentation That Compounds",
       "statement": "Experimentation only becomes an advantage when platform, program, and culture work together to turn individual test results into institutional knowledge — organizations that merely run tests do not compound.",
@@ -109,12 +132,48 @@
       "firstArtifactAt": "2026-07-20",
       "lastArtifactAt": "2026-07-22",
       "latestArtifact": "learning-is-the-product"
+    },
+    {
+      "slug": "portfolio-dynamics",
+      "title": "Portfolio Dynamics",
+      "statement": "Product portfolios are not designed as much as they are accumulated. They are the visible result of thousands of individually rational decisions made over time. This idea explores why that accumulation becomes difficult to reverse—and why healthier portfolios begin with better decision systems, not better cleanup.",
+      "status": "established",
+      "draft": false,
+      "introducedAt": "2026-07-26",
+      "startHere": "the-portfolio-nobody-designed",
+      "themes": [
+        "product-operations"
+      ],
+      "connections": [
+        {
+          "target": "definition",
+          "type": "expands-into",
+          "note": "Definition-first argues clarity earns a product its existence. Portfolio Dynamics applies that same standard to the exit side and to portfolio scope, where almost nobody applies it — the same discipline pointed at a different moment in a product's life.\n"
+        }
+      ],
+      "incomingConnections": [],
+      "primaryArtifacts": [
+        "portfolio-rationalization-is-an-operating-system-problem",
+        "the-decision-that-could-wait",
+        "the-portfolio-nobody-designed"
+      ],
+      "supportingArtifacts": [],
+      "allArtifacts": [
+        "portfolio-rationalization-is-an-operating-system-problem",
+        "the-decision-that-could-wait",
+        "the-portfolio-nobody-designed"
+      ],
+      "artifactCount": 3,
+      "firstArtifactAt": "2026-07-26",
+      "lastArtifactAt": "2026-07-26",
+      "latestArtifact": "the-portfolio-nobody-designed"
     }
   ],
   "artifacts": [
     {
       "slug": "the-secret-force-behind-ai-driven-workforce-decisions",
       "title": "The Secret Force Behind AI-Driven Workforce Decisions.",
+      "number": 1,
       "kind": "Article",
       "pillar": "AI",
       "deck": "What if the secret force pushing organizations to adapt its workforce isn't AI's ability to replace people but the cost of AI itself?",
@@ -133,6 +192,7 @@
     {
       "slug": "product-management-in-the-age-of-fast-what-speed-actually-changed",
       "title": "Product Management in the Age of Fast. What Speed Actually Changed.",
+      "number": 2,
       "kind": "Article",
       "pillar": "AI",
       "deck": "If AI can move faster than our processes, are product management rituals and governance gates still necessary?",
@@ -159,6 +219,7 @@
     {
       "slug": "product-management-in-the-age-of-fast-the-expectation-problem",
       "title": "Product Management in the Age of Fast. The Expectation Problem.",
+      "number": 4,
       "kind": "Article",
       "pillar": "AI",
       "deck": "Organizations are taking the cases where building got easier and generalizing the feeling across all deliveries.",
@@ -185,6 +246,7 @@
     {
       "slug": "experimentation-platforms-are-becoming-organizational-memory",
       "title": "Experimentation Platforms Are Becoming Organizational Memory",
+      "number": 13,
       "kind": "Article",
       "pillar": "Experimentation & Measurement",
       "deck": "Documentation keeps conclusions and loses the reasoning behind them. Experimentation platforms keep the reasoning, which quietly makes them the place an organization stores what it knows.",
@@ -218,6 +280,7 @@
     {
       "slug": "from-first-hypothesis-to-institutional-knowledge",
       "title": "From First Hypothesis to Institutional Knowledge",
+      "number": 12,
       "kind": "White Paper",
       "pillar": "Experimentation & Measurement",
       "deck": "What best-in-class experimentation actually looks like. And why platform, program, and culture must work together.",
@@ -253,6 +316,7 @@
     {
       "slug": "learning-is-the-product",
       "title": "Learning Is the Product",
+      "number": 17,
       "kind": "Article",
       "pillar": "Experimentation & Measurement",
       "deck": "Experiment volume looks like a staffing number. Take it apart and most of it is knowledge the program produced and lost.",
@@ -280,6 +344,96 @@
       ],
       "connectedIdeas": [
         "experimentation-compounds"
+      ]
+    },
+    {
+      "slug": "portfolio-rationalization-is-an-operating-system-problem",
+      "title": "Portfolio Rationalization Is an Operating System Problem",
+      "number": 20,
+      "kind": "Article",
+      "pillar": "Product Operations",
+      "deck": "Healthy portfolios aren't the product of periodic cleanups but of operating systems — funding, governance, cadence, ownership, and incentives — that question continuation as rigorously as they question entry.",
+      "published": "2026-07-26",
+      "featured": true,
+      "draft": false,
+      "primaryIdea": "portfolio-dynamics",
+      "supportingIdeas": [],
+      "relationships": [
+        {
+          "target": "the-decision-that-could-wait",
+          "type": "builds-on",
+          "note": "Turns the entry/continuation asymmetry into a prescription: if accumulation is produced by the operating model, that is where the fix has to live.\n"
+        }
+      ],
+      "incomingRelationships": [],
+      "sameIdeaArtifacts": [
+        "the-decision-that-could-wait",
+        "the-portfolio-nobody-designed"
+      ],
+      "connectedIdeas": [
+        "portfolio-dynamics"
+      ]
+    },
+    {
+      "slug": "the-decision-that-could-wait",
+      "title": "The Decision That Could Wait",
+      "number": 19,
+      "kind": "Article",
+      "pillar": "Product Operations",
+      "deck": "Products are subjected to rigorous scrutiny before they enter a portfolio. Far fewer organizations apply that same scrutiny to keeping them there.",
+      "published": "2026-07-26",
+      "featured": false,
+      "draft": false,
+      "primaryIdea": "portfolio-dynamics",
+      "supportingIdeas": [],
+      "relationships": [
+        {
+          "target": "the-portfolio-nobody-designed",
+          "type": "builds-on",
+          "note": "Takes the observation that portfolios accumulate rather than get designed and locates the mechanism behind it: entry is scrutinized, continuation is not.\n"
+        }
+      ],
+      "incomingRelationships": [
+        {
+          "source": "portfolio-rationalization-is-an-operating-system-problem",
+          "type": "builds-on",
+          "note": "Turns the entry/continuation asymmetry into a prescription: if accumulation is produced by the operating model, that is where the fix has to live.\n"
+        }
+      ],
+      "sameIdeaArtifacts": [
+        "portfolio-rationalization-is-an-operating-system-problem",
+        "the-portfolio-nobody-designed"
+      ],
+      "connectedIdeas": [
+        "portfolio-dynamics"
+      ]
+    },
+    {
+      "slug": "the-portfolio-nobody-designed",
+      "title": "The Portfolio Nobody Designed",
+      "number": 18,
+      "kind": "Article",
+      "pillar": "Product Operations",
+      "deck": "Portfolios aren't built. They accumulate through hundreds of decisions that make perfect sense in isolation but collectively create complexity nobody set out to build.",
+      "published": "2026-07-26",
+      "featured": false,
+      "draft": false,
+      "primaryIdea": "portfolio-dynamics",
+      "supportingIdeas": [],
+      "relationships": [],
+      "incomingRelationships": [
+        {
+          "source": "the-decision-that-could-wait",
+          "type": "builds-on",
+          "note": "Takes the observation that portfolios accumulate rather than get designed and locates the mechanism behind it: entry is scrutinized, continuation is not.\n"
+        }
+      ],
+      "sameIdeaArtifacts": [
+        "portfolio-rationalization-is-an-operating-system-problem",
+        "the-decision-that-could-wait"
+      ],
+      "connectedIdeas": [
+        "portfolio-dynamics"
       ]
     }
   ]

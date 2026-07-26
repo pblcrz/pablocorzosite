@@ -31,9 +31,10 @@ const resolveArtifacts = (slugs: string[]): ArtifactNode[] =>
     .filter((node): node is ArtifactNode => Boolean(node));
 
 const startHere = idea.startHere ? artifactsBySlug.get(idea.startHere) : undefined;
-// Newest first for reading lists; the graph stores oldest first.
-const primaryArtifacts = resolveArtifacts(idea.primaryArtifacts).reverse();
-const supportingArtifacts = resolveArtifacts(idea.supportingArtifacts).reverse();
+// Reading order = the author's within-idea sequence, i.e. artifact number ascending.
+const byNumber = (a: ArtifactNode, b: ArtifactNode) => a.number - b.number;
+const primaryArtifacts = resolveArtifacts(idea.primaryArtifacts).sort(byNumber);
+const supportingArtifacts = resolveArtifacts(idea.supportingArtifacts).sort(byNumber);
 
 const connectedIdeas: ThreadItem[] = [
   ...idea.connections.flatMap((connection) => {

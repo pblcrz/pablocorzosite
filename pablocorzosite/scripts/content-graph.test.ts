@@ -35,6 +35,7 @@ function idea(overrides: Partial<IdeaInput> & { slug: string }): IdeaInput {
 function artifact(overrides: Partial<ArtifactInput> & { slug: string }): ArtifactInput {
   return {
     title: overrides.slug,
+    number: 1,
     kind: 'Article',
     pillar: 'AI',
     deck: 'A deck.',

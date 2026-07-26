@@ -59,6 +59,7 @@ export function loadArtifacts(): ArtifactInput[] {
     return {
       slug: basename(path, '.md'),
       title: String(data.title ?? ''),
+      number: Number(data.number),
       kind: String(data.kind ?? ''),
       pillar: String(data.pillar ?? ''),
       deck: String(data.deck ?? ''),
