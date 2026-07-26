@@ -28,7 +28,7 @@ const pieces = (await getCollection('writing', ({ data }) => import.meta.env.DEV
   <section class="shell pb-16">
     <h2 class="t-section border-b-2 border-accent-fill pb-4">Index</h2>
 
-    <ul>
+    <ul id="writing-index">
       {
         pieces.map((piece) => (
           <li class="group border-b border-rule">
@@ -64,4 +64,26 @@ const pieces = (await getCollection('writing', ({ data }) => import.meta.env.DEV
       )
     }
   </section>
+
+  {/* Shuffle the index on each load so no piece is permanently top-of-list.
+      Runs inline before paint to avoid a reorder flash; if JS is off, the
+      server-rendered order stands. */}
+  <script is:inline>
+    (function () {
+      var list = document.getElementById('writing-index');
+      if (!list) return;
+      var items = Array.prototype.slice.call(list.children);
+      for (var i = items.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = items[i];
+        items[i] = items[j];
+        items[j] = tmp;
+      }
+      var frag = document.createDocumentFragment();
+      items.forEach(function (el) {
+        frag.appendChild(el);
+      });
+      list.appendChild(frag);
+    })();
+  </script>
 </Base>

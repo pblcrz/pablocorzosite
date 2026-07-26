@@ -123,7 +123,8 @@
       "Bash(git commit -q -m 'Update homepage standfirst copy *)",
       "Bash(sort -t: -k2 -n)",
       "Bash(git commit -q -m 'Publish article No.17 \\(Learning Is the Product\\) *)",
-      "Bash(git commit -q -m 'Drop '\\\\''newest first'\\\\'' from the /writing index standfirst *)"
+      "Bash(git commit -q -m 'Drop '\\\\''newest first'\\\\'' from the /writing index standfirst *)",
+      "Bash(git commit -q -m 'Randomize the /writing index order on each page load *)"
     ]
   }
 }
