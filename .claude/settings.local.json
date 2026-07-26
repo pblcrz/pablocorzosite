@@ -118,7 +118,9 @@
       "Bash(git push *)",
       "Bash(curl -s localhost:4321/writing)",
       "Bash(curl -s localhost:4321/ideas)",
-      "Bash(git commit -q -m 'Tweak index/ideas headlines; link homepage portrait to About *)"
+      "Bash(git commit -q -m 'Tweak index/ideas headlines; link homepage portrait to About *)",
+      "Bash(curl -s localhost:4321/)",
+      "Bash(git commit -q -m 'Update homepage standfirst copy *)"
     ]
   }
 }
