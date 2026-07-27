@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Nothing here — Pablo Corzo"
+  description="This page doesn't exist."
+  theme="dark"
+  noindex={true}
+>
+  <section class="shell flex flex-col items-center pt-[56px] pb-[104px] text-center">
+    {/* An empty plate — the same top-down bowl from the About page, scraped
+        clean. Decorative; the heading carries the meaning. currentColor lets
+        the engraving adapt to whichever theme is active. */}
+    <div class="w-full max-w-[280px] text-[var(--body-soft)]">
+      <svg
+        viewBox="0 0 520 520"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        class="mx-auto block w-full"
+      >
+        <g stroke="currentColor">
+          <circle cx="260" cy="260" r="248" stroke-width="2" opacity="0.42" />
+          <circle cx="260" cy="260" r="233" stroke-width="1" opacity="0.28" />
+          <circle cx="260" cy="260" r="221" stroke-width="1" opacity="0.2" />
+          <circle cx="260" cy="260" r="153" stroke-width="1.5" opacity="0.36" />
+          <circle cx="260" cy="260" r="143" stroke-width="1" opacity="0.22" />
+        </g>
+
+        {/* Spoon — handle out to the top-left, bowl resting near the centre. */}
+        <g
+          stroke="currentColor"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          opacity="0.72"
+          transform="translate(260 260) rotate(225)"
+        >
+          <ellipse cx="-14" cy="0" rx="36" ry="23" />
+          <line x1="20" y1="0" x2="205" y2="0" />
+        </g>
+
+        {/* Fork — handle out to the bottom-right, tines near the centre. */}
+        <g
+          stroke="currentColor"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          opacity="0.72"
+          transform="translate(260 260) rotate(45)"
+        >
+          <line x1="0" y1="-16" x2="-34" y2="-16" />
+          <line x1="0" y1="-6" x2="-36" y2="-6" />
+          <line x1="0" y1="6" x2="-36" y2="6" />
+          <line x1="0" y1="16" x2="-34" y2="16" />
+          <line x1="0" y1="-16" x2="0" y2="16" />
+          <line x1="18" y1="0" x2="205" y2="0" />
+        </g>
+      </svg>
+    </div>
+
+    <p class="t-label mt-10 text-accent-text">404</p>
+    <h1 class="t-display font-edo mt-4 max-w-[16ch]">
+      Nothing left in the bowl<span class="text-accent-text">.</span>
+    </h1>
+    <p class="t-standfirst font-ui mt-6 max-w-[52ch]">
+      This page is off the menu — it either never existed or has since moved. Either way,
+      the plate's been scraped clean.
+    </p>
+
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-5">
+      <a
+        href="/"
+        class="t-label rounded-full bg-accent-fill px-5 py-2.5 text-accent-ink no-underline transition-opacity hover:opacity-90"
+      >
+        Back to the start
+      </a>
+      <a
+        href="/writing"
+        class="t-label text-dim no-underline transition-colors hover:text-foreground"
+      >
+        Browse the writing →
+      </a>
+    </div>
+  </section>
+</Base>
