@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 import sanity from '@sanity/astro';
+import sitemap from '@astrojs/sitemap';
 
 import react from '@astrojs/react';
 
@@ -31,7 +32,7 @@ export default defineConfig({
     useCdn: false,
     // Studio is standalone in ../studio-pablocorzosite — deliberately not embedded,
     // so no studioBasePath here.
-  }), react()],
+  }), react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
