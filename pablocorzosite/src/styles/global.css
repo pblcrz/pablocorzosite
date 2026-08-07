@@ -248,9 +248,7 @@
     line-height: 1.22;
     letter-spacing: -0.03em;
     color: var(--fg);
-    border-top: 1px solid var(--rule);
-    margin-top: 60px;
-    padding-top: 26px;
+    margin-top: 52px;
     margin-bottom: -10px; /* net 20px to the paragraph below */
   }
 
@@ -377,6 +375,128 @@
     padding: 0;
   }
 
+  /* Layered stack diagram (raw HTML in an article body). Top-to-bottom tiers;
+     the middle tier splits into two side-by-side layers. The base layer is
+     de-emphasized to signal the commoditized layer. */
+  .prose-article .ai-stack {
+    margin: 44px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .prose-article .ai-stack__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .prose-article .ai-stack__layer {
+    background-color: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent-fill);
+    border-radius: 6px;
+    padding: 13px 18px;
+  }
+  .prose-article .ai-stack__layer--base {
+    border-left-color: var(--dim);
+  }
+
+  /* Decision-tree diagram (raw HTML in an article body). Question cards branch
+     via Yes/No edge pills into nested questions or outcome cards, connected by
+     a rail-and-tick tree on the left. */
+  .prose-article .dtree {
+    margin: 44px 0;
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+  }
+  .prose-article .dtree__q {
+    background-color: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--fg);
+  }
+  .prose-article .dtree__kids {
+    padding-left: 20px;
+  }
+  .prose-article .dtree__branch {
+    position: relative;
+    padding-left: 28px;
+    margin-top: 14px;
+  }
+  .prose-article .dtree__branch::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -14px;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--rule);
+  }
+  .prose-article .dtree__branch:last-child::before {
+    bottom: auto;
+    height: 25px;
+  }
+  .prose-article .dtree__branch::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 28px;
+    height: 2px;
+    background-color: var(--rule);
+  }
+  .prose-article .dtree__edge {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-family: var(--font-ui);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 999px;
+  }
+  .prose-article .dtree__edge--yes {
+    background-color: var(--accent-fill);
+    color: var(--accent-ink);
+  }
+  .prose-article .dtree__edge--no {
+    border: 1px solid var(--dim);
+    color: var(--muted);
+  }
+  .prose-article .dtree__out {
+    background-color: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent-fill);
+    border-radius: 6px;
+    padding: 11px 15px;
+    font-weight: 500;
+    color: var(--fg);
+  }
+  .prose-article .ai-stack__name {
+    display: block;
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+  .prose-article .ai-stack__detail {
+    display: block;
+    margin-top: 3px;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  @media (max-width: 640px) {
+    .prose-article .ai-stack__row {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* Tables — from Sanity `table` blocks or Markdown pipes. Header row gets
      the label treatment; body rows read in a slightly condensed serif. */
   .prose-article .table-block {
@@ -388,8 +508,15 @@
   }
 
   .prose-article table {
+    display: table;
     width: 100%;
+    /* Fixed layout so columns divide the full width evenly instead of shrinking
+       to content and leaving a gap on the right. */
+    table-layout: fixed;
     border-collapse: collapse;
+    /* Markdown pipe tables render as bare <table> (no .table-block wrapper), so
+       the vertical breathing room lives here. */
+    margin-block: 44px;
   }
 
   .prose-article th {
@@ -440,12 +567,6 @@
   .prose-article .image-block figcaption {
     margin-top: 14px;
     color: var(--dim);
-  }
-
-  /* Markdown tables arrive as bare <table> elements; let them scroll too. */
-  .prose-article > table {
-    display: block;
-    overflow-x: auto;
   }
 
   /* ---------------------------------------------------------------

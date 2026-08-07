@@ -44,6 +44,33 @@
       "latestArtifact": "from-first-hypothesis-to-institutional-knowledge"
     },
     {
+      "slug": "ai-foundations-for-product-leaders",
+      "title": "AI Foundations for Product Leaders",
+      "statement": "The hard part of building with AI is rarely the model — it is everything the model is wired into. This idea gathers the foundations product leaders need to make AI architecture decisions on purpose: what changes when software stops being deterministic, and what those choices commit a team to long after launch.",
+      "status": "developing",
+      "draft": false,
+      "introducedAt": "2026-07-30",
+      "startHere": "ai-enabled-or-ai-native",
+      "themes": [
+        "ai"
+      ],
+      "connections": [],
+      "incomingConnections": [],
+      "primaryArtifacts": [
+        "ai-enabled-or-ai-native",
+        "four-gates-before-you-build-ai"
+      ],
+      "supportingArtifacts": [],
+      "allArtifacts": [
+        "ai-enabled-or-ai-native",
+        "four-gates-before-you-build-ai"
+      ],
+      "artifactCount": 2,
+      "firstArtifactAt": "2026-07-30",
+      "lastArtifactAt": "2026-07-31",
+      "latestArtifact": "four-gates-before-you-build-ai"
+    },
+    {
       "slug": "cost-of-ai",
       "title": "The Cost of AI",
       "statement": "The force reshaping organizations is not only what AI can do — it is what AI costs: a distributed, largely ungoverned expense that stays invisible until finance connects the dots.",
@@ -405,6 +432,60 @@
       ],
       "connectedIdeas": [
         "portfolio-dynamics"
+      ]
+    },
+    {
+      "slug": "ai-enabled-or-ai-native",
+      "title": "AI-Enabled, or AI-Native, That Is the Question",
+      "number": 3,
+      "kind": "Article",
+      "pillar": "AI",
+      "deck": "The model is the most replaceable part of what you build. The decision that actually holds is made earlier, and rarely on purpose: whether what you're building can survive the model being wrong.",
+      "published": "2026-07-30",
+      "featured": true,
+      "draft": false,
+      "primaryIdea": "ai-foundations-for-product-leaders",
+      "supportingIdeas": [],
+      "relationships": [],
+      "incomingRelationships": [
+        {
+          "source": "four-gates-before-you-build-ai",
+          "type": "builds-on",
+          "note": "Picks up where that piece left off: once you know what kind of system you're building, these four gates decide whether the feature should exist at all.\n"
+        }
+      ],
+      "sameIdeaArtifacts": [
+        "four-gates-before-you-build-ai"
+      ],
+      "connectedIdeas": [
+        "ai-foundations-for-product-leaders"
+      ]
+    },
+    {
+      "slug": "four-gates-before-you-build-ai",
+      "title": "Four Gates Before You Build AI",
+      "number": 6,
+      "kind": "Article",
+      "pillar": "AI",
+      "deck": "Cheap prototyping removed the filter that used to kill weak AI ideas before they shipped. Four gates put it back — each one far cheaper to check now than to regret later.",
+      "published": "2026-07-31",
+      "featured": true,
+      "draft": false,
+      "primaryIdea": "ai-foundations-for-product-leaders",
+      "supportingIdeas": [],
+      "relationships": [
+        {
+          "target": "ai-enabled-or-ai-native",
+          "type": "builds-on",
+          "note": "Picks up where that piece left off: once you know what kind of system you're building, these four gates decide whether the feature should exist at all.\n"
+        }
+      ],
+      "incomingRelationships": [],
+      "sameIdeaArtifacts": [
+        "ai-enabled-or-ai-native"
+      ],
+      "connectedIdeas": [
+        "ai-foundations-for-product-leaders"
       ]
     }
   ]
