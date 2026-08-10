@@ -3,7 +3,7 @@ title: "Portfolio Rationalization Is an Operating System Problem"
 number: 20
 kind: "Article"
 pillar: "Product Operations"
-deck: "Healthy portfolios aren't the product of periodic cleanups but of operating systems — funding, governance, cadence, ownership, and incentives — that question continuation as rigorously as they question entry."
+deck: "Healthy portfolios aren't the product of periodic cleanups but of operating systems - funding, governance, cadence, ownership, and incentives - that question continuation as rigorously as they question entry."
 published: 2026-07-26
 featured: true
 primaryIdea: "portfolio-dynamics"
@@ -34,4 +34,4 @@ More importantly, once the garage is finally clean, how long will it stay that w
 
 Healthy portfolios aren't created through periodic cleanup efforts. They're created by operating systems that prevent unchecked accumulation. Funding models determine how easily products continue. Governance determines when they're reviewed. Planning cadences determine whether continuation is questioned. Ownership determines who is responsible for retirement. Incentives determine whether teams are rewarded for simplification or only for addition.
 
-Organizations don't struggle with rationalization because they're bad at making difficult decisions. They struggle because years of individually reasonable decisions eventually have to be reconsidered together. The answer isn't to become exceptionally good at cleaning the garage every few years. It's to build operating systems that never allow the garage to become unmanageable in the first place—or again after the cleanup.
+Organizations don't struggle with rationalization because they're bad at making difficult decisions. They struggle because years of individually reasonable decisions eventually have to be reconsidered together. The answer isn't to become exceptionally good at cleaning the garage every few years. It's to build operating systems that never allow the garage to become unmanageable in the first place - or again after the cleanup.

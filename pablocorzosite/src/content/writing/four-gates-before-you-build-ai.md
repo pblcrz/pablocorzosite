@@ -3,7 +3,7 @@ title: "Four Gates Before You Build AI"
 number: 6
 kind: "Article"
 pillar: "AI"
-deck: "Cheap prototyping removed the filter that used to kill weak AI ideas before they shipped. Four gates put it back — each one far cheaper to check now than to regret later."
+deck: "Cheap prototyping removed the filter that used to kill weak AI ideas before they shipped. Four gates put it back - each one far cheaper to check now than to regret later."
 published: 2026-07-31
 readTime: 6
 featured: true
@@ -80,7 +80,7 @@ The test is in these three questions, and you need all three:
 
 1. **What is the signal?** Not a thumbs up. The edit somebody made to your draft before sending it. The suggestion they deleted. The question they asked again ten seconds later, differently.
 2. **Where does it land?** Somewhere that changes what the system does next time. What gets retrieved. What sits in the prompt as an example. What the evaluation set contains. A dashboard is not a destination.
-3. **Who owns it?** A name. Not the team — the team is still nobody.
+3. **Who owns it?** A name. Not the team - the team is still nobody.
 
 ## Gate 3: Economics
 

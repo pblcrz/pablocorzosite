@@ -11,8 +11,8 @@ relationships:
   - target: "from-first-hypothesis-to-institutional-knowledge"
     type: "builds-on"
     note: >
-      Picks up where that piece ended — the difference between running
-      experiments and building knowledge — and argues the experimentation
+      Picks up where that piece ended - the difference between running
+      experiments and building knowledge - and argues the experimentation
       platform is where the compounding record actually lives.
 ---
 
@@ -30,7 +30,7 @@ That is not a failure of effort. Summaries are supposed to compress; that is the
 
 ## Reasoning is the part you need later
 
-The distinction matters because of who eventually reads the archive. The person who needs your experiment eighteen months from now is not looking for your verdict — everyone has moved on from it by then. They are trying to establish whether your situation resembled theirs closely enough that your answer applies to their question — learning reusability. That is a judgment about conditions, mechanisms, and assumptions, and it can only be made from the reasoning. A conclusion travels easily and carries almost nothing with it: it can be pasted into a new deck by someone with no way to check whether it still holds or why.
+The distinction matters because of who eventually reads the archive. The person who needs your experiment eighteen months from now is not looking for your verdict - everyone has moved on from it by then. They are trying to establish whether your situation resembled theirs closely enough that your answer applies to their question - learning reusability. That is a judgment about conditions, mechanisms, and assumptions, and it can only be made from the reasoning. A conclusion travels easily and carries almost nothing with it: it can be pasted into a new deck by someone with no way to check whether it still holds or why.
 
 Science has an instructive version of this problem. The Reproducibility Project: Cancer Biology spent eight years attempting to repeat 193 experiments drawn from 53 high-impact papers. Not one of the 193 was described in enough detail for the team to design a replication without going back to the original authors, and the data needed to compute effect sizes was publicly available for four of them.¹ Peer-reviewed papers are documentation at its most disciplined: written by trained specialists, to a standard enforced by reviewers, for the explicit purpose of being built upon. Even at that standard the published conclusion was not sufficient to rebuild the reasoning that produced it. A readout written for a Thursday meeting is not going to do better.
 

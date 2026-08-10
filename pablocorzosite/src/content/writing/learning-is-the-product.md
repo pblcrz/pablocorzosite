@@ -11,8 +11,8 @@ relationships:
   - target: "experimentation-platforms-are-becoming-organizational-memory"
     type: "builds-on"
     note: >
-      Takes that piece's claim — the platform's real output is preserved
-      reasoning — and shows what the lost reasoning costs: it is what caps a
+      Takes that piece's claim - the platform's real output is preserved
+      reasoning - and shows what the lost reasoning costs: it is what caps a
       program at ten experiments a quarter.
   - target: "from-first-hypothesis-to-institutional-knowledge"
     type: "builds-on"

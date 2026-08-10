@@ -123,7 +123,7 @@ When building an AI feature, product teams frequently default to "Let's fine-tun
 | Data privacy | Dependent on vendor agreement | High control over dynamic contextual data | Maximum (self-hosted) |
 | Best used for… | Prototyping, complex multi-step reasoning, low-volume / high-value tasks. | Injecting private enterprise data, real-time knowledge retrieval. | Domain-specific latency requirements, rigid formatting (JSON schema adherence), cost optimization at scale. |
 
-Each step buys you something real and costs you speed. Take them in order and you find out early whether you need the next one — and you arrive at fine-tuning with production data worth tuning on, which you do not have today.
+Each step buys you something real and costs you speed. Take them in order and you find out early whether you need the next one - and you arrive at fine-tuning with production data worth tuning on, which you do not have today.
 
 Prototype speed is not product speed. The gap between them is where the architecture decision comes due.
 

@@ -4,7 +4,7 @@ statement: >
   Product portfolios are not designed as much as they are accumulated. They are
   the visible result of thousands of individually rational decisions made over
   time. This idea explores why that accumulation becomes difficult to
-  reverse—and why healthier portfolios begin with better decision systems, not
+  reverse - and why healthier portfolios begin with better decision systems, not
   better cleanup.
 status: "established"
 introducedAt: 2026-07-26

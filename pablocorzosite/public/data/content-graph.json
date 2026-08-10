@@ -3,7 +3,7 @@
     {
       "slug": "age-of-fast",
       "title": "Product Management in the Age of Fast",
-      "statement": "AI made building dramatically faster and cheaper — but it did not make governing what gets built any easier, and the gap between the two is where organizations now fail.",
+      "statement": "AI made building dramatically faster and cheaper - but it did not make governing what gets built any easier, and the gap between the two is where organizations now fail.",
       "status": "developing",
       "draft": false,
       "introducedAt": "2026-06-17",
@@ -16,14 +16,14 @@
         {
           "target": "cost-of-ai",
           "type": "builds-on",
-          "note": "The speed-era governance argument builds on the observation that AI changed the economics of building software — cheaper, faster execution is exactly what resets organizational expectations.\n"
+          "note": "The speed-era governance argument builds on the observation that AI changed the economics of building software - cheaper, faster execution is exactly what resets organizational expectations.\n"
         }
       ],
       "incomingConnections": [
         {
           "source": "experimentation-compounds",
           "type": "builds-on",
-          "note": "Cheaper, AI-assisted testing widens the gap between running experiments and learning from them — the compounding argument starts where the speed argument ends.\n"
+          "note": "Cheaper, AI-assisted testing widens the gap between running experiments and learning from them - the compounding argument starts where the speed argument ends.\n"
         }
       ],
       "primaryArtifacts": [
@@ -46,7 +46,7 @@
     {
       "slug": "ai-foundations-for-product-leaders",
       "title": "AI Foundations for Product Leaders",
-      "statement": "The hard part of building with AI is rarely the model — it is everything the model is wired into. This idea gathers the foundations product leaders need to make AI architecture decisions on purpose: what changes when software stops being deterministic, and what those choices commit a team to long after launch.",
+      "statement": "The hard part of building with AI is rarely the model - it is everything the model is wired into. This idea gathers the foundations product leaders need to make AI architecture decisions on purpose: what changes when software stops being deterministic, and what those choices commit a team to long after launch.",
       "status": "developing",
       "draft": false,
       "introducedAt": "2026-07-30",
@@ -73,7 +73,7 @@
     {
       "slug": "cost-of-ai",
       "title": "The Cost of AI",
-      "statement": "The force reshaping organizations is not only what AI can do — it is what AI costs: a distributed, largely ungoverned expense that stays invisible until finance connects the dots.",
+      "statement": "The force reshaping organizations is not only what AI can do - it is what AI costs: a distributed, largely ungoverned expense that stays invisible until finance connects the dots.",
       "status": "emerging",
       "draft": false,
       "introducedAt": "2026-06-15",
@@ -86,7 +86,7 @@
         {
           "source": "age-of-fast",
           "type": "builds-on",
-          "note": "The speed-era governance argument builds on the observation that AI changed the economics of building software — cheaper, faster execution is exactly what resets organizational expectations.\n"
+          "note": "The speed-era governance argument builds on the observation that AI changed the economics of building software - cheaper, faster execution is exactly what resets organizational expectations.\n"
         }
       ],
       "primaryArtifacts": [
@@ -104,7 +104,7 @@
     {
       "slug": "experimentation-compounds",
       "title": "Experimentation That Compounds",
-      "statement": "Experimentation only becomes an advantage when platform, program, and culture work together to turn individual test results into institutional knowledge — organizations that merely run tests do not compound.",
+      "statement": "Experimentation only becomes an advantage when platform, program, and culture work together to turn individual test results into institutional knowledge - organizations that merely run tests do not compound.",
       "status": "developing",
       "draft": false,
       "introducedAt": "2026-07-06",
@@ -117,7 +117,7 @@
         {
           "target": "age-of-fast",
           "type": "builds-on",
-          "note": "Cheaper, AI-assisted testing widens the gap between running experiments and learning from them — the compounding argument starts where the speed argument ends.\n"
+          "note": "Cheaper, AI-assisted testing widens the gap between running experiments and learning from them - the compounding argument starts where the speed argument ends.\n"
         }
       ],
       "incomingConnections": [],
@@ -140,7 +140,7 @@
     {
       "slug": "portfolio-dynamics",
       "title": "Portfolio Dynamics",
-      "statement": "Product portfolios are not designed as much as they are accumulated. They are the visible result of thousands of individually rational decisions made over time. This idea explores why that accumulation becomes difficult to reverse—and why healthier portfolios begin with better decision systems, not better cleanup.",
+      "statement": "Product portfolios are not designed as much as they are accumulated. They are the visible result of thousands of individually rational decisions made over time. This idea explores why that accumulation becomes difficult to reverse - and why healthier portfolios begin with better decision systems, not better cleanup.",
       "status": "established",
       "draft": false,
       "introducedAt": "2026-07-26",
@@ -257,14 +257,14 @@
         {
           "target": "from-first-hypothesis-to-institutional-knowledge",
           "type": "builds-on",
-          "note": "Picks up where that piece ended — the difference between running experiments and building knowledge — and argues the experimentation platform is where the compounding record actually lives.\n"
+          "note": "Picks up where that piece ended - the difference between running experiments and building knowledge - and argues the experimentation platform is where the compounding record actually lives.\n"
         }
       ],
       "incomingRelationships": [
         {
           "source": "learning-is-the-product",
           "type": "builds-on",
-          "note": "Takes that piece's claim — the platform's real output is preserved reasoning — and shows what the lost reasoning costs: it is what caps a program at ten experiments a quarter.\n"
+          "note": "Takes that piece's claim - the platform's real output is preserved reasoning - and shows what the lost reasoning costs: it is what caps a program at ten experiments a quarter.\n"
         }
       ],
       "sameIdeaArtifacts": [
@@ -294,7 +294,7 @@
         {
           "source": "experimentation-platforms-are-becoming-organizational-memory",
           "type": "builds-on",
-          "note": "Picks up where that piece ended — the difference between running experiments and building knowledge — and argues the experimentation platform is where the compounding record actually lives.\n"
+          "note": "Picks up where that piece ended - the difference between running experiments and building knowledge - and argues the experimentation platform is where the compounding record actually lives.\n"
         },
         {
           "source": "learning-is-the-product",
@@ -327,7 +327,7 @@
         {
           "target": "experimentation-platforms-are-becoming-organizational-memory",
           "type": "builds-on",
-          "note": "Takes that piece's claim — the platform's real output is preserved reasoning — and shows what the lost reasoning costs: it is what caps a program at ten experiments a quarter.\n"
+          "note": "Takes that piece's claim - the platform's real output is preserved reasoning - and shows what the lost reasoning costs: it is what caps a program at ten experiments a quarter.\n"
         },
         {
           "target": "from-first-hypothesis-to-institutional-knowledge",
@@ -350,7 +350,7 @@
       "number": 20,
       "kind": "Article",
       "pillar": "Product Operations",
-      "deck": "Healthy portfolios aren't the product of periodic cleanups but of operating systems — funding, governance, cadence, ownership, and incentives — that question continuation as rigorously as they question entry.",
+      "deck": "Healthy portfolios aren't the product of periodic cleanups but of operating systems - funding, governance, cadence, ownership, and incentives - that question continuation as rigorously as they question entry.",
       "published": "2026-07-26",
       "featured": true,
       "draft": false,
@@ -467,7 +467,7 @@
       "number": 6,
       "kind": "Article",
       "pillar": "AI",
-      "deck": "Cheap prototyping removed the filter that used to kill weak AI ideas before they shipped. Four gates put it back — each one far cheaper to check now than to regret later.",
+      "deck": "Cheap prototyping removed the filter that used to kill weak AI ideas before they shipped. Four gates put it back - each one far cheaper to check now than to regret later.",
       "published": "2026-07-31",
       "featured": true,
       "draft": false,

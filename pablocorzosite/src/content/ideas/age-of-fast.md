@@ -1,7 +1,7 @@
 ---
 title: "Product Management in the Age of Fast"
 statement: >
-  AI made building dramatically faster and cheaper — but it did not make
+  AI made building dramatically faster and cheaper - but it did not make
   governing what gets built any easier, and the gap between the two is where
   organizations now fail.
 status: "developing"
@@ -15,7 +15,7 @@ connections:
     type: "builds-on"
     note: >
       The speed-era governance argument builds on the observation that AI
-      changed the economics of building software — cheaper, faster execution
+      changed the economics of building software - cheaper, faster execution
       is exactly what resets organizational expectations.
 ---
 
@@ -26,4 +26,4 @@ organizations generalized that feeling across all delivery.
 
 Its practical consequence is a governance claim: when execution is cheap,
 deciding what to build, why, and whether it delivered value becomes the
-constraint — and the competitive advantage.
+constraint - and the competitive advantage.
