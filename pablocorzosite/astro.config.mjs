@@ -32,7 +32,11 @@ export default defineConfig({
     useCdn: false,
     // Studio is standalone in ../studio-pablocorzosite — deliberately not embedded,
     // so no studioBasePath here.
-  }), react(), sitemap()],
+  }), react(), sitemap({
+    // Unlisted pages under /for/ (e.g. private cover-letter links) stay out of
+    // the sitemap so crawlers never discover them.
+    filter: (page) => !page.includes('/for/'),
+  })],
   vite: {
     plugins: [tailwindcss()],
   },

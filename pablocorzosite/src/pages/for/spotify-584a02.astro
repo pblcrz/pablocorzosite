@@ -1,0 +1,101 @@
+---
+// Private, unlisted cover letter. noindex + excluded from the sitemap (see
+// astro.config.mjs) + not linked anywhere on the site. Shareable by link only.
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Pablo Corzo — Principal Product Manager, Engagement Journeys"
+  description="Cover letter — Pablo Corzo for Spotify."
+  theme="light"
+  noindex={true}
+>
+  <article class="shell pt-[46px] pb-24">
+    <header class="border-b-2 border-foreground pb-6">
+      <p class="t-label text-accent-text">Cover letter</p>
+      <h1 class="t-title font-edo mt-3 max-w-[20ch]">Pablo Corzo</h1>
+    </header>
+
+    <div class="mx-[15px] mt-10 max-w-[75%]">
+      <p class="t-label text-dim">Re: Principal Product Manager, Engagement Journeys</p>
+
+      <div class="letter font-ui mt-9">
+        <p>Spotify Hiring Team,</p>
+
+        <p>
+          Like millions of people, Spotify is part of the daily rhythm of my life. What keeps me
+          fascinated by what you build goes beyond the music itself. It is the quiet 'magic' of how
+          experimentation and personalization transform a massive catalog into something deeply
+          personal and nostalgic. The 'Made for' and 'Release Radar' features alone have enhanced my
+          experience tremendously, and the 'Prompted Playlist' beta feature has me rediscovering
+          songs I had forgotten about constantly.
+        </p>
+
+        <p>
+          Over the past decade, my work has centered on building consumer and data products where
+          discovery, behavior, and experimentation intersect. Whether leading experimentation and
+          partnering with personalization at Best Buy or steering data, media, and
+          <a href="/writing/experimentation-platforms-are-becoming-organizational-memory"
+            >experimentation platforms</a
+          > at Monks, my focus has always been on true user value. I care deeply about the intricate
+          balance between quantitative rigor (through measurement frameworks that shy away from
+          <a href="/writing/learning-is-the-product">vanity metrics</a>), and crafting experiences
+          that feel intuitive and authentic.
+        </p>
+
+        <p>
+          What draws me specifically to the Principal Product Manager role in the Surfaces Studio is
+          the chance to shape engagement journeys across multiple formats and touch-points for a
+          product and brand I already admire. As we step into an era where
+          <a href="/ideas/ai-foundations-for-product-leaders">AI and agent technologies</a> can make
+          discovery feel even more natural, the challenge is about building genuine trust
+          and long-term relationships with listeners without making it feel like an invasion or
+          overstep. It means looking at how someone transitions from a casual listener to someone
+          deeply connected to music, podcasts, or audiobooks, and making that path and engagement
+          feel seamless.
+        </p>
+
+        <p>
+          I am a hands-on builder who loves exploring how new tech can solve real human problems. I
+          am also really interested in understanding how to do so without degrading our ways of
+          behaving, thinking and connecting. I am energized by the thought of collaborating with the
+          teams behind features like the ones I mentioned above and many others to create meaningful
+          impact. I would be thrilled to be considered for this role, as it would be the opportunity
+          of a lifetime.
+        </p>
+
+        <p class="signoff">
+          Thank you,<br />
+          <span class="font-edo text-[1.35rem]">Pablo Corzo</span>
+        </p>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .letter p {
+    font-size: 1.0625rem;
+    line-height: 1.72;
+    color: var(--body);
+    margin-top: 1.35rem;
+  }
+  .letter p:first-child {
+    margin-top: 0;
+  }
+  .letter a {
+    color: var(--accent-text);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in srgb, var(--accent-text) 38%, transparent);
+    transition: text-decoration-color 0.15s ease;
+  }
+  .letter a:hover {
+    text-decoration-color: var(--accent-text);
+  }
+  .letter .signoff {
+    margin-top: 2.25rem;
+    line-height: 1.5;
+  }
+</style>
