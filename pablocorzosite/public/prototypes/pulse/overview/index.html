@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="Concept overview for Kobie Alchemy PULSE: the problem, the strategy, the solution, and how it was built." />
+<title>Kobie Alchemy® PULSE</title>
+<style>
+  :root {
+    --ground: #f5f6f7; --surface: #ffffff; --surface-2: #f0f2f4;
+    --ink: #14212b; --muted: #57676f; --line: #e3e7ea;
+    --accent: #fd7f4f; --accent-text: #c8571f; --navy: #051c2c;
+    --maxw: 940px; --prose: 70ch;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --shadow: 0 1px 2px rgba(5,28,44,.05), 0 6px 20px rgba(5,28,44,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #081a26; --surface: #0e2634; --surface-2: #102c3d;
+      --ink: #e9f1f6; --muted: #9db1bd; --line: #1c3646;
+      --accent: #fd7f4f; --accent-text: #fd9366; --navy: #04141f;
+      --shadow: 0 1px 2px rgba(0,0,0,.25), 0 8px 24px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #081a26; --surface: #0e2634; --surface-2: #102c3d;
+    --ink: #e9f1f6; --muted: #9db1bd; --line: #1c3646;
+    --accent: #fd7f4f; --accent-text: #fd9366; --navy: #04141f;
+    --shadow: 0 1px 2px rgba(0,0,0,.25), 0 8px 24px rgba(0,0,0,.28);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--sans);
+    font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+  a { color: var(--accent-text); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* Hero */
+  .hero { background: linear-gradient(125deg, #051c2c 0%, #0a2c44 100%); color: #fff; border-bottom: 3px solid var(--accent); }
+  .hero .wrap { padding: 40px 22px 36px; }
+  .brandline { display: flex; align-items: center; gap: 13px; }
+  .heart { flex: none; display: inline-flex; filter: drop-shadow(0 2px 8px rgba(253,127,79,.45)); }
+  .kicker { font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+  .wordmark { font-size: .82rem; font-weight: 600; color: rgba(255,255,255,.72); margin-top: 2px; }
+  h1 { font-size: clamp(2rem, 5.2vw, 2.85rem); line-height: 1.05; letter-spacing: -.02em; margin: 20px 0 0; font-weight: 800; text-wrap: balance; max-width: 22ch; }
+  .herolink { margin: 18px 0 0; }
+  .herolink a { display: inline-block; font-size: .82rem; font-weight: 600; color: #fff; text-decoration: none;
+    background: var(--accent); padding: 8px 16px; border-radius: 999px; }
+  .herolink a:hover { filter: brightness(1.07); }
+
+  /* Sections */
+  section { padding: 32px 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: none; }
+  .eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); margin: 0 0 10px; }
+  h2 { font-size: 1.42rem; line-height: 1.2; letter-spacing: -.01em; margin: 0 0 14px; font-weight: 750; text-wrap: balance; }
+  h3 { font-size: 1.02rem; margin: 0 0 6px; font-weight: 700; }
+  p { margin: 0 0 14px; max-width: var(--prose); }
+  .lead { font-size: 1.08rem; }
+  strong { font-weight: 700; } em { font-style: italic; }
+  .muted { color: var(--muted); }
+
+  /* Part dividers (mirror the deck agenda) */
+  .part { display: flex; align-items: center; gap: 16px; margin-top: 16px; padding: 30px 0 4px; border-top: 2px solid var(--accent); }
+  .part-num { flex: none; width: 50px; height: 50px; border-radius: 50%; background: var(--navy); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 700; font-size: 1rem; box-shadow: var(--shadow); }
+  .part-e { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); }
+  .part-h { font-size: 1.9rem; line-height: 1.08; letter-spacing: -.015em; margin: 2px 0 0; font-weight: 800; }
+  .part + section { border-top: none; padding-top: 12px; }
+
+  /* Problem anchor + grid */
+  .anchor { max-width: none; margin: 0 0 18px; font-size: 1.1rem; line-height: 1.55; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+    border-radius: 10px; padding: 16px 18px; box-shadow: var(--shadow); }
+  .probgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 4px 0; }
+  @media (max-width: 560px) { .probgrid { grid-template-columns: 1fr; } }
+  .prob { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 15px 16px; box-shadow: var(--shadow); }
+  .prob .pl { font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 8px; }
+  .prob p { font-size: .92rem; color: var(--muted); margin: 0; max-width: none; }
+  .prob.obj { border-color: var(--accent); border-left: 4px solid var(--accent); }
+
+  /* Strategy shift cards */
+  .strat { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 4px 0; }
+  @media (max-width: 560px) { .strat { grid-template-columns: 1fr; } }
+  .sc { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 15px 16px; box-shadow: var(--shadow); }
+  .sc h3 { margin: 0 0 6px; font-size: 1rem; color: var(--ink); }
+  .sc p { font-size: .9rem; color: var(--muted); margin: 0; max-width: none; }
+
+  /* Lifecycle flow */
+  .flow { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 18px; }
+  .step { flex: 1 1 130px; min-width: 130px; border-radius: 12px; padding: 13px 14px; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow); }
+  .step .n { font-family: var(--mono); font-size: .78rem; font-weight: 700; color: var(--accent-text); }
+  .step .t { font-weight: 700; margin-top: 3px; font-size: .96rem; }
+  .step .s { font-size: .76rem; color: var(--muted); margin-top: 3px; }
+  .step.built { border-color: var(--accent); background: linear-gradient(180deg, rgba(253,127,79,.10), rgba(253,127,79,.03)); }
+  .step .tag { display: inline-block; margin-top: 8px; font-size: .64rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; }
+  .step.built .tag { background: var(--accent); color: #fff; }
+  .step.next .tag { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+
+  /* Table */
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+  table { border-collapse: collapse; width: 100%; font-size: .93rem; background: var(--surface); }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); background: var(--surface-2); }
+  tbody tr:last-child td { border-bottom: none; }
+  td code { font-family: var(--mono); font-size: .86em; }
+  .pill { display: inline-block; font-size: .72rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+  .pill.on { background: var(--accent); color: #fff; }
+  .pill.off { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+
+  /* Tiers */
+  .tiers { display: flex; flex-direction: column; gap: 10px; margin: 4px 0; }
+  .tier { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); }
+  .tier .lab { font-family: var(--mono); font-size: .74rem; color: var(--accent-text); font-weight: 700; }
+  .tier h3 { margin: 4px 0 4px; }
+  .tier p { font-size: .9rem; color: var(--muted); margin: 0; }
+  .arrow { text-align: center; color: var(--accent); font-size: 1.1rem; line-height: .4; margin: -3px 0; }
+
+  /* Callout */
+  .callout { border: 1px solid var(--line); border-left: 4px solid var(--accent); background: var(--surface); border-radius: 10px; padding: 16px 18px; margin: 8px 0 4px; box-shadow: var(--shadow); }
+  .callout h3 { color: var(--accent-text); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* Kobie reference notes */
+  .kref { border: 1px solid var(--line); border-left: 3px solid var(--accent); background: var(--surface-2);
+    border-radius: 10px; padding: 13px 15px; margin: 16px 0 4px; }
+  .kref .kl { font-size: .66rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--accent-text); }
+  .kref p { margin: 7px 0 0; font-size: .92rem; color: var(--ink); max-width: none; }
+  .kref .cite { display: block; margin-top: 8px; font-size: .76rem; color: var(--muted); line-height: 1.5; }
+  .kref .cite a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+  .kref .cite a:hover { color: var(--accent-text); }
+
+  /* Proof-point stats */
+  .proof { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 18px; box-shadow: var(--shadow); }
+  .proof .nums { display: flex; flex-wrap: wrap; gap: 28px; margin-bottom: 12px; }
+  .proof .v { font-size: 2rem; font-weight: 800; color: var(--accent-text); line-height: 1; font-variant-numeric: tabular-nums; }
+  .proof .l { font-size: .76rem; color: var(--muted); margin-top: 5px; }
+  .proof p { margin: 0; max-width: none; font-size: .92rem; color: var(--muted); }
+  .proof .cite { display: block; margin-top: 10px; font-size: .76rem; color: var(--muted); }
+  .proof .cite a { color: var(--muted); text-decoration: underline; }
+
+  /* References */
+  .refs { list-style: none; margin: 6px 0 0; padding: 0; }
+  .refs li { padding: 9px 0; border-bottom: 1px solid var(--line); font-size: .9rem; display: flex; flex-wrap: wrap; gap: 4px 12px; justify-content: space-between; align-items: baseline; }
+  .refs li:last-child { border-bottom: none; }
+  .refs a { color: var(--ink); font-weight: 600; text-decoration: none; }
+  .refs a:hover { color: var(--accent-text); text-decoration: underline; }
+  .refs .d { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* Lists */
+  ul.clean { max-width: var(--prose); margin: 0 0 14px; padding: 0; list-style: none; }
+  ul.clean li { position: relative; padding-left: 20px; margin: 8px 0; }
+  ul.clean li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 7px; height: 7px; border-radius: 2px; background: var(--accent); }
+  ul.clean li strong { color: var(--ink); }
+
+  /* Patterns */
+  .patterns { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .pat { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); }
+  .pat .pk { font-family: var(--mono); font-size: .74rem; color: var(--muted); }
+  .pat h3 { margin: 3px 0 6px; font-size: .98rem; }
+  .pat p { font-size: .88rem; color: var(--muted); margin: 0; }
+  .pat.human { border-color: var(--accent); }
+
+  code.inline { font-family: var(--mono); font-size: .86em; background: var(--surface-2); padding: 1px 6px; border-radius: 5px; }
+
+  footer { border-top: 1px solid var(--line); }
+  footer .wrap { padding: 26px 22px 40px; }
+  footer p { font-size: .84rem; color: var(--muted); max-width: var(--prose); }
+
+  @media (max-width: 560px) { body { font-size: 16px; } section { padding: 26px 0; } .part-h { font-size: 1.6rem; } }
+</style>
+
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="brandline">
+      <span class="heart" aria-hidden="true">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="#fd7f4f" stroke="#fd7f4f" stroke-width="1" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </span>
+      <div>
+        <div class="kicker">Concept Overview</div>
+        <div class="wordmark">Kobie Alchemy® PULSE™ · Programmatic Unified Loyalty Statistical Engine</div>
+      </div>
+    </div>
+    <h1>Kobie Alchemy® PULSE</h1>
+    <p class="herolink"><a href="https://pablocorzo.com/prototypes/pulse">Open the prototype ↗</a></p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section>
+      <p class="lead"><strong>Meet PULSE:</strong> an autonomous agent that takes loyalty opportunities from raw concept to monetization through a simple conversation with <strong>Bonnie™</strong>.</p>
+      <p><strong>This document</strong> is the companion to the prototype: the problem it goes after, the strategy behind it, how it is built, and the calls made along the way. It follows the agent from a behavioral signal through to a launch-ready campaign with governance built in.</p>
+    </section>
+
+    <!-- ===================== 01 · PROBLEM ===================== -->
+    <div class="part">
+      <div class="part-num">01</div>
+      <div>
+        <div class="part-e">Section 01</div>
+        <div class="part-h">Problem Statement</div>
+      </div>
+    </div>
+    <section>
+      <p class="anchor">Loyalty programs find out a customer is slipping weeks after it starts, and then respond by discounting everyone. Reacting late costs money, and so does discounting people who were going to buy anyway.</p>
+      <div class="probgrid">
+        <div class="prob">
+          <div class="pl">The Context</div>
+          <p>A retail loyalty program exists to hold on to customers who would otherwise drift away, and to earn sales that would not have happened anyway.</p>
+        </div>
+        <div class="prob">
+          <div class="pl">The Gap</div>
+          <p>The signal arrives on a monthly churn report, weeks after the behavior changed. By then the response is a scramble: blanket discounts and bonus points to everyone, with no view of what each one costs.</p>
+        </div>
+        <div class="prob">
+          <div class="pl">The Impact</div>
+          <p>Profit goes to shoppers who would have bought anyway. Reward liability lands on the balance sheet unforecast. And brand partners refuse to co-fund without proof of incremental sales.</p>
+        </div>
+        <div class="prob obj">
+          <div class="pl">The Solve</div>
+          <p>Catch the drift in buying cadence as it happens, respond with an offer that has a budget cap built into it, and hold back a lookalike comparison group so the new profit can be proven to Finance and to brand partners.</p>
+        </div>
+      </div>
+     
+    </section>
+
+    <!-- ===================== 02 · STRATEGY ===================== -->
+    <div class="part">
+      <div class="part-num">02</div>
+      <div>
+        <div class="part-e">Section 02</div>
+        <div class="part-h">Strategy</div>
+      </div>
+    </div>
+    <section>
+          
+      <h2>Core Strategic Shifts</h2>
+      <div class="strat">
+        <div class="sc">
+          <h3>From Late Reports to Instant Action</h3>
+          <p>Act on slipping customers the moment their buying habit breaks, instead of finding out in a monthly or quarterly report.</p>
+        </div>
+        <div class="sc">
+          <h3>From Wasted Discounts to Protected Margins</h3>
+          <p>Send targeted offers with strict budget limits attached, instead of throwing discounts and points at everyone.</p>
+        </div>
+        <div class="sc">
+          <h3>From Guesswork to Causal Proof</h3>
+          <p>Every campaign holds back a matched comparison group, so the lift you report to Finance is lift you can prove.</p>
+        </div>
+        <div class="sc">
+          <h3>From Data Science Bottlenecks to Agentic Workflows</h3>
+          <p>Marketers can set up and launch safe tests guided by the agent, with no data science backlog slowing things down.</p>
+        </div>
+      </div>
+    </section>
+    <section>
+      
+      <h2>Strategic Data Considerations</h2>
+      <ul class="clean">
+        <li><strong>Data Readiness.</strong> The agent cannot trigger anything safely until identity is resolved, the features it needs are available fast enough to act on, and propensity scores are already computed.</li>
+        <li><strong>Separate Conversational Intent from Automated Execution.</strong> Let the model read what the marketer wants. Let deterministic code decide what gets spent: rules, budget caps, and privacy policies are enforced outside the model, before any reward is triggered.</li>
+        <li><strong>Decouple Event Triggering from Impact Measurement.</strong> Trigger in real time. Measure on the category's own purchase cycle, which runs far slower.</li>
+        <li><strong>Build on Zero-Copy Data Foundations.</strong> Point the agent at the warehouse itself. Every copy you make is another pipeline to keep in sync and another thing to break.</li>
+        <li><strong>Design for Governed Clean-Room Collaboration.</strong> Settle on one privacy-safe way to share, so a brand partner can co-fund a campaign without raw customer data ever leaving the warehouse.</li>
+        <li><strong>Speed vs. Statistical Rigor.</strong> Small audiences are noisy, so the agent matches a lookalike baseline and checks the minimum detectable effect before a fast campaign counts as valid.</li>
+        <li><strong>Tiered Autonomy.</strong> The agent decides on its own when the call is low-risk, and halts for human sign-off when the liability is high.</li>
+      </ul>
+    
+    </section>
+
+    <!-- ===================== 03 · SOLUTION ===================== -->
+    <div class="part">
+      <div class="part-num">03</div>
+      <div>
+        <div class="part-e">Section 03</div>
+        <div class="part-h">The Solution</div>
+      </div>
+    </div>
+
+    <section>
+      <p class="eyebrow">Agentic architecture</p>
+      <h2>One continuous loyalty-experimentation lifecycle</h2>
+      <p class="lead">Give PULSE an objective and it runs the whole setup: pulls the data, checks the group is big enough to measure, caps the spend, stands up the clean room, and arms the trigger.</p>
+      <p class="muted">The prototype builds <strong style="color:var(--ink);">stages 1–2</strong> end to end, and is clear about where the line to stage 5 falls.</p>
+      <div class="flow">
+        <div class="step built"><div class="n">01</div><div class="t">Detect</div><div class="s">Surface signals</div><span class="tag">Built</span></div>
+        <div class="step built"><div class="n">02</div><div class="t">Design &amp; Predict</div><div class="s">Test + forecast</div><span class="tag">Built</span></div>
+        <div class="step next"><div class="n">03</div><div class="t">Activate</div><div class="s">Send the offer</div><span class="tag">Next</span></div>
+        <div class="step next"><div class="n">04</div><div class="t">Monitor</div><div class="s">In-flight</div><span class="tag">Next</span></div>
+        <div class="step next"><div class="n">05</div><div class="t">Measure</div><div class="s">Real results</div><span class="tag">Next</span></div>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Stage</th><th>Status</th><th>In PULSE</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Signal Detection</strong></td><td><span class="pill on">Built</span></td><td>The engine scans the member base and surfaces an Opportunity Feed of ranked, plain-English signals.</td></tr>
+            <tr><td><strong>Conversational Design</strong></td><td><span class="pill on">Built</span></td><td>Selecting a signal hands it to the agent, which sizes the group, runs a power check, sets the reward, applies governance, and packages the audience.</td></tr>
+            <tr><td><strong>Scenario Prediction</strong></td><td><span class="pill on">Built</span></td><td>Design-time forecasts (lift, extra value, cannibalization, budget) with power + minimum-detectable-effect, framed as predictions, not results.</td></tr>
+            <tr><td><strong>Activation</strong></td><td><span class="pill off">Next</span></td><td>Treatment exposure, redemption event stream, live liability-burn tracker.</td></tr>
+            <tr><td><strong>In-flight monitoring</strong></td><td><span class="pill off">Next</span></td><td>Live data collection as the campaign runs.</td></tr>
+            <tr><td><strong>Measured results</strong></td><td><span class="pill off">Next</span></td><td>Actual lift vs. control, real statistical significance, ROI.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top:14px;">The deliberate choice: stages 1–2 are a <em>forecast</em>; significance and ROI belong to stage 5. PULSE never dresses a prediction up as a result.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Proof point</p>
+      <h2>A result Kobie has already delivered, made repeatable</h2>
+      <div class="proof">
+        <div class="nums">
+          <div><div class="v">10%</div><div class="l">incremental spend lift</div></div>
+          <div><div class="v">$33.7M</div><div class="l">incremental sales</div></div>
+        </div>
+        <p>Kobie has already delivered this result with custom data science: propensity matching that turned at-risk members into a verified 10% spend lift. PULSE packages that work as a repeatable product, replacing manual cohort pulls with an autonomous, launch-ready agent.</p>
+        <span class="cite"><a href="https://kobie.com/getting-at-risk-members-back-in-the-loyalty-game-to-win-a-10-lift/" target="_blank" rel="noopener">Getting at-risk members back in the loyalty game to win a 10% lift</a> (2022-01-10)</span>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Stage 1 · Signal Detection</p>
+      <h2>The engine tells you what's worth acting on</h2>
+      <p>Nobody has to type a goal to get started. The engine scans the member base and returns an <strong>Opportunity Feed</strong> of ranked signals. The demo curates four, with real queried numbers: two large Craft Soda groups, big enough to measure on their own, plus smaller Organic Snacks and Artisanal Coffee groups that need a comparison group. Each signal carries its own <strong>pre-computed cohort</strong>, so the agent works on exactly the group shown on the card.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Stage 2 · The agent</p>
+      <h2>The agent and its tools</h2>
+      <p>Six deterministic business tools, orchestrated by an <code class="inline">AgentRunner</code>:</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Tool</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><code>query_behavioral_cohort</code></td><td>Size a group by category / risk / stated preference</td></tr>
+            <tr><td><code>query_widened_cohort</code></td><td>Broaden a group to grow the treated audience</td></tr>
+            <tr><td><code>check_experiment_power</code></td><td>Is the group big enough to measure reliably?</td></tr>
+            <tr><td><code>configure_klic_experiment</code></td><td>Set reward, 80/20 split, liability, forecasts</td></tr>
+            <tr><td><code>evaluate_experiment_governance</code></td><td>Apply the autonomy policy</td></tr>
+            <tr><td><code>export_clean_room_payload</code></td><td>Package a privacy-safe, aggregated audience</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Responsible autonomy</p>
+      <h2>Act on the small calls, escalate the big ones</h2>
+      <p>Before anything runs, the agent checks the play against the governance policy:</p>
+      <div class="patterns">
+        <div class="pat"><div class="pk">Pattern A</div><h3>Handled automatically</h3><p>Too small but low cost → it adds a look-alike comparison group itself.</p></div>
+        <div class="pat human"><div class="pk">Pattern B</div><h3>Needs your decision</h3><p>Small group → it pauses and offers one-click actions: add a comparison group, widen the audience, or skip the test.</p></div>
+        <div class="pat"><div class="pk">Pattern C</div><h3>Good to go</h3><p>Group is big enough. Proceed with a normal hold-back comparison group.</p></div>
+        <div class="pat"><div class="pk">Pattern D</div><h3>Test skipped</h3><p>Direct send, no comparison group, no readout. The trade-off is stated plainly.</p></div>
+      </div>
+      <p style="margin-top:16px;">The principle: decide the low-risk calls, escalate the consequential ones. When a human is pulled in, they answer by <strong>clicking, not typing</strong>.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Clear statistics</p>
+      <h2>Predictions, precision, and the line to significance</h2>
+      <p>The prediction panel forecasts four outcomes: Expected Lift, Expected Extra Value, cannibalization, and Points Budget. Each is tagged <strong>FORECAST</strong>, under a banner that stays on screen and says these are predictions, not real results. Two calls worth naming:</p>
+      <div class="callout">
+        <h3>No significance at design time</h3>
+        <p>A p-value is something you <em>measure</em> after the campaign runs, and there is no data yet. Putting one on a forecast would be misleading. So the app shows <strong>power</strong> and <strong>minimum detectable effect</strong> instead: the smallest lift this design can reliably catch, and whether the predicted lift clears it. Real significance waits for stage 5.</p>
+      </div>
+      <ul class="clean">
+        <li><strong>Point estimates vs. precision.</strong> Adding a comparison group does not change the headline numbers, because it is the same offer to the same people. What it changes is how confident you can be. So the prediction <strong>ranges tighten</strong> when a comparison group is added or the audience widens, and the headline numbers only move when the treated group itself changes.</li>
+        <li><strong>Guardrails are first-class.</strong> Cannibalization is held under a 3% guardrail; the clean-room export is k-anonymity gated and differential-privacy tokenized (no raw PII).</li>
+      </ul>
+    </section>
+
+    <!-- ===================== 04 · DEVELOPMENT ===================== -->
+    <div class="part">
+      <div class="part-num">04</div>
+      <div>
+        <div class="part-e">Section 04</div>
+        <div class="part-h">Development</div>
+      </div>
+    </div>
+
+    <section>
+      <p class="eyebrow">Process</p>
+      <h2>How it was developed</h2>
+      <p>Built fast and iteratively: something working early, then sharpened against a few firm principles.</p>
+      <ul class="clean">
+        <li><strong>Simulation-first, so the demo never fails.</strong> The deterministic path was built before the live one: the agent's whole flow runs with no API key, so a live presentation can't be broken by a network call, and it costs nothing to show.</li>
+        <li><strong>Statistical honesty as a design constraint.</strong> The hardest calls were about what <em>not</em> to claim. Predictions are labelled as predictions, significance is withheld until there is data, and a comparison group moves precision rather than the headline number.</li>
+        <li><strong>Plain English as a rule.</strong> Every label and reply is written for a business audience, not a data scientist. Jargon is removed deliberately, with tooltips for the rest.</li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="eyebrow">Architecture</p>
+      <h2>Four files, one data engine</h2>
+      <div class="tiers">
+        <div class="tier"><div class="lab">app.py</div><h3>Experience layer</h3><p>Streamlit UI, the Kobie brand system, the password gate, and the two-stage router (Opportunity Feed → engaged).</p></div>
+        <div class="arrow" aria-hidden="true">▾</div>
+        <div class="tier"><div class="lab">signal_engine.py &nbsp;·&nbsp; agent_tools.py</div><h3>Detection &amp; the agent</h3><p>Stage-1 signal detection over the data engine, and the agent: a Claude tool-calling loop (with deterministic mock fallback) over six business tools.</p></div>
+        <div class="arrow" aria-hidden="true">▾</div>
+        <div class="tier"><div class="lab">data_generator.py</div><h3>Loyalty Data Engine</h3><p>An in-process DuckDB seeded with 1,000 deterministic synthetic members: the ground truth everything queries.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">The data</p>
+      <h2>A real SQL engine, zero setup</h2>
+      <p>The Loyalty Data Engine is an in-process <strong>DuckDB</strong> table of <strong>1,000 members</strong> on a fixed random seed, so every run returns the same numbers. That matters when the demo has to be repeatable in front of a room. Each member carries transactional, behavioral, and zero-party attributes: tier, points balance, category, brand-switch risk, days since last purchase, stated preference, average basket, and historical CLV. The distributions lean toward the demo's hero categories on purpose, so the scenarios land on realistic group sizes.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Deployment &amp; ops</p>
+      <h2>Container, gate, embed</h2>
+      <ul class="clean">
+        <li><strong>Container &amp; host.</strong> A Dockerfile runs Streamlit bound to the host port; deployed to Render via a one-click blueprint.</li>
+        <li><strong>Access.</strong> A password gate activates only when a secret is set: open locally, gated in production.</li>
+        <li><strong>Embed.</strong> A <code class="inline">noindex</code> iframe page publishes it under <code class="inline">pablocorzo.com/prototypes/pulse</code>: the app runs on Render, the URL lives on the domain.</li>
+        <li><strong>Secrets.</strong> Runs in simulation mode with no API key, ideal for a public, gated demo: no cost, nothing to leak.</li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="eyebrow">Versioning &amp; honesty</p>
+      <h2>What it is, and what it isn't</h2>
+      <ul class="clean">
+        <li>Numbers come from <strong>synthetic data</strong>, and the statistical formulas are illustrative rather than a production engine.</li>
+        <li>Stages 3–5 (activation, monitoring, measured results) are <strong>not built</strong>. The app is careful to never imply otherwise.</li>
+        <li>It's an <strong>unofficial concept demo</strong> that uses Kobie's marks for demo purposes, kept private and <code class="inline">noindex</code>.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Built as a rapid prototype in Python and Streamlit, pair-programmed with an AI coding assistant. This is a concept demo: confirm production color values, logo clear-space, and trademark usage against Kobie's source files before any external use.</p>
+  </div>
+</footer>
+</body>
+</html>
