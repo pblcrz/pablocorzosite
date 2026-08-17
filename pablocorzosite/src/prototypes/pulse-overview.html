@@ -315,6 +315,30 @@
       <p class="muted" style="margin-top:14px;">The deliberate choice: stages 1–2 are a <em>forecast</em>; significance and ROI belong to stage 5. PULSE never dresses a prediction up as a result.</p>
     </section>
 
+<section>
+  <p class="eyebrow">Enterprise evaluation</p>
+  <h2>Core technical and leadership pillars</h2>
+  <div class="probgrid">
+    <div class="prob">
+      <div class="pl">Orchestration</div>
+      <p>A deterministic <code class="inline">AgentRunner</code> coordinates tool-calling across cohort sizing, power validation, and setup without open-ended LLM drift.</p>
+    </div>
+    <div class="prob">
+      <div class="pl">Guardrails</div>
+      <p>Deterministic checks enforce power thresholds, a 3% cannibalization cap, and k-anonymity clean-room packaging outside the model layer.</p>
+    </div>
+    <div class="prob">
+      <div class="pl">Unit Economics</div>
+      <p>Zero-copy DuckDB execution replaces weeks of custom data science tickets with sub-second, near-zero marginal cost simulations.</p>
+    </div>
+    <div class="prob">
+      <div class="pl">Governance</div>
+      <p>Tiered autonomy (Patterns A–D) automatically clears low-risk paths while requiring one-click marketer sign-off on high-liability decisions.</p>
+    </div>
+  </div>
+</section>
+
+
     <section>
       <p class="eyebrow">Proof point</p>
       <h2>A result Kobie has already delivered, made repeatable</h2>
@@ -410,6 +434,55 @@
         <div class="arrow" aria-hidden="true">▾</div>
         <div class="tier"><div class="lab">data_generator.py</div><h3>Loyalty Data Engine</h3><p>An in-process DuckDB seeded with 1,000 deterministic synthetic members: the ground truth everything queries.</p></div>
       </div>
+    </section>
+    <section>
+      <p class="eyebrow">System Deep Dive</p>
+      <h2>Agentic Experimentation Architecture</h2>
+      <p class="lead">How the multi-component lifecycle executes autonomously from raw signal ingestion to validated activation.</p>
+
+      <div class="probgrid" style="margin-bottom: 20px;">
+        <div class="prob">
+          <div class="pl">1. Orchestrator (<code class="inline">AgentRunner</code>)</div>
+          <p>Coordinates conversational context, manages deterministic tool calling, and controls session execution flow.</p>
+        </div>
+        <div class="prob">
+          <div class="pl">2. Ingestion &amp; Ground Truth</div>
+          <p>Zero-copy DuckDB data engine continuously querying member tiers, purchase cadence, margin history, and risk profiles.</p>
+        </div>
+        <div class="prob">
+          <div class="pl">3. Signal &amp; Opportunity Engine</div>
+          <p>Scans member behavioral patterns to surface pre-computed opportunity cohorts before churn occurs.</p>
+        </div>
+        <div class="prob">
+          <div class="pl">4. Strategy &amp; Experiment Config</div>
+          <p>Configures rewards, sets 80/20 test vs. holdback splits, models cannibalization, and forecasts incremental lift.</p>
+        </div>
+        <div class="prob">
+          <div class="pl">5. Statistical Guardrails &amp; Evals</div>
+          <p>Deterministic checks verifying statistical power and minimum detectable effect (MDE) before test execution.</p>
+        </div>
+        <div class="prob">
+          <div class="pl">6. Governance &amp; HITL</div>
+          <p>Enforces Patterns A–D autonomy policy, halting for one-click marketer review when liability or sample risk is elevated.</p>
+        </div>
+        <div class="prob">
+          <div class="pl">7. Activation &amp; Clean Room</div>
+          <p>Packages differential-privacy, k-anonymity audiences for co-funded execution and arms real-time offer triggers.</p>
+        </div>
+        <div class="prob">
+          <div class="pl">8. Measurement &amp; State</div>
+          <p>Tracks live budget liability burn, monitors treatment exposure, and reads out actual lift versus holdback baselines.</p>
+        </div>
+      </div>
+
+      <h3>Live Audit &amp; Execution Flow</h3>
+      <ul class="clean">
+        <li><strong>Phase 1: Ingestion &amp; Detection.</strong> Opportunity Feed detects drifting purchase cadence and queries behavioral cohorts.</li>
+        <li><strong>Phase 2: Experiment Strategy.</strong> <code class="inline">AgentRunner</code> sizes the audience and configures the proposed reward value.</li>
+        <li><strong>Phase 3: Pre-Flight Guardrails.</strong> The system validates sample size against required statistical power and caps cannibalization under 3%.</li>
+        <li><strong>Phase 4: Governance Gate.</strong> Low-risk setups proceed autonomously (Pattern A/C); underpowered or high-budget setups trigger an explicit one-click sign-off (Pattern B).</li>
+        <li><strong>Phase 5: Privacy-Safe Export.</strong> Approved audiences are aggregated into zero-PII clean-room payloads ready for downstream activation.</li>
+      </ul>
     </section>
 
     <section>
