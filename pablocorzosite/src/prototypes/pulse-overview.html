@@ -82,6 +82,10 @@
   .prob .pl { font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 8px; }
   .prob p { font-size: .92rem; color: var(--muted); margin: 0; max-width: none; }
   .prob.obj { border-color: var(--accent); border-left: 4px solid var(--accent); }
+  /* "Next" marker on component cards, same treatment as the lifecycle flow */
+  .prob .tag { display: inline-block; margin-top: 10px; font-size: .64rem; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px;
+    background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
 
   /* Strategy shift cards */
   .strat { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 4px 0; }
@@ -467,11 +471,13 @@
         </div>
         <div class="prob">
           <div class="pl">7. Activation &amp; Clean Room</div>
-          <p>Packages differential-privacy, k-anonymity audiences for co-funded execution and arms real-time offer triggers.</p>
+          <p>Packages differential-privacy, k-anonymity audiences for co-funded execution. That export is built; arming real-time offer triggers is next.</p>
+          <span class="tag">Next</span>
         </div>
         <div class="prob">
           <div class="pl">8. Measurement &amp; State</div>
-          <p>Tracks live budget liability burn, monitors treatment exposure, and reads out actual lift versus holdback baselines.</p>
+          <p>Designed to track live budget liability burn, monitor treatment exposure, and read out actual lift versus holdback baselines.</p>
+          <span class="tag">Next</span>
         </div>
       </div>
 
