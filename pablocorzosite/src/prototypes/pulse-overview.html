@@ -364,7 +364,7 @@
     </div>
     <div class="prob">
       <div class="pl">Incremental Margin</div>
-      <p>Delivers verified, net-new gross margin lift across enterprise retail pilots through automated synthetic control holdouts.</p>
+      <p>Delivers verified, net-new gross margin lift across enterprise retail clients through automated synthetic control holdouts.</p>
     </div>
     <div class="prob">
       <div class="pl">Point Liability</div>
@@ -434,34 +434,25 @@
         <div class="part-h">The Build</div>
       </div>
     </div>
-    
-    <section>
+      <section>
+      <p class="eyebrow">Process</p>
+      <h2>How it was developed</h2>
+      <p>Built fast and iteratively: something working early, then sharpened against a few firm principles.</p>
+      <ul class="clean">
+        <li><strong>Simulation-first, so the demo never fails.</strong> The deterministic path was built before the live one: the agent's whole flow runs with no API key, so a live presentation can't be broken by a network call, and it costs nothing to show.</li>
+        <li><strong>Statistical honesty as a design constraint.</strong> The hardest calls were about what <em>not</em> to claim. Predictions are labelled as predictions, significance is withheld until there is data, and a comparison group moves precision rather than the headline number.</li>
+        <li><strong>Plain English as a rule.</strong> Every label and reply is written for a business audience, not a data scientist. Jargon is removed deliberately, with tooltips for the rest.</li>
+      </ul>
+    </section>
+       <section>
       <p class="eyebrow">Architecture</p>
-      <h2>Four-tier enterprise platform topology</h2>
+      <h2>Four files, one data engine</h2>
       <div class="tiers">
-        <div class="tier">
-          <div class="lab">Layer 01 · Experience &amp; Orchestration</div>
-          <h3>Conversational Task Interface (Bonnie™)</h3>
-          <p>Streamlit interface routing natural language task orchestration, opportunity discovery, and one-click governance gates.</p>
-        </div>
+        <div class="tier"><div class="lab">app.py</div><h3>Experience layer</h3><p>Streamlit UI, the Kobie brand system, the password gate, and the two-stage router (Opportunity Feed → engaged).</p></div>
         <div class="arrow" aria-hidden="true">▾</div>
-        <div class="tier">
-          <div class="lab">Layer 02 · Intelligence &amp; Experimentation</div>
-          <h3>Agentic Reasoning Loop &amp; Synthetic Controls</h3>
-          <p>Deterministic AgentRunner executing cohort sizing, power validation, MDE checks, and 80/20 holdout allocations without LLM drift.</p>
-        </div>
+        <div class="tier"><div class="lab">signal_engine.py &nbsp;·&nbsp; agent_tools.py</div><h3>Detection &amp; the agent</h3><p>Stage-1 signal detection over the data engine, and the agent: a Claude tool-calling loop (with deterministic mock fallback) over six business tools.</p></div>
         <div class="arrow" aria-hidden="true">▾</div>
-        <div class="tier">
-          <div class="lab">Layer 03 · Governance &amp; Semantic Context</div>
-          <h3>Policy Engine &amp; Loyalty Liability Ledger</h3>
-          <p>Deterministic margin guardrails, automated budget liability caps, and k-anonymity clean-room packaging rules.</p>
-        </div>
-        <div class="arrow" aria-hidden="true">▾</div>
-        <div class="tier">
-          <div class="lab">Layer 04 · Data &amp; Event Foundations</div>
-          <h3>Zero-Copy Loyalty Data Engine</h3>
-          <p>Sub-50ms unified feature vectors (in-memory DuckDB simulation; Snowflake Lakehouse in production) querying member purchase cadence, risk, and zero-party profiles.</p>
-        </div>
+        <div class="tier"><div class="lab">data_generator.py</div><h3>Loyalty Data Engine</h3><p>An in-process DuckDB seeded with 1,000 deterministic synthetic members: the ground truth everything queries.</p></div>
       </div>
     </section>
 
@@ -470,22 +461,7 @@
       <h2>Agentic Experimentation Architecture</h2>
       <p class="lead">How the multi-component lifecycle executes autonomously from raw signal ingestion to validated activation.</p>
 
-      <div class="callout" style="background: var(--surface-2); border-left-color: var(--accent); margin-bottom: 24px;">
-  <p class="eyebrow" style="margin-bottom: 6px;">Closed-Loop Architecture</p>
-  <h3 style="margin-bottom: 12px; color: var(--ink);">End-to-End Data & Monetization Lifecycle</h3>
-  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 0.82rem;">
-    <span style="padding: 6px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px;">Loyalty Data Engine</span>
-    <span style="color: var(--accent);">→</span>
-    <span style="padding: 6px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px;">KLICs™ Real-Time Trigger</span>
-    <span style="color: var(--accent);">→</span>
-    <span style="padding: 6px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px;">Synthetic Control Holdout</span>
-    <span style="color: var(--accent);">→</span>
-    <span style="padding: 6px 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px;">Snowflake Clean Room</span>
-  </div>
-  <p class="muted" style="margin-top: 12px; font-size: 0.84rem;">
-    <strong>Closed-loop feedback:</strong> Point liability burn and margin performance continuously write back to the core ledger to optimize downstream triggers in real time.
-  </p>
-</div>
+    
 
 
       <div class="probgrid" style="margin-bottom: 20px;">
@@ -534,8 +510,6 @@
         <li><strong>Phase 5: Privacy-Safe Export.</strong> Approved audiences are aggregated into zero-PII clean-room payloads ready for downstream activation.</li>
       </ul>
     </section>
-
-
 
     <section>
       <p class="eyebrow">Deployment &amp; ops</p>
